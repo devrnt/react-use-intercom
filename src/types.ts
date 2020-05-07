@@ -98,3 +98,17 @@ export type DataAttributesCompany = {
   industry?: string;
 };
 
+export type RawDataAttributesAvatar = {
+  type: string;
+  image_url?: string;
+};
+
+export type DataAttributesAvatar = {
+  /** The value is "avatar" */
+  type: string;
+  /** An avatar image URL
+   *
+   * @remarks Needs to be https */
+  imageUrl?: string;
+};
+
