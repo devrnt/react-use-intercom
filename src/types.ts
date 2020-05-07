@@ -11,7 +11,7 @@ export type RawMessengerAttributes = {
 };
 
 export type MessengerAttributes = {
-  /** The appId of your Intercom app which will indicate where to store any data  */
+  /** The app ID of your Intercom app which will indicate where to store any data  */
   appId: string;
   /** The CSS selector of an element to trigger Intercom("show") in order to activate the messenger
    *
@@ -61,3 +61,40 @@ export type MessengerAttributes = {
    */
   backgroundColor?: string;
 };
+
+export type RawDataAttributesCompany = {
+  company_id: string;
+  name?: string;
+  created_at?: string;
+  plan?: string;
+  monthly_spend?: number;
+  user_count?: number;
+  size?: number;
+  website?: string;
+  industry?: string;
+};
+
+export type DataAttributesCompany = {
+  /** The company ID of the company */
+  companyId: string;
+  /** The name of the company */
+  name?: string;
+  /** The time the company was created in your system */
+  createdAt?: string;
+  /** The name of the plan the company is on */
+  plan?: string;
+  /** How much revenue the company generates for your business */
+  monthlySpend?: number;
+  /** Indicates the number of users in Intercom associated to the company
+   *
+   * @remarks Does not actually update the value but is a reserved keyword
+   */
+  userCount?: number;
+  /** The number of employees in the company */
+  size?: number;
+  /** The URL for the company website */
+  website?: string;
+  /** The industry of the company */
+  industry?: string;
+};
+
