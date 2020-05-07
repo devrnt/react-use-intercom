@@ -111,4 +111,3 @@ export type DataAttributesAvatar = {
    * @remarks Needs to be https */
   imageUrl?: string;
 };
-
