@@ -3,6 +3,8 @@ import {
   MessengerAttributes,
   RawDataAttributesCompany,
   DataAttributesCompany,
+  RawDataAttributesAvatar,
+  DataAttributesAvatar,
 } from 'types';
 
 const mapRawMessengerAttributesToMessengerAttributes = (
@@ -33,7 +35,15 @@ const mapRawDataAttributesCompanyToDataAttributesCompany = (
   industry: attributes.industry,
 });
 
+const mapRawDataAttributesAvatarToDataAttributesAvatar = (
+  attributes: RawDataAttributesAvatar,
+): DataAttributesAvatar => ({
+  type: attributes.type,
+  imageUrl: attributes.image_url,
+});
+
 export {
   mapRawMessengerAttributesToMessengerAttributes,
   mapRawDataAttributesCompanyToDataAttributesCompany,
+  mapRawDataAttributesAvatarToDataAttributesAvatar,
 };
