@@ -1,4 +1,9 @@
-import { RawMessengerAttributes, MessengerAttributes } from 'types';
+import {
+  RawMessengerAttributes,
+  MessengerAttributes,
+  RawDataAttributesCompany,
+  DataAttributesCompany,
+} from 'types';
 
 const mapRawMessengerAttributesToMessengerAttributes = (
   attributes: RawMessengerAttributes,
@@ -14,4 +19,21 @@ const mapRawMessengerAttributesToMessengerAttributes = (
   backgroundColor: attributes.background_color,
 });
 
-export { mapRawMessengerAttributesToMessengerAttributes };
+const mapRawDataAttributesCompanyToDataAttributesCompany = (
+  attributes: RawDataAttributesCompany,
+): DataAttributesCompany => ({
+  companyId: attributes.company_id,
+  name: attributes.name,
+  createdAt: attributes.created_at,
+  plan: attributes.plan,
+  monthlySpend: attributes.monthly_spend,
+  userCount: attributes.user_count,
+  size: attributes.size,
+  website: attributes.website,
+  industry: attributes.industry,
+});
+
+export {
+  mapRawMessengerAttributesToMessengerAttributes,
+  mapRawDataAttributesCompanyToDataAttributesCompany,
+};
