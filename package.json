@@ -25,12 +25,6 @@
       "pre-commit": "tsdx lint"
     }
   },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
   "name": "react-use-intercom",
   "author": "devrnt",
   "module": "dist/react-use-intercom.esm.js",
