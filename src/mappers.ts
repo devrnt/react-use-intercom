@@ -5,6 +5,8 @@ import {
   DataAttributesCompany,
   RawDataAttributesAvatar,
   DataAttributesAvatar,
+  RawDataAttributes,
+  DataAttributes,
 } from 'types';
 
 const mapRawMessengerAttributesToMessengerAttributes = (
@@ -42,8 +44,34 @@ const mapRawDataAttributesAvatarToDataAttributesAvatar = (
   imageUrl: attributes.image_url,
 });
 
+const mapRawDataAttributesToDataAttributes = (
+  attributes: RawDataAttributes,
+): DataAttributes => ({
+  email: attributes.email,
+  userId: attributes.user_id,
+  createdAt: attributes.created_at,
+  name: attributes.name,
+  phone: attributes.phone,
+  lastRequestAt: attributes.last_request_at,
+  unsubscribedFromEmails: attributes.unsubscribed_from_emails,
+  languageOverride: attributes.language_override,
+  utmCampaign: attributes.utm_campaign,
+  utmMedium: attributes.utm_medium,
+  utmSource: attributes.utm_source,
+  utmTerm: attributes.utm_term,
+  avatar: attributes.avatar,
+  userHash: attributes.user_hash,
+  company:
+    attributes.company &&
+    mapRawDataAttributesCompanyToDataAttributesCompany(attributes.company),
+  companies: attributes.companies?.map(
+    mapRawDataAttributesCompanyToDataAttributesCompany,
+  ),
+});
+
 export {
   mapRawMessengerAttributesToMessengerAttributes,
   mapRawDataAttributesCompanyToDataAttributesCompany,
   mapRawDataAttributesAvatarToDataAttributesAvatar,
+  mapRawDataAttributesToDataAttributes,
 };
