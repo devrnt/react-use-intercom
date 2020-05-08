@@ -9,7 +9,7 @@ import {
   DataAttributes,
 } from 'types';
 
-const mapRawMessengerAttributesToMessengerAttributes = (
+export const mapRawMessengerAttributesToMessengerAttributes = (
   attributes: RawMessengerAttributes,
 ): MessengerAttributes => ({
   appId: attributes.app_id,
@@ -44,7 +44,7 @@ const mapRawDataAttributesAvatarToDataAttributesAvatar = (
   imageUrl: attributes.image_url,
 });
 
-const mapRawDataAttributesToDataAttributes = (
+export const mapRawDataAttributesToDataAttributes = (
   attributes: RawDataAttributes,
 ): DataAttributes => ({
   email: attributes.email,
@@ -59,7 +59,9 @@ const mapRawDataAttributesToDataAttributes = (
   utmMedium: attributes.utm_medium,
   utmSource: attributes.utm_source,
   utmTerm: attributes.utm_term,
-  avatar: attributes.avatar,
+  avatar:
+    attributes.avatar &&
+    mapRawDataAttributesAvatarToDataAttributesAvatar(attributes.avatar),
   userHash: attributes.user_hash,
   company:
     attributes.company &&
@@ -68,10 +70,3 @@ const mapRawDataAttributesToDataAttributes = (
     mapRawDataAttributesCompanyToDataAttributesCompany,
   ),
 });
-
-export {
-  mapRawMessengerAttributesToMessengerAttributes,
-  mapRawDataAttributesCompanyToDataAttributesCompany,
-  mapRawDataAttributesAvatarToDataAttributesAvatar,
-  mapRawDataAttributesToDataAttributes,
-};
