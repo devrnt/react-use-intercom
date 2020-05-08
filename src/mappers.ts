@@ -7,12 +7,13 @@ import {
   DataAttributesAvatar,
   RawDataAttributes,
   DataAttributes,
+  RawIntercomProps,
+  IntercomProps,
 } from 'types';
 
 export const mapRawMessengerAttributesToMessengerAttributes = (
   attributes: RawMessengerAttributes,
 ): MessengerAttributes => ({
-  appId: attributes.app_id,
   customLauncherSelector: attributes.custom_launcher_selector,
   alignment: attributes.alignment,
   verticalPadding: attributes.vertical_padding,
@@ -69,4 +70,12 @@ export const mapRawDataAttributesToDataAttributes = (
   companies: attributes.companies?.map(
     mapRawDataAttributesCompanyToDataAttributesCompany,
   ),
+});
+
+export const mapRawIntercomPropsToIntercomProps = (
+  props: RawIntercomProps,
+): IntercomProps => ({
+  appId: props.app_id,
+  ...mapRawMessengerAttributesToMessengerAttributes(props),
+  ...mapRawDataAttributesToDataAttributes(props),
 });
