@@ -111,3 +111,112 @@ export type DataAttributesAvatar = {
    * @remarks Needs to be https */
   imageUrl?: string;
 };
+
+export type RawDataAttributes = {
+  email?: string;
+  user_id?: string;
+  created_at?: string;
+  name?: string;
+  phone?: string;
+  last_request_at?: string;
+  unsubscribed_from_emails?: boolean;
+  language_override?: string;
+  utm_campaign?: string;
+  utm_content?: string;
+  utm_medium?: string;
+  utm_source?: string;
+  utm_term?: string;
+  avatar?: RawDataAttributesAvatar;
+  user_hash?: string;
+  company?: RawDataAttributesCompany;
+  companies?: RawDataAttributesCompany[];
+  [custom_property: string]: any;
+};
+
+export type DataAttributes = {
+  /** The email address of the currently logged in user
+   * 
+  @remarks Only applicable to users
+  */
+  email?: string;
+  /** The user ID of the currently logged in user
+   * 
+  @remarks Only applicable to users
+  */
+  userId?: string;
+  /** The Unix timestamp (in seconds) when the user signed up to your app
+   *
+   * @remarks Only applicable to users
+   * @see {@link https://www.w3schools.com/cssref/css_colors.asp}
+   */
+  createdAt?: string;
+  /** Name of the current user/lead */
+  name?: string;
+  /** Name of the current user/lead */
+  phone?: string;
+  /** This value can't actually be set by the Javascript API
+   *
+   * @remarks It automatically uses the time of the last request but is a this is a reserved attribute
+   */
+  lastRequestAt?: string;
+  /** Sets the unsubscribe status of the record
+   *
+   * @see {@link https://www.intercom.com/help/en/articles/270-how-do-i-unsubscribe-users-from-receiving-emails}
+   */
+  unsubscribedFromEmails?: boolean;
+  /** Set the messenger language programmatically (instead of relying on browser language settings)
+   *
+   * @see {@link https://www.intercom.com/help/en/articles/180-localize-intercom-to-work-with-multiple-languages}
+   */
+  languageOverride?: string;
+  /** @see {@link https://www.intercom.com/help/en/articles/908965-track-conversions-and-clicks-with-utm-parameters}
+   *
+   * @remarks All UTM parameters are updated automatically and can not be manually overidden
+   */
+  utmCampaign?: string;
+  /** @see {@link https://www.intercom.com/help/en/articles/908965-track-conversions-and-clicks-with-utm-parameters}
+   */
+  utmContent?: string;
+  /** @see {@link https://www.intercom.com/help/en/articles/908965-track-conversions-and-clicks-with-utm-parameters}
+   */
+  utmMedium?: string;
+  /** @see {@link https://www.intercom.com/help/en/articles/908965-track-conversions-and-clicks-with-utm-parameters}
+   */
+  utmSource?: string;
+  /** @see {@link https://www.intercom.com/help/en/articles/908965-track-conversions-and-clicks-with-utm-parameters}
+   */
+  utmTerm?: string;
+  /** Set the avatar/profile image associated to the current record
+   *
+   * @remarks Typically gathered via social profiles via email address
+   * @see {@link https://www.intercom.com/help/en/articles/277-where-do-the-social-profiles-come-from}
+   */
+  avatar?: DataAttributesAvatar;
+  /** Used for identity verification
+   *
+   * @see {@link https://www.intercom.com/help/en/articles/183-enable-identity-verification-for-web-and-mobile}
+   * @remarks Only applicable to users
+   */
+  userHash?: string;
+  /** Current user's company
+   *
+   * @remarks Only applicable to users
+   * @remarks Company ID and company name are the minimum requirements to pass a company into Intercom
+   * @see {@link https://developers.intercom.com/installing-intercom/docs/javascript-api-attributes-objects#section-company-object}
+   */
+  company?: DataAttributesCompany;
+  /** An array of companies the user is associated to
+   *
+   * @remarks Only applicable to users
+   * @see {@link https://www.intercom.com/help/en/articles/186-group-your-users-by-company}
+   */
+  companies?: DataAttributesCompany[];
+  /**
+   * You can do this anytime by adding additional key/value pairs to your intercomSettings code snippet
+   *
+   * @see {@link https://www.intercom.com/help/en/articles/179-send-custom-user-attributes-to-intercom}
+   * @remarks The key is the attribute name. The value is a placeholder for the data you’ll track
+   */
+  [customProperty: string]: any;
+};
+
