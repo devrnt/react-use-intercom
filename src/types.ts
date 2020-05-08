@@ -1,5 +1,4 @@
 export type RawMessengerAttributes = {
-  app_id: string;
   custom_launcher_selector?: string;
   alignment?: string;
   vertical_padding?: number;
@@ -11,8 +10,6 @@ export type RawMessengerAttributes = {
 };
 
 export type MessengerAttributes = {
-  /** The app ID of your Intercom app which will indicate where to store any data  */
-  appId: string;
   /** The CSS selector of an element to trigger Intercom("show") in order to activate the messenger
    *
    * @remarks To target an element by ID: "#id_of_element". To target elements by class ".classname_of_elements"
@@ -234,3 +231,12 @@ export type IntercomEvent =
   | 'trackEvent'
   | 'getVisitorId'
   | 'startTour';
+
+export type RawIntercomProps = { app_id: string } & RawMessengerAttributes &
+  RawDataAttributes;
+
+export type IntercomProps = {
+  /** The app ID of your Intercom app which will indicate where to store any data  */
+  appId: string;
+} & MessengerAttributes &
+  DataAttributes;
