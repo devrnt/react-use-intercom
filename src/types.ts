@@ -220,3 +220,17 @@ export type DataAttributes = {
   [customProperty: string]: any;
 };
 
+export type IntercomEvent =
+  | 'boot'
+  | 'shutdown'
+  | 'update'
+  | 'hide'
+  | 'show'
+  | 'showMessages'
+  | 'showNewMessage'
+  | 'onHide'
+  | 'onShow'
+  | 'onUnreadCountChange'
+  | 'trackEvent'
+  | 'getVisitorId'
+  | 'startTour';
