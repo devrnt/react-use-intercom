@@ -217,7 +217,7 @@ export type DataAttributes = {
   [customProperty: string]: any;
 };
 
-export type IntercomEvent =
+export type IntercomMethod =
   | 'boot'
   | 'shutdown'
   | 'update'
