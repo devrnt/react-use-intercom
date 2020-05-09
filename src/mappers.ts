@@ -24,6 +24,19 @@ export const mapRawMessengerAttributesToMessengerAttributes = (
   backgroundColor: attributes.background_color,
 });
 
+export const mapMessengerAttributesToRawMessengerAttributes = (
+  attributes: MessengerAttributes,
+): RawMessengerAttributes => ({
+  custom_launcher_selector: attributes.customLauncherSelector,
+  alignment: attributes.alignment,
+  vertical_padding: attributes.verticalPadding,
+  horizontal_padding: attributes.horizontalPadding,
+  hide_default_launcher: attributes.hideDefaultLauncher,
+  session_duration: attributes.sessionDuration,
+  action_color: attributes.actionColor,
+  background_color: attributes.backgroundColor,
+});
+
 const mapRawDataAttributesCompanyToDataAttributesCompany = (
   attributes: RawDataAttributesCompany,
 ): DataAttributesCompany => ({
@@ -38,11 +51,32 @@ const mapRawDataAttributesCompanyToDataAttributesCompany = (
   industry: attributes.industry,
 });
 
+const mapDataAttributesCompanyToRawDataAttributesCompany = (
+  attributes: DataAttributesCompany,
+): RawDataAttributesCompany => ({
+  company_id: attributes.companyId,
+  name: attributes.name,
+  created_at: attributes.createdAt,
+  plan: attributes.plan,
+  monthly_spend: attributes.monthlySpend,
+  user_count: attributes.userCount,
+  size: attributes.size,
+  website: attributes.website,
+  industry: attributes.industry,
+});
+
 const mapRawDataAttributesAvatarToDataAttributesAvatar = (
   attributes: RawDataAttributesAvatar,
 ): DataAttributesAvatar => ({
   type: attributes.type,
   imageUrl: attributes.image_url,
+});
+
+const mapDataAttributesAvatarToRawDataAttributesAvatar = (
+  attributes: DataAttributesAvatar,
+): RawDataAttributesAvatar => ({
+  type: attributes.type,
+  image_url: attributes.imageUrl,
 });
 
 export const mapRawDataAttributesToDataAttributes = (
@@ -72,10 +106,47 @@ export const mapRawDataAttributesToDataAttributes = (
   ),
 });
 
+export const mapDataAttributesToRawDataAttributes = (
+  attributes: DataAttributes,
+): RawDataAttributes => ({
+  email: attributes.email,
+  user_id: attributes.userId,
+  created_at: attributes.createdAt,
+  name: attributes.name,
+  phone: attributes.phone,
+  last_request_at: attributes.lastRequestAt,
+  unsubscribed_from_emails: attributes.unsubscribedFromEmails,
+  language_override: attributes.languageOverride,
+  utm_campaign: attributes.utmCampaign,
+  utm_medium: attributes.utmMedium,
+  utm_source: attributes.utm_source,
+  utm_term: attributes.utmTerm,
+  avatar:
+    attributes.avatar &&
+    mapDataAttributesAvatarToRawDataAttributesAvatar(attributes.avatar),
+  user_hash: attributes.userHash,
+  company:
+    attributes.company &&
+    mapDataAttributesCompanyToRawDataAttributesCompany(attributes.c),
+  companies: attributes.companies?.map(
+    mapDataAttributesCompanyToRawDataAttributesCompany,
+  ),
+});
+
 export const mapRawIntercomPropsToIntercomProps = (
   props: RawIntercomProps,
 ): IntercomProps => ({
   appId: props.app_id,
   ...mapRawMessengerAttributesToMessengerAttributes(props),
   ...mapRawDataAttributesToDataAttributes(props),
+});
+
+// TODO: Consider if we should auto convert the keys
+// of the 'custom_attributes' from underscore to camel case
+export const mapIntercomPropsToRawIntercomProps = (
+  props: IntercomProps,
+): RawIntercomProps => ({
+  app_id: props.appId,
+  ...mapMessengerAttributesToRawMessengerAttributes(props),
+  ...mapDataAttributesToRawDataAttributes(props),
 });
