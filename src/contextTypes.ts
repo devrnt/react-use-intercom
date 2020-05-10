@@ -81,6 +81,48 @@ export type IntercomContextValues = {
    * ```
    */
   showNewMessages: (prePopulatedContent?: string) => void;
+  /**
+   * A visitor is someone who goes to your site but does not use the messenger.
+   * You can track these visitors via the visitor `user_id`.
+   *
+   * @remarks This `user_id` can be used to retrieve the visitor or lead through the REST API.
+   *
+   * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#section-intercomgetvisitorid}
+   */
+  getVisitorId: () => string;
+  /**
+   * Triggers a tour based on an action a user or visitor takes in your site or application,
+   * You need to call this method with the id of the tour you wish to show.
+   *
+   * The id of the tour can be found in the “Use tour everywhere” section of the tour editor.
+   *
+   * @remarks Please note that tours shown via this API must be published and
+   * the “Use tour everywhere” section must be turned on.
+   * If you're calling this API using an invalid tour id, nothing will happen.
+   *
+   * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#section-intercomstarttour-tourid}
+   */
+  startTour: (tourId: number) => void;
+  /**
+   * Submits an event, this will associate the event with the currently
+   * tracked visitor, lead or user and send it to Intercom
+   *
+   * The final parameter is an optional metadata object that can be used to send additional details about the event.
+   *
+   * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#section-intercomtrackevent}
+   *
+   * @example
+   * ```
+   * const metadata = {
+   *   item: 'NES',
+   *   price: {"amount": 2900, "currency": "usd"},
+   *   catalog_img: "https://downloads.intercomcdn.com/128113c39a6a.jpg",
+   * };
+   *
+   * trackEvent('purchased-item', metadata);
+   * ```
+   */
+  trackEvent: (event: string, metaData?: object) => void;
 };
 
 export type IntercomProviderProps = {
