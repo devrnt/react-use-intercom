@@ -232,10 +232,13 @@ export type IntercomMethod =
   | 'getVisitorId'
   | 'startTour';
 
-export type RawIntercomProps = { app_id: string } & RawMessengerAttributes &
-  RawDataAttributes;
+export type RawIntercomProps = RawMessengerAttributes & RawDataAttributes;
 
-export type IntercomProps = {
+export type RawIntercomBootProps = { app_id: string } & RawIntercomProps;
+
+export type IntercomProps = MessengerAttributes & DataAttributes;
+
+export type IntercomBootProps = {
   /** The app ID of your Intercom app which will indicate where to store any data  */
   appId: string;
 } & MessengerAttributes &
