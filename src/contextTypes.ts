@@ -82,3 +82,8 @@ export type IntercomContextValues = {
    */
   showNewMessages: (prePopulatedContent?: string) => void;
 };
+
+export type IntercomProviderProps = {
+  appId: string;
+  children: React.ReactNode;
+};
