@@ -243,3 +243,5 @@ export type IntercomBootProps = {
   appId: string;
 } & MessengerAttributes &
   DataAttributes;
+
+export type LogLevel = 'info' | 'error' | 'warn';
