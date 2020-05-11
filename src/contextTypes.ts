@@ -126,6 +126,30 @@ export type IntercomContextValues = {
 };
 
 export type IntercomProviderProps = {
+  /** The app ID of your Intercom app which will indicate where to store any data  */
   appId: string;
+  /**
+   * Indicates if Intercom should be automatically booted
+   *
+   * @remarks if `true`, 'boot' does not need to be called manually
+   * */
+  autoBoot?: boolean;
+  /**
+   * React children
+   */
   children: React.ReactNode;
+  /**
+   * When we hide the messenger, you can hook into the event. This requires a function argument.
+   */
+  onHide?: Function;
+  /**
+   * When we show the messenger, you can hook into the event. This requires a function argument.
+   */
+  onShow?: Function;
+  /**
+   * This method allows you to register a function that will be called immediately
+   * when invoked, and again whenever the current number of unread messages changes.
+   */
+  onUnreadCountChange?: Function;
+  // TODO: logging prop
 };
