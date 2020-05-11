@@ -8,7 +8,6 @@ const IntercomContext = createContext<IntercomContextValues>({
   hardShutdown: () => null,
   update: () => null,
   hide: () => null,
-  refresh: () => null,
   show: () => null,
   showMessages: () => null,
   showNewMessages: () => null,

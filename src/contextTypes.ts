@@ -37,14 +37,10 @@ export type IntercomContextValues = {
    * those fields on the current user in addition to logging an impression at
    * the current URL and looking for new messages for the user.
    *
+   * @remarks You will need to call `update` without `props` in order to initiate a "ping" every time the URL changes.
+   * Calls Intercom with a auto generated `last_request_at` property
    */
   update: (props?: Partial<IntercomProps>) => void;
-  /**
-   * Calls Intercom with a auto generated `last_request_at` property
-   *
-   * @remarks You will need to call `refresh` in order to initiate a "ping" every time the URL changes.
-   */
-  refresh: () => void;
   /**
    * Hides the main Messenger panel if it is open. It will not hide the Messenger Launcher.
    *
