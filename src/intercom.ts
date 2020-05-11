@@ -1,4 +1,5 @@
 import { IntercomMethod } from './types';
+
 /**
  * Safely exposes `window.Intercom` and passes the arguments to the instance
  *
@@ -8,7 +9,7 @@ import { IntercomMethod } from './types';
  */
 export const IntercomAPI = (method: IntercomMethod, ...args: Array<any>) => {
   if (window.Intercom) {
-    window.Intercom.apply(null, [method, args]);
+    return window.Intercom.apply(null, [method, ...args]);
   } else {
     console.warn('[intercom] Intercom instance is not initialized yet');
   }
