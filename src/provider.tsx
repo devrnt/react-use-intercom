@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useCallback,
-  useMemo,
-  useState,
-  useEffect,
-} from 'react';
+import React, { useContext, useCallback, useMemo, useState } from 'react';
 
 import * as logger from './logger';
 import initialize from './initialize';
