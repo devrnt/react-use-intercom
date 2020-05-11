@@ -9,7 +9,23 @@ import {
   DataAttributes,
   RawIntercomProps,
   IntercomProps,
-} from 'types';
+  RawIntercomBootProps,
+  IntercomBootProps,
+} from './types';
+
+/**
+ * Removes object entries where the value equals to `undefined`
+ *
+ * @param obj
+ * @private
+ */
+const removeUndefined = (obj: any) => {
+  Object.keys(obj).forEach(key => {
+    if (obj[key] && typeof obj[key] === 'object') removeUndefined(obj[key]);
+    else if (obj[key] === undefined) delete obj[key];
+  });
+  return obj;
+};
 
 export const mapRawMessengerAttributesToMessengerAttributes = (
   attributes: RawMessengerAttributes,
@@ -136,6 +152,13 @@ export const mapDataAttributesToRawDataAttributes = (
 export const mapRawIntercomPropsToIntercomProps = (
   props: RawIntercomProps,
 ): IntercomProps => ({
+  ...mapRawMessengerAttributesToMessengerAttributes(props),
+  ...mapRawDataAttributesToDataAttributes(props),
+});
+
+export const mapRawIntercomBootPropsToIntercomBootProps = (
+  props: RawIntercomBootProps,
+): IntercomBootProps => ({
   appId: props.app_id,
   ...mapRawMessengerAttributesToMessengerAttributes(props),
   ...mapRawDataAttributesToDataAttributes(props),
@@ -143,10 +166,21 @@ export const mapRawIntercomPropsToIntercomProps = (
 
 // TODO: Consider if we should auto convert the keys
 // of the 'custom_attributes' from underscore to camel case
+export const mapIntercomBootPropsToRawIntercomBootProps = (
+  props: IntercomBootProps,
+): RawIntercomBootProps => {
+  return removeUndefined({
+    app_id: props.appId,
+    ...mapMessengerAttributesToRawMessengerAttributes(props),
+    ...mapDataAttributesToRawDataAttributes(props),
+  });
+};
+
 export const mapIntercomPropsToRawIntercomProps = (
   props: IntercomProps,
-): RawIntercomProps => ({
-  app_id: props.appId,
-  ...mapMessengerAttributesToRawMessengerAttributes(props),
-  ...mapDataAttributesToRawDataAttributes(props),
-});
+): RawIntercomProps => {
+  return removeUndefined({
+    ...mapMessengerAttributesToRawMessengerAttributes(props),
+    ...mapDataAttributesToRawDataAttributes(props),
+  });
+};
