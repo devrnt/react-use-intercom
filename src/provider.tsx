@@ -16,7 +16,7 @@ export const IntercomProvider = ({
   onShow,
   onUnreadCountChange,
 }: IntercomProviderProps) => {
-  const [isBooted, setIsBooted] = useState(false);
+  const [isBooted, setIsBooted] = useState(autoBoot);
 
   if (!window.Intercom) {
     initialize(appId);
@@ -28,7 +28,7 @@ export const IntercomProvider = ({
 
     if (autoBoot) {
       IntercomAPI('boot', { app_id: appId });
-      setIsBooted(true);
+      window.intercomSettings = { app_id: appId };
     }
   }
 
@@ -38,8 +38,8 @@ export const IntercomProvider = ({
         logger.log(
           'warn',
           [
-            `'${functionName}' was called but Intercom has not booted yet.`,
-            `Please call 'boot' before calling '${functionName}' or`,
+            `'${functionName}' was called but Intercom has not booted yet. `,
+            `Please call 'boot' before calling '${functionName}' or `,
             `set 'autoBoot' to true in the IntercomProvider.`,
           ].join(''),
         );
