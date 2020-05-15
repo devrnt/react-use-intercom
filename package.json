@@ -16,6 +16,8 @@
     "test": "tsdx test --passWithNoTests",
     "test:watch": "tsdx test --watch",
     "test:coverage": "tsdx test --coverage",
+    "cypress": "cypress run",
+    "cypress:open": "cypress open",
     "lint": "tsdx lint",
     "prepare": "tsdx build"
   },
@@ -36,6 +38,7 @@
     "@types/jsdom": "^16.2.1",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "cypress": "^4.5.0",
     "dotenv": "^8.2.0",
     "husky": "^4.2.5",
     "jsdom": "^16.2.2",
