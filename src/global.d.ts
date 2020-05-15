@@ -1,11 +1,10 @@
-import { RawIntercomProps } from './types';
-
+export {};
 declare global {
   var __DEV__: boolean;
 
   interface Window {
     Intercom: any;
-    intercomSettings: RawIntercomProps;
+    intercomSettings: any;
     attachEvent: any;
   }
   interface HTMLScriptElement {
