@@ -1,0 +1,17 @@
+name: End-to-end tests
+on: [pull_request]
+jobs:
+  cypress-run:
+    runs-on: ubuntu-16.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v1
+        with:
+          start: yarn start:example
+          wait-on: 'http://localhost:1234'
+          browser: chrome
+          headless: true

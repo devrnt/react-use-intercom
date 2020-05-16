@@ -6,3 +6,7 @@ dist
 
 config/.env
 test/config/.env
+
+/cypress/videos
+/cypress/screenshots
+/cypress/fixtures
