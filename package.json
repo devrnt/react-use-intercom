@@ -12,6 +12,7 @@
   },
   "scripts": {
     "start": "tsdx watch",
+    "start:example": "yarn --cwd ./example install && yarn --cwd ./example start",
     "build": "tsdx build",
     "test": "tsdx test --passWithNoTests",
     "test:watch": "tsdx test --watch",
