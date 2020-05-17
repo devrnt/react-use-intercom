@@ -1,14 +1,18 @@
 {
-  "name": "example",
+  "name": "react-use-intercom-example-playground",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html"
   },
   "dependencies": {
-    "react-app-polyfill": "^1.0.0"
+    "react-app-polyfill": "^1.0.0",
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^5.1.0",
+    "styled-normalize": "^8.0.7"
   },
   "alias": {
     "react": "../node_modules/react",
@@ -18,6 +22,8 @@
   "devDependencies": {
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.8.4",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/styled-components": "^5.1.0",
     "parcel": "^1.12.3",
     "typescript": "^3.4.5"
   }
