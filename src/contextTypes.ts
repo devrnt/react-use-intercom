@@ -146,6 +146,5 @@ export type IntercomProviderProps = {
    * This method allows you to register a function that will be called immediately
    * when invoked, and again whenever the current number of unread messages changes.
    */
-  onUnreadCountChange?: Function;
-  // TODO: logging prop
+  onUnreadCountChange?: (unreadCount: number) => void;
 };

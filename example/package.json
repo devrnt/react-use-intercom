@@ -1,8 +1,9 @@
 {
-  "name": "example",
+  "name": "react-use-intercom-example-playground",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html"

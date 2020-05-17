@@ -3,34 +3,27 @@ import styled from 'styled-components';
 
 import { IntercomProvider, useIntercom } from '../../../.';
 
+import { Button } from '../common';
+
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+  width: 100%;
 `;
 
-const Button = styled.button`
-  border: none;
-  padding: 1rem 3rem;
-  border-radius: 10px;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 1.25px;
-  word-spacing: 1px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  background-image: linear-gradient(to right, #48a4fb, #05e1f9);
-  cursor: pointer;
+const Item = styled.div`
+  display: grid;
+  grid-template-rows: min-content;
 
-  &:active,
-  &:focus,
-  &:hover {
-    background-image: linear-gradient(to right, #45e87b, #45f3dc);
+  &::after {
+    content: '';
+    margin: 2rem 0 1.5rem;
+    border-bottom: 2px solid var(--grey);
+    width: 100%;
   }
-  /* background-image: linear-gradient(to right, #45e87b, #45f3dc); */
 `;
 
-const UseIntercomChildPage = () => {
+const RawUseIntercomPage = () => {
   const {
     boot,
     shutdown,
@@ -82,59 +75,125 @@ const UseIntercomChildPage = () => {
 
   return (
     <Grid>
-      <Button data-cy="boot" onClick={boot}>
-        Boot clean intercom
-      </Button>
-      <Button data-cy="boot-seeded" onClick={handleBoot}>
-        Boot seeded intercom
-      </Button>
-      <Button data-cy="shutdown" onClick={shutdown}>
-        Shutdown intercom
-      </Button>
-      <Button data-cy="shutdown-hard" onClick={hardShutdown}>
-        Hard Shutdown intercom
-      </Button>
-      <Button data-cy="update" onClick={update}>
-        Update clean session
-      </Button>
-      <Button data-cy="update-seeded" onClick={handleUpdate}>
-        Update session with options
-      </Button>
-      <Button data-cy="show" onClick={show}>
-        Show messages
-      </Button>
-      <Button data-cy="hide" onClick={hide}>
-        Hide messages
-      </Button>
-      <Button data-cy="show-messages" onClick={showMessages}>
-        Show messages list
-      </Button>
-      <Button data-cy="show-new-messages" onClick={handleNewMessages}>
-        Show new messages
-      </Button>
-      <Button
-        data-cy="show-messages-content"
-        onClick={handleNewMessagesWithContent}
-      >
-        Show new messages with content
-      </Button>
-      <Button data-cy="visitorId" onClick={handleGetVisitorId}>
-        Get visitor id
-      </Button>
-      <Button onClick={handleStartTour}>Start tour (wont work)</Button>
-      <Button onClick={handleTrackEvent}>Track event</Button>
-      <Button onClick={handleTrackEventWithMetaData}>
-        Track event with metadata
-      </Button>
+      <Item>
+        <p>
+          boots the Intercom instance, not needed if <code>autoBoot</code> in{' '}
+          <code>IntercomProvider</code> is <code>true</code>
+        </p>
+        <Button label="Boot" data-cy="boot" onClick={boot} />
+      </Item>
+      <Item>
+        <p>
+          boots the Intercom instance with given <code>props</code>
+        </p>
+        <Button label="Boot props" data-cy="boot-seeded" onClick={handleBoot} />
+      </Item>
+      <Item>
+        <p>shuts down the Intercom instance</p>
+        <Button label="Shutdown" data-cy="shutdown" onClick={shutdown} />
+      </Item>
+      <Item>
+        <p>
+          same functionality as <code>shutdown</code>, but makes sure the
+          Intercom cookies, <code>window.Intercom</code> and{' '}
+          <code>window.intercomSettings</code> are removed
+        </p>
+        <Button
+          label="Shutdown hard"
+          data-cy="shutdown-hard"
+          onClick={hardShutdown}
+        />
+      </Item>
+      <Item>
+        <p>Initiates a 'ping'</p>
+        <Button label="Update" data-cy="update" onClick={update} />
+      </Item>
+      <Item>
+        <p>
+          updates the Intercom instance with the supplied <code>props</code>
+        </p>
+        <Button
+          label="Update with props"
+          data-cy="update-seeded"
+          onClick={handleUpdate}
+        />
+      </Item>
+      <Item>
+        <p>shows the Messenger</p>
+        <Button label="Show" data-cy="show" onClick={show} />
+      </Item>
+      <Item>
+        <p>hides the Messenger</p>
+        <Button label="Hide messages" data-cy="hide" onClick={hide} />
+      </Item>
+      <Item>
+        <p>shows the Messenger with the message list</p>
+        <Button
+          label="Show messages"
+          data-cy="show-messages"
+          onClick={showMessages}
+        />
+      </Item>
+      <Item>
+        <p>shows the Messenger as if a new conversation was just created.</p>
+        <Button
+          label="Show new messages"
+          data-cy="show-new-messages"
+          onClick={handleNewMessages}
+        />
+      </Item>
+      <Item>
+        <p>
+          hows the Messenger as if a new conversation was just created with the
+          prefilled content
+        </p>
+        <Button
+          label="Show new messages with content"
+          data-cy="show-messages-content"
+          onClick={handleNewMessagesWithContent}
+        />
+      </Item>
+      <Item>
+        <p>gets the visitor id </p>
+        <Button
+          label="Get visitor id"
+          data-cy="visitorId"
+          onClick={handleGetVisitorId}
+        />
+      </Item>
+      <Item>
+        <p>
+          starts a tour based on the <code>tourId</code>
+        </p>
+        <Button label="Start tour" onClick={handleStartTour}>
+          Start tour
+        </Button>
+      </Item>
+      <Item>
+        <p>
+          submits an <code>event</code>{' '}
+        </p>
+        <Button label="Track event" onClick={handleTrackEvent} />
+      </Item>
+      <Item>
+        <p>
+          submits an <code>event</code> with <code>metadata</code>
+        </p>
+        <Button
+          label="Track event with metadata"
+          onClick={handleTrackEventWithMetaData}
+        />
+      </Item>
+
       {visitorId && <p data-cy="visitorIdValue">{visitorId}</p>}
     </Grid>
   );
 };
 
-const UseIntercomPage = ({ children }: any) => {
+const UseIntercomPage = () => {
   return (
     <IntercomProvider appId="jcabc7e3">
-      <UseIntercomChildPage />
+      <RawUseIntercomPage />
     </IntercomProvider>
   );
 };
