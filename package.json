@@ -10,6 +10,16 @@
   "engines": {
     "node": ">=10"
   },
+  "keywords": [
+    "react",
+    "hooks",
+    "intercom",
+    "react-intercom",
+    "intercom-react",
+    "typescript",
+    "react-hooks",
+    "react-use-intercom"
+  ],
   "scripts": {
     "start": "tsdx watch",
     "start:example": "yarn --cwd ./example install && yarn --cwd ./example start",
