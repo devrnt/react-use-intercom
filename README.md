@@ -179,7 +179,9 @@ const HomePage = () => {
 ``` 
 
 ## Playground
-<!-- TODO: link to hosted playground -->
+Example playground to showcase the functionalities of `react-use-intercom`. 
+
+[https://devrnt.github.io/react-use-intercom](https://devrnt.github.io/react-use-intercom)
 
 ## TypeScript
 All the possible pre-defined options to pass to the Intercom instance are typed. So whenever you have to pass [IntercomProps](src/types.ts), all the possible properties will be available out of the box.
