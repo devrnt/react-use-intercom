@@ -16,13 +16,6 @@ declare global {
 }
 
 describe('useIntercom', () => {
-  test('should not be available when not wrapped in context', () => {
-    const { result } = renderHook(() => useIntercom());
-
-    expect(result.current.boot()).toBeNull();
-    expect(result.current.hide()).toBeNull();
-  });
-
   test('should be available when wrapped in context', () => {
     const { result } = renderHook(() => useIntercom(), {
       wrapper: ({ children }) => (
