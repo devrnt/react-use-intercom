@@ -1,6 +1,8 @@
 # react-use-intercom
 
 ![CI](https://github.com/devrnt/react-use-intercom/workflows/CI/badge.svg?branch=master)
+<img alt="version" src="https://img.shields.io/npm/v/react-use-intercom.svg" />
+<img alt="minzipped size" src="https://badgen.net/bundlephobia/minzip/react-use-intercom">
 
 A React [Intercom](https://www.intercom.com/) integration focused on developer experience.
 
@@ -83,7 +85,7 @@ const App = () => {
       onUnreadCountChange={onUnreadCountChange}
       autoBoot
     >
-      <p>Hi there, I'm a child of the IntercomProvider</p>
+      <p>Hi there, I am a child of the IntercomProvider</p>
     </IntercomProvider>
   );
 };
