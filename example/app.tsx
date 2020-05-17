@@ -1,53 +1,55 @@
 import * as React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
-import { normalize } from 'styled-normalize';
 
 import { ProviderPage, UseIntercomPage } from './modules';
 
-const GlobalStyle = createGlobalStyle`
-  ${normalize}
-
-  html {
-    font-size: 15px;
-  }
-
-  body {
-    font-family: 'Hind', Helvetica, sans-serif;
-  }
-
-  code {
-    font-family: 'Fira Code', monospace;
-    font-size: 0.95rem;
-  }
-`;
+import { Page, Style } from './modules/common';
 
 const Navigation = styled.ul`
   padding: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 1.75rem;
+`;
+
+const Link = styled(NavLink)`
+  text-decoration: none;
+  color: var(--dark);
+
+  &:visited,
+  &:active {
+    text-decoration: none;
+  }
+
+  > code {
+    font-size: 1rem;
+  }
 `;
 
 const App = () => {
   return (
     <>
-      <GlobalStyle />
-      <h1>react-use-intercom</h1>
-      <p>This main page contains short desc of the library</p>
-      <Router>
-        <Route path="/provider" component={ProviderPage} />
-        <Route path="/useIntercom" component={UseIntercomPage} />
-        <Route path="/" exact>
-          <Navigation>
-            <NavLink to="/provider">
-              <code>IntercomProvider</code>
-            </NavLink>
-            <NavLink to="/useIntercom">
-              <code>useIntercom</code>
-            </NavLink>
-          </Navigation>
-        </Route>
-      </Router>
+      <Style />
+      <Page
+        title="react-use-intercom"
+        description="Example playground to showcase the functionalities of this package"
+      >
+        <Router>
+          <Route path="/provider" component={ProviderPage} />
+          <Route path="/useIntercom" component={UseIntercomPage} />
+          <Route path="/" exact>
+            <Navigation>
+              <Link to="/provider">
+                <code>IntercomProvider</code>
+              </Link>
+              <Link to="/useIntercom">
+                <code>useIntercom</code>
+              </Link>
+            </Navigation>
+          </Route>
+        </Router>
+      </Page>
     </>
   );
 };

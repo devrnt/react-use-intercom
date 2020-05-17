@@ -4,12 +4,9 @@ import { IntercomProvider } from '../../../.';
 
 const Provider = () => {
   return (
-    <>
-      <h3>IntercomProvider</h3>
-      <IntercomProvider appId="jcabc7e3" autoBoot>
-        <p>Intercom children</p>
-      </IntercomProvider>
-    </>
+    <IntercomProvider appId="jcabc7e3">
+      <p>Intercom children</p>
+    </IntercomProvider>
   );
 };
 
