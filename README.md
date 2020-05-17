@@ -31,7 +31,6 @@ const App = () => (
   </IntercomProvider>
 );
 
-
 // Anywhere in your app
 const HomePage = () => {
   const { boot, shutdown, hide, show, update } = useIntercom();
@@ -39,6 +38,12 @@ const HomePage = () => {
   return <button onClick={boot}>Boot intercom! ☎️</button>;
 };
 ```
+
+## Links
+* [API](#intercom)
+* [Playground](#playground)
+* [TypeScript](#typescript)
+* [Advanced](#advanced)
 
 ## API
 * [IntercomProvider](#intercomprovider)
@@ -108,7 +113,7 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 ```javascript
 import * as React from 'react';
 
-import { IntercomProvider, useIntercom } from '../../../dist';
+import { IntercomProvider, useIntercom } from 'react-use-intercom';
 
 const INTERCOM_APP_ID = 'your-intercom-app-id';
 
@@ -171,25 +176,30 @@ const HomePage = () => {
 };
 ``` 
 
-## TypeScript
-All the possible pre-defined options to pass to the Intercom instance are typed. So where you make use of passing `IntercomProps` you get the autocompletion of the possible properties out of the bbox.
-These props are `JavaScript` 'friendly' no need to pass the props with [snake_cased](https://en.wikipedia.org/wiki/Snake_case) keys.
+## Playground
+<!-- TODO: link to hosted playground -->
 
-**Remark** - if you want to pass custom properties, you should still use snake_cased keys.
+## TypeScript
+All the possible pre-defined options to pass to the Intercom instance are typed. So whenever you have to pass [IntercomProps](src/types.ts), all the possible properties will be available out of the box.
+These props are `JavaScript` 'friendly', so [camelCase](https://en.wikipedia.org/wiki/Camel_case). No need to pass the props with [snake_cased](https://en.wikipedia.org/wiki/Snake_case) keys.
+
+**Remark** - if you want to pass custom properties, you should still use [snake_cased](https://en.wikipedia.org/wiki/Snake_case) keys.
 
 
 ## Advanced
-To reduce the amount of re-renders in your React application I suggest to make use of [`React.useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback). TLDR: `useCallback` will return a memoized version of the callback that only changes if one of the dependencies has changed.
-This can be applied to both the `IntercomProvider` events and the `useIntercom` methods. It depends on how many times you main app gets re-rendered.
+To reduce the amount of re-renders in your React application I suggest to make use of [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback)
+
+**TLDR:** `useCallback` will return a memoized version of the callback that only changes if one of the dependencies has changed.
+
+This can be applied to both the `IntercomProvider` events and the `useIntercom` methods. It depends on how many times your main app gets re-rendered.
 
 ### Example
 ```javascript
 import * as React from 'react';
 
-import { IntercomProvider, useIntercom } from '../../../dist';
+import { IntercomProvider, useIntercom } from 'react-use-intercom';
 
 const INTERCOM_APP_ID = 'your-intercom-app-id';
-
 
 const App = () => {
   // const onHide = () => console.log('Intercom did hide the Messenger');
