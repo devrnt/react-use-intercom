@@ -26,6 +26,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Hind', Helvetica, sans-serif;
+    text-rendering: optimizeLegibility;
   }
 
   code {

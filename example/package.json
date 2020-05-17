@@ -4,10 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "private": true,
-  "homepage": "https://devrnt.github.io",
+  "homepage": "https://devrnt.github.io/react-use-intercom/",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html --public-url /react-use-intercom/"
   },
   "dependencies": {
     "react-app-polyfill": "^1.0.0",
