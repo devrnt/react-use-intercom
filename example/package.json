@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "private": true,
+  "homepage": "https://devrnt.github.io",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html"

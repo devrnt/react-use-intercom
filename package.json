@@ -24,6 +24,7 @@
     "start": "tsdx watch",
     "start:example": "yarn --cwd ./example install && yarn --cwd ./example start",
     "build": "tsdx build",
+    "build:example": "yarn --cwd ./example install && yarn --cwd ./example build",
     "test": "tsdx test --passWithNoTests",
     "test:watch": "tsdx test --watch",
     "test:coverage": "tsdx test --coverage",
