@@ -137,11 +137,11 @@ export type IntercomProviderProps = {
   /**
    * When we hide the messenger, you can hook into the event. This requires a function argument.
    */
-  onHide?: Function;
+  onHide?: () => void;
   /**
    * When we show the messenger, you can hook into the event. This requires a function argument.
    */
-  onShow?: Function;
+  onShow?: () => void;
   /**
    * This method allows you to register a function that will be called immediately
    * when invoked, and again whenever the current number of unread messages changes.
