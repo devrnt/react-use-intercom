@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
 
-import { ProviderPage, UseIntercomPage } from './modules';
+import { ProviderPage, UseIntercomPage, ProviderEventsPage } from './modules';
 
 import { Page, Style } from './modules/common';
 
@@ -37,11 +37,15 @@ const App = () => {
       >
         <Router>
           <Route path="/provider" component={ProviderPage} />
+          <Route path="/providerEvents" component={ProviderEventsPage} />
           <Route path="/useIntercom" component={UseIntercomPage} />
           <Route path="/" exact>
             <Navigation>
               <Link to="/provider">
                 <code>IntercomProvider</code>
+              </Link>
+              <Link to="/providerEvents">
+                <code>IntercomProvider with event callbacks</code>
               </Link>
               <Link to="/useIntercom">
                 <code>useIntercom</code>
