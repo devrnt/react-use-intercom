@@ -21,7 +21,8 @@ const GlobalStyle = createGlobalStyle`
   h5,
   h6,
   p {
-    color: var(--dark)
+    color: var(--dark);
+    line-height: 1.75rem;
   }
 
   body {
