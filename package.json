@@ -44,7 +44,8 @@
     "cypress:open": "cypress open",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
-    "bundlesize": "yarn build && bundlesize"
+    "bundlesize": "yarn build && bundlesize",
+    "release": "np"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -71,6 +72,7 @@
     "dotenv": "^8.2.0",
     "husky": "^4.2.5",
     "jsdom": "^16.2.2",
+    "np": "^6.2.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1",
