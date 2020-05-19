@@ -58,11 +58,6 @@ const RawUseIntercomPage = () => {
     setVisitorId(id);
   }, [getVisitorId]);
 
-  // TODO: check if example site is deployed
-  const handleStartTour = React.useCallback(() => {
-    startTour(9665679);
-  }, [startTour]);
-
   const handleTrackEvent = React.useCallback(() => {
     trackEvent('invited-friend');
   }, [trackEvent]);
@@ -160,14 +155,6 @@ const RawUseIntercomPage = () => {
           data-cy="visitorId"
           onClick={handleGetVisitorId}
         />
-      </Item>
-      <Item>
-        <p>
-          starts a tour based on the <code>tourId</code>
-        </p>
-        <Button label="Start tour" onClick={handleStartTour}>
-          Start tour
-        </Button>
       </Item>
       <Item>
         <p>
