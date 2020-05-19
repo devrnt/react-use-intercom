@@ -43,7 +43,9 @@
     "cypress": "cypress run",
     "cypress:open": "cypress open",
     "lint": "tsdx lint",
-    "prepare": "tsdx build"
+    "prepare": "tsdx build",
+    "bundlesize": "yarn build && bundlesize",
+    "release": "np"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -53,16 +55,24 @@
       "pre-commit": "tsdx lint"
     }
   },
+  "bundlesize": [
+    {
+      "path": "./dist/react-use-intercom.cjs.production.min.js",
+      "maxSize": "3 kB"
+    }
+  ],
   "devDependencies": {
     "@testing-library/react": "^10.0.4",
     "@testing-library/react-hooks": "^3.2.1",
     "@types/jsdom": "^16.2.3",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "bundlesize": "^0.18.0",
     "cypress": "^4.5.0",
     "dotenv": "^8.2.0",
     "husky": "^4.2.5",
     "jsdom": "^16.2.2",
+    "np": "^6.2.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1",

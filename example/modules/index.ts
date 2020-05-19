@@ -1,2 +1,2 @@
-export { default as ProviderPage } from './provider';
-export { default as UseIntercomPage } from './useIntercom';
+export * from './provider';
+export * from './useIntercom';
