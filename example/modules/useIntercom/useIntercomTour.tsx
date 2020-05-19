@@ -29,8 +29,7 @@ const RawUseIntercomStartPagePage = () => {
   const handleBoot = React.useCallback(() => boot({ name: 'Russo' }), [boot]);
 
   const handleStartTour = React.useCallback(() => {
-    // TODO: update tour id
-    startTour(122198);
+    startTour(124247);
   }, [startTour]);
 
   return (

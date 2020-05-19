@@ -7,6 +7,7 @@ import { IntercomContextValues, IntercomProviderProps } from './contextTypes';
 import { IntercomAPI } from './intercom';
 import { IntercomProps, RawIntercomBootProps } from './types';
 import { mapIntercomPropsToRawIntercomProps } from './mappers';
+import { isEmptyObject } from './utils';
 
 export const IntercomProvider = ({
   appId,
@@ -15,7 +16,17 @@ export const IntercomProvider = ({
   onHide,
   onShow,
   onUnreadCountChange,
+  ...rest
 }: IntercomProviderProps) => {
+  if (!isEmptyObject(rest))
+    logger.log(
+      'error',
+      [
+        'some invalid props were passed to IntercomProvider. ',
+        `Please check following props: ${Object.keys(rest).join(', ')}.`,
+      ].join(''),
+    );
+
   const [isBooted, setIsBooted] = useState(autoBoot);
 
   if (!window.Intercom) {
