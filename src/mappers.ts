@@ -27,127 +27,164 @@ const removeUndefined = (obj: any) => {
   return obj;
 };
 
+/**
+ * Converts all camel cased keys to snake case
+ *
+ * @param obj
+ */
+export const camelToSnake = (obj: any, keysToReplace?: Array<string>) => {
+  Object.keys(obj).forEach(key => {
+    if (keysToReplace && keysToReplace.includes(key)) {
+      const newKey = key.replace(
+        /(?:^|\.?)([A-Z])/g,
+        (_, y) => '_' + y.toLowerCase(),
+      );
+      obj[newKey] = obj[key];
+
+      delete obj[key];
+    }
+  });
+  return obj;
+};
+
+/**
+ * Converts all camel cased keys to snake case
+ *
+ * @param obj
+ */
+export const snakeToCamel = (obj: any, keysToReplace?: Array<string>) => {
+  Object.keys(obj).forEach(key => {
+    if (keysToReplace && keysToReplace.includes(key)) {
+      const newKey = key.replace(/([_][a-z])/g, x =>
+        x.toUpperCase().replace('_', ''),
+      );
+      obj[newKey] = obj[key];
+
+      delete obj[key];
+    }
+  });
+  return obj;
+};
+
 export const mapRawMessengerAttributesToMessengerAttributes = (
   attributes: RawMessengerAttributes,
-): MessengerAttributes => ({
-  customLauncherSelector: attributes.custom_launcher_selector,
-  alignment: attributes.alignment,
-  verticalPadding: attributes.vertical_padding,
-  horizontalPadding: attributes.horizontal_padding,
-  hideDefaultLauncher: attributes.hide_default_launcher,
-  sessionDuration: attributes.session_duration,
-  actionColor: attributes.action_color,
-  backgroundColor: attributes.background_color,
-});
+): MessengerAttributes =>
+  snakeToCamel(attributes, [
+    'custom_launcher_selector',
+    'vertical_padding',
+    'horizontal_padding',
+    'hide_default_launcher',
+    'session_duration',
+    'action_color',
+    'background_color',
+  ]);
 
 export const mapMessengerAttributesToRawMessengerAttributes = (
   attributes: MessengerAttributes,
-): RawMessengerAttributes => ({
-  custom_launcher_selector: attributes.customLauncherSelector,
-  alignment: attributes.alignment,
-  vertical_padding: attributes.verticalPadding,
-  horizontal_padding: attributes.horizontalPadding,
-  hide_default_launcher: attributes.hideDefaultLauncher,
-  session_duration: attributes.sessionDuration,
-  action_color: attributes.actionColor,
-  background_color: attributes.backgroundColor,
-});
+): RawMessengerAttributes =>
+  camelToSnake(attributes, [
+    'customLauncherSelector',
+    'verticalPadding',
+    'horizontalPadding',
+    'hideDefaultLauncher',
+    'sessionDuration',
+    'actionColor',
+    'backgroundColor',
+  ]);
 
 const mapRawDataAttributesCompanyToDataAttributesCompany = (
   attributes: RawDataAttributesCompany,
-): DataAttributesCompany => ({
-  companyId: attributes.company_id,
-  name: attributes.name,
-  createdAt: attributes.created_at,
-  plan: attributes.plan,
-  monthlySpend: attributes.monthly_spend,
-  userCount: attributes.user_count,
-  size: attributes.size,
-  website: attributes.website,
-  industry: attributes.industry,
-});
+): DataAttributesCompany =>
+  snakeToCamel(attributes, [
+    'company_id',
+    'created_at',
+    'monthly_spend',
+    'user_count',
+  ]);
 
 const mapDataAttributesCompanyToRawDataAttributesCompany = (
   attributes: DataAttributesCompany,
-): RawDataAttributesCompany => ({
-  company_id: attributes.companyId,
-  name: attributes.name,
-  created_at: attributes.createdAt,
-  plan: attributes.plan,
-  monthly_spend: attributes.monthlySpend,
-  user_count: attributes.userCount,
-  size: attributes.size,
-  website: attributes.website,
-  industry: attributes.industry,
-});
+): RawDataAttributesCompany =>
+  camelToSnake(attributes, [
+    'companyId',
+    'createdAt',
+    'monthlySpend',
+    'userCount',
+  ]);
 
 const mapRawDataAttributesAvatarToDataAttributesAvatar = (
   attributes: RawDataAttributesAvatar,
-): DataAttributesAvatar => ({
-  type: attributes.type,
-  imageUrl: attributes.image_url,
-});
+): DataAttributesAvatar => snakeToCamel(attributes, ['image_url']);
 
 const mapDataAttributesAvatarToRawDataAttributesAvatar = (
   attributes: DataAttributesAvatar,
-): RawDataAttributesAvatar => ({
-  type: attributes.type,
-  image_url: attributes.imageUrl,
-});
+): RawDataAttributesAvatar => camelToSnake(attributes, ['imageUrl']);
 
 export const mapRawDataAttributesToDataAttributes = (
   attributes: RawDataAttributes,
-): DataAttributes => ({
-  email: attributes.email,
-  userId: attributes.user_id,
-  createdAt: attributes.created_at,
-  name: attributes.name,
-  phone: attributes.phone,
-  lastRequestAt: attributes.last_request_at,
-  unsubscribedFromEmails: attributes.unsubscribed_from_emails,
-  languageOverride: attributes.language_override,
-  utmCampaign: attributes.utm_campaign,
-  utmMedium: attributes.utm_medium,
-  utmSource: attributes.utm_source,
-  utmTerm: attributes.utm_term,
-  avatar:
-    attributes.avatar &&
-    mapRawDataAttributesAvatarToDataAttributesAvatar(attributes.avatar),
-  userHash: attributes.user_hash,
-  company:
-    attributes.company &&
-    mapRawDataAttributesCompanyToDataAttributesCompany(attributes.company),
-  companies: attributes.companies?.map(
+): DataAttributes => {
+  let newAttributes = snakeToCamel(attributes, [
+    'user_id',
+    'created_at',
+    'last_request_at',
+    'unsubscribed_from_emails',
+    'language_override',
+    'utm_campaign',
+    'utm_medium',
+    'utm_source',
+    'utm_term',
+    'user_hash',
+  ]);
+
+  if (attributes.avatar) {
+    newAttributes.avatar = mapRawDataAttributesAvatarToDataAttributesAvatar(
+      attributes.avatar,
+    );
+  }
+  if (attributes.company) {
+    newAttributes.company = mapRawDataAttributesCompanyToDataAttributesCompany(
+      attributes.company,
+    );
+  }
+  newAttributes.companies?.map(
     mapRawDataAttributesCompanyToDataAttributesCompany,
-  ),
-});
+  );
+
+  return newAttributes;
+};
 
 export const mapDataAttributesToRawDataAttributes = (
   attributes: DataAttributes,
-): RawDataAttributes => ({
-  email: attributes.email,
-  user_id: attributes.userId,
-  created_at: attributes.createdAt,
-  name: attributes.name,
-  phone: attributes.phone,
-  last_request_at: attributes.lastRequestAt,
-  unsubscribed_from_emails: attributes.unsubscribedFromEmails,
-  language_override: attributes.languageOverride,
-  utm_campaign: attributes.utmCampaign,
-  utm_medium: attributes.utmMedium,
-  utm_source: attributes.utm_source,
-  utm_term: attributes.utmTerm,
-  avatar:
-    attributes.avatar &&
-    mapDataAttributesAvatarToRawDataAttributesAvatar(attributes.avatar),
-  user_hash: attributes.userHash,
-  company:
-    attributes.company &&
-    mapDataAttributesCompanyToRawDataAttributesCompany(attributes.c),
-  companies: attributes.companies?.map(
+): RawDataAttributes => {
+  let newAttributes = camelToSnake(attributes, [
+    'userId',
+    'createdAt',
+    'lastRequestAt',
+    'unsubscribedFromEmails',
+    'languageOverride',
+    'utmCampaign',
+    'utmMedium',
+    'utmSource',
+    'utmTerm',
+    'userHash',
+  ]);
+
+  if (attributes.avatar) {
+    newAttributes.avatar = mapDataAttributesAvatarToRawDataAttributesAvatar(
+      attributes.avatar,
+    );
+  }
+  if (attributes.company) {
+    newAttributes.company = mapDataAttributesCompanyToRawDataAttributesCompany(
+      attributes.company,
+    );
+  }
+  newAttributes.companies?.map(
     mapDataAttributesCompanyToRawDataAttributesCompany,
-  ),
-});
+  );
+
+  return newAttributes;
+};
 
 export const mapRawIntercomPropsToIntercomProps = (
   props: RawIntercomProps,
