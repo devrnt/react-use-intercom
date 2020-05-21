@@ -50,6 +50,7 @@ const HomePage = () => {
 ## API
 * [IntercomProvider](#intercomprovider)
 * [useIntercom](#useintercom)
+* [IntercomProps](#intercomprops)
 
 ### IntercomProvider 
 `IntercomProvider` is used to initialize the `window.Intercom` instance. It makes sure the initialization is only done once. If any listeners are passed, the `IntercomProvider` will make sure these are attached.
@@ -177,6 +178,24 @@ const HomePage = () => {
   );
 };
 ``` 
+### IntercomProps 
+All the Intercom default attributes/props are camel cased (`appId` instead of `app_id`) in `react-use-intercom`, see [IntercomProps](src/types.ts) to see what attributes you can pass to `boot` or `update`. Or check the Intercom [docs](https://developers.intercom.com/installing-intercom/docs/javascript-api-attributes-objects)
+ to see all the available attributes/props.
+
+ **Remark** - all the listed Intercom attributes [here](https://developers.intercom.com/installing-intercom/docs/javascript-api-attributes-objects) are snake cased, in `react-use-intercom` are these camel cased.
+
+ #### Custom attributes
+ Still want to pass custom attributes to Intercom? Whether `boot` or `update` is used, you can add your custom properties by passing these through `customAttributes` in the `boot` or `update` method. 
+
+**Remark** - the keys of the `customAttributes` object should be snake cased. They are rawly passed to Intercom.
+ ```javascript
+ const { boot } = useIntercom();
+
+ boot({ 
+  name: 'Russo',
+  customAttributes: { custom_attribute_key: 'hi there' },
+})
+ ```
 
 ## Playground
 Example playground to showcase the functionalities of `react-use-intercom`. 
