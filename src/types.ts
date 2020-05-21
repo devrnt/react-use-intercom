@@ -127,7 +127,7 @@ export type RawDataAttributes = {
   user_hash?: string;
   company?: RawDataAttributesCompany;
   companies?: RawDataAttributesCompany[];
-  [custom_property: string]: any;
+  customAttributes?: Record<string, any>;
 };
 
 export type DataAttributes = {
@@ -210,11 +210,19 @@ export type DataAttributes = {
   companies?: DataAttributesCompany[];
   /**
    * You can do this anytime by adding additional key/value pairs to your intercomSettings code snippet
+   * These should be raw snake_cased
+   *
+   * @example
+   * ```
+   * customAttributes={
+   *   my_custom_attibute: 'my attribute value'
+   * }
+   * ```
    *
    * @see {@link https://www.intercom.com/help/en/articles/179-send-custom-user-attributes-to-intercom}
    * @remarks The key is the attribute name. The value is a placeholder for the data you’ll track
    */
-  [customProperty: string]: any;
+  customAttributes?: Record<string, any>;
 };
 
 export type IntercomMethod =

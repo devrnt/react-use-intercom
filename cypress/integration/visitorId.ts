@@ -7,7 +7,7 @@ describe('getVisitorId', () => {
     cy.get('[data-cy=boot]').click();
 
     cy.get('[data-cy="visitorIdValue"]').should('not.be.visible');
-    cy.wait(1500);
+    cy.wait(2000);
 
     cy.get('[data-cy="visitorId"]').click();
     cy.get('[data-cy="visitorIdValue"]').should('be.visible');
