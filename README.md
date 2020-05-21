@@ -3,6 +3,7 @@
 ![CI](https://github.com/devrnt/react-use-intercom/workflows/CI/badge.svg?branch=master)
 <img alt="version" src="https://img.shields.io/npm/v/react-use-intercom.svg" />
 <img alt="minzipped size" src="https://badgen.net/bundlephobia/minzip/react-use-intercom">
+[![Known Vulnerabilities](https://snyk.io/test/github/devrnt/react-use-intercom/badge.svg)](https://snyk.io/test/github/devrnt/react-use-intercom)
 
 A React [Intercom](https://www.intercom.com/) integration focused on developer experience.
 
