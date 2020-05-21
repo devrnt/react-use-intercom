@@ -187,7 +187,7 @@ All the Intercom default attributes/props are camel cased (`appId` instead of `a
  #### Custom attributes
  Still want to pass custom attributes to Intercom? Whether `boot` or `update` is used, you can add your custom properties by passing these through `customAttributes` in the `boot` or `update` method. 
 
-**Remark** - the keys of the `customAttributes` object should be snake cased. They are rawly passed to Intercom.
+**Remark** - the keys of the `customAttributes` object should be snake cased (this is how Intercom wants them). They are rawly passed to Intercom.
  ```javascript
  const { boot } = useIntercom();
 
