@@ -134,8 +134,9 @@ export const mapDataAttributesToRawDataAttributes = (
   unsubscribed_from_emails: attributes.unsubscribedFromEmails,
   language_override: attributes.languageOverride,
   utm_campaign: attributes.utmCampaign,
+  utm_content: attributes.utmContent,
   utm_medium: attributes.utmMedium,
-  utm_source: attributes.utm_source,
+  utm_source: attributes.utmSource,
   utm_term: attributes.utmTerm,
   avatar:
     attributes.avatar &&
@@ -143,10 +144,11 @@ export const mapDataAttributesToRawDataAttributes = (
   user_hash: attributes.userHash,
   company:
     attributes.company &&
-    mapDataAttributesCompanyToRawDataAttributesCompany(attributes.c),
+    mapDataAttributesCompanyToRawDataAttributesCompany(attributes.company),
   companies: attributes.companies?.map(
     mapDataAttributesCompanyToRawDataAttributesCompany,
   ),
+  ...attributes.customAttributes,
 });
 
 export const mapRawIntercomPropsToIntercomProps = (
