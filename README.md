@@ -46,6 +46,7 @@ const HomePage = () => {
 * [API](#intercom)
 * [Playground](#playground)
 * [TypeScript](#typescript)
+* [Troubleshoot](#troubleshoot)
 * [Advanced](#advanced)
 
 ## API
@@ -217,6 +218,16 @@ These props are `JavaScript` 'friendly', so [camelCase](https://en.wikipedia.org
 
 **Remark** - if you want to pass custom properties, you should still use [snake_cased](https://en.wikipedia.org/wiki/Snake_case) keys.
 
+
+## Troubleshoot
+* I'm seeing "Please wrap your component with IntercomProvider.` in the console.
+> Make sure `IntercomProvider` is initialized before calling `useIntercom()`. You only need to initialize `IntercomProvider` once. It is advised to initialize `IntercomProvider` as high as possible in your application tree.
+
+> Make sure you aren't calling `useIntercom()` in the same component where you initialized `IntercomProvider`.
+
+* I'm seeing `Some invalid props were passed to IntercomProvider. Please check following props: [properties]` in the console.
+> Make sure you're passing the correct properties to the `IntercomProvider`. Check [IntercomProvider](#intercomprovider) to see all the properties.
+> Mind that all the properties in `react-use-intercom` are camel cased, except for the `customAttributes` property in the `boot` and `update` method from `useIntercom`.
 
 ## Advanced
 To reduce the amount of re-renders in your React application I suggest to make use of [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback)
