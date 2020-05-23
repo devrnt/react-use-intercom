@@ -56,6 +56,8 @@ const HomePage = () => {
 ### IntercomProvider 
 `IntercomProvider` is used to initialize the `window.Intercom` instance. It makes sure the initialization is only done once. If any listeners are passed, the `IntercomProvider` will make sure these are attached.
 
+Place the `IntercomProvider` as high as possible in your application. This will make sure you can `useIntercom()` anywhere.
+
 #### Props
 | name                | type             | description                                                                             | required | default |
 |---------------------|------------------|-----------------------------------------------------------------------------------------|----------|---------|
@@ -96,7 +98,9 @@ const App = () => {
 ### useIntercom
 Used to retrieve all methods bundled with Intercom. These are based on the official [Intercom docs](https://developers.intercom.com/installing-intercom/docs/javascript-api-attributes-objects). Some extra methods were added to improve convenience.
 
-**Remark** - make sure `IntercomProvider` is wrapped around your component when calling `useIntercom()`
+ Make sure `IntercomProvider` is wrapped around your component when calling `useIntercom()`. 
+
+**Remark** - You can't use `useIntercom()` in the same component where `IntercomProvider` is initialized. 
 
 #### Methods
 | name            | type                                       | description                                                                                                                         |
