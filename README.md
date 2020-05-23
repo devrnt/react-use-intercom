@@ -46,6 +46,7 @@ const HomePage = () => {
 * [API](#intercom)
 * [Playground](#playground)
 * [TypeScript](#typescript)
+* [Troubleshoot](#troubleshoot)
 * [Advanced](#advanced)
 
 ## API
@@ -55,6 +56,8 @@ const HomePage = () => {
 
 ### IntercomProvider 
 `IntercomProvider` is used to initialize the `window.Intercom` instance. It makes sure the initialization is only done once. If any listeners are passed, the `IntercomProvider` will make sure these are attached.
+
+Place the `IntercomProvider` as high as possible in your application. This will make sure you can `useIntercom()` anywhere.
 
 #### Props
 | name                | type             | description                                                                             | required | default |
@@ -96,7 +99,9 @@ const App = () => {
 ### useIntercom
 Used to retrieve all methods bundled with Intercom. These are based on the official [Intercom docs](https://developers.intercom.com/installing-intercom/docs/javascript-api-attributes-objects). Some extra methods were added to improve convenience.
 
-**Remark** - make sure `IntercomProvider` is wrapped around your component when calling `useIntercom()`
+ Make sure `IntercomProvider` is wrapped around your component when calling `useIntercom()`. 
+
+**Remark** - You can't use `useIntercom()` in the same component where `IntercomProvider` is initialized. 
 
 #### Methods
 | name            | type                                       | description                                                                                                                         |
@@ -213,6 +218,16 @@ These props are `JavaScript` 'friendly', so [camelCase](https://en.wikipedia.org
 
 **Remark** - if you want to pass custom properties, you should still use [snake_cased](https://en.wikipedia.org/wiki/Snake_case) keys.
 
+
+## Troubleshoot
+* I'm seeing "Please wrap your component with IntercomProvider.` in the console.
+> Make sure `IntercomProvider` is initialized before calling `useIntercom()`. You only need to initialize `IntercomProvider` once. It is advised to initialize `IntercomProvider` as high as possible in your application tree.
+
+> Make sure you aren't calling `useIntercom()` in the same component where you initialized `IntercomProvider`.
+
+* I'm seeing `Some invalid props were passed to IntercomProvider. Please check following props: [properties]` in the console.
+> Make sure you're passing the correct properties to the `IntercomProvider`. Check [IntercomProvider](#intercomprovider) to see all the properties.
+> Mind that all the properties in `react-use-intercom` are camel cased, except for the `customAttributes` property in the `boot` and `update` method from `useIntercom`.
 
 ## Advanced
 To reduce the amount of re-renders in your React application I suggest to make use of [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback)
