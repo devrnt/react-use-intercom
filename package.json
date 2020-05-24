@@ -4,7 +4,7 @@
   "module": "dist/react-use-intercom.esm.js",
   "description": "React Intercom integration without the hassle, driven by hooks.",
   "homepage": "https://github.com/devrnt/react-use-intercom#readme",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
