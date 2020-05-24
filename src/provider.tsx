@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useMemo, useState } from 'react';
+import * as React from 'react';
 
 import * as logger from './logger';
 import initialize from './initialize';
@@ -27,10 +27,11 @@ export const IntercomProvider = ({
       ].join(''),
     );
 
-  const [isBooted, setIsBooted] = useState(autoBoot);
+  const memoizedAppId = React.useRef(appId);
+  const isBooted = React.useRef(autoBoot);
 
   if (!window.Intercom) {
-    initialize(appId);
+    initialize(memoizedAppId.current);
     // Only add listeners on initialization
     if (onHide) IntercomAPI('onHide', onHide);
     if (onShow) IntercomAPI('onShow', onShow);
@@ -38,14 +39,14 @@ export const IntercomProvider = ({
       IntercomAPI('onUnreadCountChange', onUnreadCountChange);
 
     if (autoBoot) {
-      IntercomAPI('boot', { app_id: appId });
-      window.intercomSettings = { app_id: appId };
+      IntercomAPI('boot', { app_id: memoizedAppId.current });
+      window.intercomSettings = { app_id: memoizedAppId.current };
     }
   }
 
-  const ensureIntercomIsBooted = useCallback(
+  const ensureIntercomIsBooted = React.useCallback(
     (functionName: string = 'A function', callback: Function) => {
-      if (!isBooted) {
+      if (!isBooted.current) {
         logger.log(
           'warn',
           [
@@ -58,49 +59,46 @@ export const IntercomProvider = ({
       }
       return callback();
     },
-    [isBooted],
+    [],
   );
 
-  const boot = useCallback(
-    (props?: IntercomProps) => {
-      if (isBooted) return;
+  const boot = React.useCallback((props?: IntercomProps) => {
+    if (isBooted.current) return;
 
-      const metaData: RawIntercomBootProps = {
-        app_id: appId,
-        ...(props && mapIntercomPropsToRawIntercomProps(props)),
-      };
+    const metaData: RawIntercomBootProps = {
+      app_id: memoizedAppId.current,
+      ...(props && mapIntercomPropsToRawIntercomProps(props)),
+    };
 
-      window.intercomSettings = metaData;
-      IntercomAPI('boot', metaData);
-      setIsBooted(true);
-    },
-    [appId, isBooted],
-  );
+    window.intercomSettings = metaData;
+    IntercomAPI('boot', metaData);
+    isBooted!.current = true;
+  }, []);
 
-  const shutdown = useCallback(() => {
-    if (!isBooted) return;
+  const shutdown = React.useCallback(() => {
+    if (!isBooted.current) return;
 
     IntercomAPI('shutdown');
-    setIsBooted(false);
-  }, [isBooted]);
+    isBooted.current = false;
+  }, []);
 
-  const hardShutdown = useCallback(() => {
-    if (!isBooted) return;
+  const hardShutdown = React.useCallback(() => {
+    if (!isBooted.current) return;
 
     IntercomAPI('shutdown');
     delete window.Intercom;
     delete window.intercomSettings;
-    setIsBooted(false);
-  }, [isBooted]);
+    isBooted.current = false;
+  }, []);
 
-  const refresh = useCallback(() => {
+  const refresh = React.useCallback(() => {
     ensureIntercomIsBooted('update', () => {
       const lastRequestedAt = new Date().getTime();
       IntercomAPI('update', { last_requested_at: lastRequestedAt });
     });
   }, [ensureIntercomIsBooted]);
 
-  const update = useCallback(
+  const update = React.useCallback(
     (props?: IntercomProps) => {
       ensureIntercomIsBooted('update', () => {
         if (!props) {
@@ -115,23 +113,23 @@ export const IntercomProvider = ({
     [ensureIntercomIsBooted, refresh],
   );
 
-  const hide = useCallback(() => {
+  const hide = React.useCallback(() => {
     ensureIntercomIsBooted('hide', () => {
       IntercomAPI('hide');
     });
   }, [ensureIntercomIsBooted]);
 
-  const show = useCallback(() => {
+  const show = React.useCallback(() => {
     ensureIntercomIsBooted('show', () => IntercomAPI('show'));
   }, [ensureIntercomIsBooted]);
 
-  const showMessages = useCallback(() => {
+  const showMessages = React.useCallback(() => {
     ensureIntercomIsBooted('showMessages', () => {
       IntercomAPI('showMessages');
     });
   }, [ensureIntercomIsBooted]);
 
-  const showNewMessages = useCallback(
+  const showNewMessages = React.useCallback(
     (message?: string) => {
       ensureIntercomIsBooted('showNewMessage', () => {
         if (!message) {
@@ -144,13 +142,13 @@ export const IntercomProvider = ({
     [ensureIntercomIsBooted],
   );
 
-  const getVisitorId = useCallback(() => {
+  const getVisitorId = React.useCallback(() => {
     return ensureIntercomIsBooted('getVisitorId', () => {
       return (IntercomAPI('getVisitorId') as unknown) as string;
     });
   }, [ensureIntercomIsBooted]);
 
-  const startTour = useCallback(
+  const startTour = React.useCallback(
     (tourId: number) => {
       ensureIntercomIsBooted('startTour', () => {
         IntercomAPI('startTour', tourId);
@@ -159,7 +157,7 @@ export const IntercomProvider = ({
     [ensureIntercomIsBooted],
   );
 
-  const trackEvent = useCallback(
+  const trackEvent = React.useCallback(
     (event: string, metaData?: object) => {
       ensureIntercomIsBooted('trackEvent', () => {
         if (metaData) {
@@ -172,7 +170,7 @@ export const IntercomProvider = ({
     [ensureIntercomIsBooted],
   );
 
-  const providerValue = useMemo<IntercomContextValues>(() => {
+  const providerValue = React.useMemo<IntercomContextValues>(() => {
     return {
       boot,
       shutdown,
@@ -200,7 +198,7 @@ export const IntercomProvider = ({
     trackEvent,
   ]);
 
-  const content = useMemo(() => children, [children]);
+  const content = React.useMemo(() => children, [children]);
 
   return (
     <IntercomContext.Provider value={providerValue}>
@@ -209,4 +207,4 @@ export const IntercomProvider = ({
   );
 };
 
-export const useIntercomContext = () => useContext(IntercomContext);
+export const useIntercomContext = () => React.useContext(IntercomContext);
