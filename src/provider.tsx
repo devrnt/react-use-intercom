@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useMemo, useState } from 'react';
+import * as React from 'react';
 
 import * as logger from './logger';
 import initialize from './initialize';
@@ -27,7 +27,7 @@ export const IntercomProvider = ({
       ].join(''),
     );
 
-  const [isBooted, setIsBooted] = useState(autoBoot);
+  const [isBooted, setIsBooted] = React.useState(autoBoot);
 
   if (!window.Intercom) {
     initialize(appId);
@@ -43,7 +43,7 @@ export const IntercomProvider = ({
     }
   }
 
-  const ensureIntercomIsBooted = useCallback(
+  const ensureIntercomIsBooted = React.useCallback(
     (functionName: string = 'A function', callback: Function) => {
       if (!isBooted) {
         logger.log(
@@ -61,7 +61,7 @@ export const IntercomProvider = ({
     [isBooted],
   );
 
-  const boot = useCallback(
+  const boot = React.useCallback(
     (props?: IntercomProps) => {
       if (isBooted) return;
 
@@ -77,14 +77,14 @@ export const IntercomProvider = ({
     [appId, isBooted],
   );
 
-  const shutdown = useCallback(() => {
+  const shutdown = React.useCallback(() => {
     if (!isBooted) return;
 
     IntercomAPI('shutdown');
     setIsBooted(false);
   }, [isBooted]);
 
-  const hardShutdown = useCallback(() => {
+  const hardShutdown = React.useCallback(() => {
     if (!isBooted) return;
 
     IntercomAPI('shutdown');
@@ -93,14 +93,14 @@ export const IntercomProvider = ({
     setIsBooted(false);
   }, [isBooted]);
 
-  const refresh = useCallback(() => {
+  const refresh = React.useCallback(() => {
     ensureIntercomIsBooted('update', () => {
       const lastRequestedAt = new Date().getTime();
       IntercomAPI('update', { last_requested_at: lastRequestedAt });
     });
   }, [ensureIntercomIsBooted]);
 
-  const update = useCallback(
+  const update = React.useCallback(
     (props?: IntercomProps) => {
       ensureIntercomIsBooted('update', () => {
         if (!props) {
@@ -115,23 +115,23 @@ export const IntercomProvider = ({
     [ensureIntercomIsBooted, refresh],
   );
 
-  const hide = useCallback(() => {
+  const hide = React.useCallback(() => {
     ensureIntercomIsBooted('hide', () => {
       IntercomAPI('hide');
     });
   }, [ensureIntercomIsBooted]);
 
-  const show = useCallback(() => {
+  const show = React.useCallback(() => {
     ensureIntercomIsBooted('show', () => IntercomAPI('show'));
   }, [ensureIntercomIsBooted]);
 
-  const showMessages = useCallback(() => {
+  const showMessages = React.useCallback(() => {
     ensureIntercomIsBooted('showMessages', () => {
       IntercomAPI('showMessages');
     });
   }, [ensureIntercomIsBooted]);
 
-  const showNewMessages = useCallback(
+  const showNewMessages = React.useCallback(
     (message?: string) => {
       ensureIntercomIsBooted('showNewMessage', () => {
         if (!message) {
@@ -144,13 +144,13 @@ export const IntercomProvider = ({
     [ensureIntercomIsBooted],
   );
 
-  const getVisitorId = useCallback(() => {
+  const getVisitorId = React.useCallback(() => {
     return ensureIntercomIsBooted('getVisitorId', () => {
       return (IntercomAPI('getVisitorId') as unknown) as string;
     });
   }, [ensureIntercomIsBooted]);
 
-  const startTour = useCallback(
+  const startTour = React.useCallback(
     (tourId: number) => {
       ensureIntercomIsBooted('startTour', () => {
         IntercomAPI('startTour', tourId);
@@ -159,7 +159,7 @@ export const IntercomProvider = ({
     [ensureIntercomIsBooted],
   );
 
-  const trackEvent = useCallback(
+  const trackEvent = React.useCallback(
     (event: string, metaData?: object) => {
       ensureIntercomIsBooted('trackEvent', () => {
         if (metaData) {
@@ -172,7 +172,7 @@ export const IntercomProvider = ({
     [ensureIntercomIsBooted],
   );
 
-  const providerValue = useMemo<IntercomContextValues>(() => {
+  const providerValue = React.useMemo<IntercomContextValues>(() => {
     return {
       boot,
       shutdown,
@@ -200,7 +200,7 @@ export const IntercomProvider = ({
     trackEvent,
   ]);
 
-  const content = useMemo(() => children, [children]);
+  const content = React.useMemo(() => children, [children]);
 
   return (
     <IntercomContext.Provider value={providerValue}>
@@ -209,4 +209,4 @@ export const IntercomProvider = ({
   );
 };
 
-export const useIntercomContext = () => useContext(IntercomContext);
+export const useIntercomContext = () => React.useContext(IntercomContext);
