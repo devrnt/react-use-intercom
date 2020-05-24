@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import * as React from 'react';
 
 import * as logger from './logger';
 import { IntercomContextValues } from './contextTypes';
@@ -6,7 +6,7 @@ import { IntercomContextValues } from './contextTypes';
 const NO_INTERCOM_PROVIDER_MESSAGE =
   'Please wrap your component with `IntercomProvider`.';
 
-const IntercomContext = createContext<IntercomContextValues>({
+const IntercomContext = React.createContext<IntercomContextValues>({
   boot: () => logger.log('error', NO_INTERCOM_PROVIDER_MESSAGE),
   shutdown: () => logger.log('error', NO_INTERCOM_PROVIDER_MESSAGE),
   hardShutdown: () => logger.log('error', NO_INTERCOM_PROVIDER_MESSAGE),
