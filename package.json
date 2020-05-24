@@ -48,7 +48,8 @@
     "release": "np"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "husky": {
     "hooks": {
