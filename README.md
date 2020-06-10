@@ -73,14 +73,13 @@ Place the `IntercomProvider` as high as possible in your application. This will 
 #### Example
 ```javascript
 const App = () => {
-  const [unreadMessagesCount, unreadMessagesCount] = React.useState(0);
+  const [unreadMessagesCount, setUnreadMessagesCount] = React.useState(0);
 
   const onHide = () => console.log('Intercom did hide the Messenger');
   const onShow = () => console.log('Intercom did show the Messenger');
   const onUnreadCountChange = (amount: number) => {
     console.log('Intercom has a new unread message');
-    unreadMessagesCount(amount);
-    console.log('New amount of unread messages: ', unreadMessagesCount);
+    setUnreadMessagesCount(amount);
   };
 
   return (
@@ -221,7 +220,7 @@ These props are `JavaScript` 'friendly', so [camelCase](https://en.wikipedia.org
 
 
 ## Troubleshoot
-* I'm seeing "Please wrap your component with IntercomProvider.` in the console.
+* I'm seeing "Please wrap your component with IntercomProvider." in the console.
 > Make sure `IntercomProvider` is initialized before calling `useIntercom()`. You only need to initialize `IntercomProvider` once. It is advised to initialize `IntercomProvider` as high as possible in your application tree.
 
 > Make sure you aren't calling `useIntercom()` in the same component where you initialized `IntercomProvider`.
