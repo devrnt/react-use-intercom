@@ -16,6 +16,7 @@ export const IntercomProvider = ({
   onHide,
   onShow,
   onUnreadCountChange,
+  shouldInitialize = true,
   ...rest
 }: IntercomProviderProps) => {
   if (!isEmptyObject(rest))
@@ -30,7 +31,7 @@ export const IntercomProvider = ({
   const memoizedAppId = React.useRef(appId);
   const isBooted = React.useRef(autoBoot);
 
-  if (!window.Intercom) {
+  if (!window.Intercom && shouldInitialize) {
     initialize(memoizedAppId.current);
     // Only add listeners on initialization
     if (onHide) IntercomAPI('onHide', onHide);
@@ -46,6 +47,7 @@ export const IntercomProvider = ({
 
   const ensureIntercomIsBooted = React.useCallback(
     (functionName: string = 'A function', callback: Function) => {
+      if (!window.Intercom) return;
       if (!isBooted.current) {
         logger.log(
           'warn',

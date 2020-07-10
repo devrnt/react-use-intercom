@@ -147,4 +147,10 @@ export type IntercomProviderProps = {
    * when invoked, and again whenever the current number of unread messages changes.
    */
   onUnreadCountChange?: (unreadCount: number) => void;
+  /**
+   * Indicates if Intercom should be initialized. This will ping to the Intercom servers.
+   *
+   * @remarks can be used for multistaged environments
+   */
+  shouldInitialize?: boolean;
 };

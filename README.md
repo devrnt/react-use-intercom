@@ -69,6 +69,7 @@ Place the `IntercomProvider` as high as possible in your application. This will 
 | onHide              | () => void       | triggered when the Messenger hides                                                      | false    |         |
 | onShow              | () => void       | triggered when the Messenger shows                                                      | false    |         |
 | onUnreadCountChange | (number) => void | triggered when the current number of unread messages changes                            | false    |         |
+| shouldInitialize    | boolean | indicates if the Intercom should be initialized. Can be used in multistaged environment          | false    | true    |
 
 #### Example
 ```javascript
