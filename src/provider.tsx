@@ -30,8 +30,9 @@ export const IntercomProvider = ({
 
   const memoizedAppId = React.useRef(appId);
   const isBooted = React.useRef(autoBoot);
+  const memoizedShouldInitialize = React.useRef(shouldInitialize);
 
-  if (!window.Intercom && shouldInitialize) {
+  if (!window.Intercom && memoizedShouldInitialize.current) {
     initialize(memoizedAppId.current);
     // Only add listeners on initialization
     if (onHide) IntercomAPI('onHide', onHide);
@@ -45,9 +46,15 @@ export const IntercomProvider = ({
     }
   }
 
-  const ensureIntercomIsBooted = React.useCallback(
+  const ensureIntercom = React.useCallback(
     (functionName: string = 'A function', callback: Function) => {
-      if (!window.Intercom) return;
+      if (!window.Intercom && !memoizedShouldInitialize.current) {
+        logger.log(
+          'warn',
+          'Intercom instance is not initialized because `shouldInitialize` is set to `false` in `IntercomProvider`',
+        );
+        return;
+      }
       if (!isBooted.current) {
         logger.log(
           'warn',
@@ -65,6 +72,13 @@ export const IntercomProvider = ({
   );
 
   const boot = React.useCallback((props?: IntercomProps) => {
+    if (!window.Intercom && !memoizedShouldInitialize.current) {
+      logger.log(
+        'warn',
+        'Intercom instance is not initialized because `shouldInitialize` is set to `false` in `IntercomProvider`',
+      );
+      return;
+    }
     if (isBooted.current) return;
 
     const metaData: RawIntercomBootProps = {
@@ -74,7 +88,7 @@ export const IntercomProvider = ({
 
     window.intercomSettings = metaData;
     IntercomAPI('boot', metaData);
-    isBooted!.current = true;
+    isBooted.current = true;
   }, []);
 
   const shutdown = React.useCallback(() => {
@@ -94,15 +108,15 @@ export const IntercomProvider = ({
   }, []);
 
   const refresh = React.useCallback(() => {
-    ensureIntercomIsBooted('update', () => {
+    ensureIntercom('update', () => {
       const lastRequestedAt = new Date().getTime();
       IntercomAPI('update', { last_requested_at: lastRequestedAt });
     });
-  }, [ensureIntercomIsBooted]);
+  }, [ensureIntercom]);
 
   const update = React.useCallback(
     (props?: IntercomProps) => {
-      ensureIntercomIsBooted('update', () => {
+      ensureIntercom('update', () => {
         if (!props) {
           refresh();
           return;
@@ -112,28 +126,28 @@ export const IntercomProvider = ({
         IntercomAPI('update', rawProps);
       });
     },
-    [ensureIntercomIsBooted, refresh],
+    [ensureIntercom, refresh],
   );
 
   const hide = React.useCallback(() => {
-    ensureIntercomIsBooted('hide', () => {
+    ensureIntercom('hide', () => {
       IntercomAPI('hide');
     });
-  }, [ensureIntercomIsBooted]);
+  }, [ensureIntercom]);
 
   const show = React.useCallback(() => {
-    ensureIntercomIsBooted('show', () => IntercomAPI('show'));
-  }, [ensureIntercomIsBooted]);
+    ensureIntercom('show', () => IntercomAPI('show'));
+  }, [ensureIntercom]);
 
   const showMessages = React.useCallback(() => {
-    ensureIntercomIsBooted('showMessages', () => {
+    ensureIntercom('showMessages', () => {
       IntercomAPI('showMessages');
     });
-  }, [ensureIntercomIsBooted]);
+  }, [ensureIntercom]);
 
   const showNewMessages = React.useCallback(
     (message?: string) => {
-      ensureIntercomIsBooted('showNewMessage', () => {
+      ensureIntercom('showNewMessage', () => {
         if (!message) {
           IntercomAPI('showNewMessage');
         } else {
@@ -141,27 +155,27 @@ export const IntercomProvider = ({
         }
       });
     },
-    [ensureIntercomIsBooted],
+    [ensureIntercom],
   );
 
   const getVisitorId = React.useCallback(() => {
-    return ensureIntercomIsBooted('getVisitorId', () => {
+    return ensureIntercom('getVisitorId', () => {
       return (IntercomAPI('getVisitorId') as unknown) as string;
     });
-  }, [ensureIntercomIsBooted]);
+  }, [ensureIntercom]);
 
   const startTour = React.useCallback(
     (tourId: number) => {
-      ensureIntercomIsBooted('startTour', () => {
+      ensureIntercom('startTour', () => {
         IntercomAPI('startTour', tourId);
       });
     },
-    [ensureIntercomIsBooted],
+    [ensureIntercom],
   );
 
   const trackEvent = React.useCallback(
     (event: string, metaData?: object) => {
-      ensureIntercomIsBooted('trackEvent', () => {
+      ensureIntercom('trackEvent', () => {
         if (metaData) {
           IntercomAPI('trackEvent', event, metaData);
         } else {
@@ -169,7 +183,7 @@ export const IntercomProvider = ({
         }
       });
     },
-    [ensureIntercomIsBooted],
+    [ensureIntercom],
   );
 
   const providerValue = React.useMemo<IntercomContextValues>(() => {
