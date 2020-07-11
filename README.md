@@ -46,7 +46,7 @@ const HomePage = () => {
 ```
 
 ## Links
-* [API](#intercom)
+* [API](#api)
 * [Playground](#playground)
 * [TypeScript](#typescript)
 * [Troubleshoot](#troubleshoot)
