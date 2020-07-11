@@ -1,12 +1,14 @@
-# react-use-intercom
+<p align="center"><img src="./assets/logo.png" alt="Logo" height="120px" style="margin-top: 20px;"/></p>
+<h1 align="center">react-use-intercom</h1>
+<p align="center">A React <a href="https://www.intercom.com" alt="Intercom">Intercom </a> integration powered by hooks.</p>
 
-![CI](https://github.com/devrnt/react-use-intercom/workflows/CI/badge.svg?branch=master)
+<p align="center">
+<img alt="ci" src="https://github.com/devrnt/react-use-intercom/workflows/CI/badge.svg?branch=master">
 <img alt="version" src="https://img.shields.io/npm/v/react-use-intercom.svg" />
 <img alt="downloads" src="https://badgen.net/npm/dt/react-use-intercom" />
 <img alt="minzipped size" src="https://badgen.net/bundlephobia/minzip/react-use-intercom">
-[![Known Vulnerabilities](https://snyk.io/test/github/devrnt/react-use-intercom/badge.svg)](https://snyk.io/test/github/devrnt/react-use-intercom)
-
-A React [Intercom](https://www.intercom.com/) integration powered by hooks.
+<img alt="known vulnerabilities" src="https://snyk.io/test/github/devrnt/react-use-intercom/badge.svg">
+</p>
 
 ## Features
 * Hooks
