@@ -1,10 +1,10 @@
 import * as React from 'react';
 
 import * as logger from './logger';
+import IntercomAPI from './api';
 import initialize from './initialize';
 import IntercomContext from './context';
 import { IntercomContextValues, IntercomProviderProps } from './contextTypes';
-import { IntercomAPI } from './intercom';
 import { IntercomProps, RawIntercomBootProps } from './types';
 import { mapIntercomPropsToRawIntercomProps } from './mappers';
 import { isEmptyObject } from './utils';

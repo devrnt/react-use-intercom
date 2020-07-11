@@ -8,10 +8,12 @@ import { IntercomMethod } from './types';
  * @param args arguments passed to the `window.Intercom` instance
  * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript}
  */
-export const IntercomAPI = (method: IntercomMethod, ...args: Array<any>) => {
+const IntercomAPI = (method: IntercomMethod, ...args: Array<any>) => {
   if (window.Intercom) {
     return window.Intercom.apply(null, [method, ...args]);
   } else {
     logger.log('error', `${method} Intercom instance is not initalized yet`);
   }
 };
+
+export default IntercomAPI;
