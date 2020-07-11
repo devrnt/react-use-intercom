@@ -1,6 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+import logoUrl from '../../assets/images/logo.png';
+import githubLogoUrl from '../../assets/images/githubLogo.svg';
+
 type Props = {
   title: string;
   description?: string;
@@ -36,10 +39,36 @@ const Divider = styled.div`
   margin: 2.5rem 0;
 `;
 
+const TopBar = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+`;
+
+const Logo = styled.img`
+  height: 3rem;
+  width: 3rem;
+`;
+
+const GithubLogo = styled.img`
+  width: 2rem;
+`;
+
 const Page = ({ title, description, children }: Props) => {
   return (
     <Container>
       <Wrapper>
+        <TopBar>
+          <Logo src={logoUrl} />
+          <a
+            href="https://devrnt.github.io/react-use-intercom"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <GithubLogo src={githubLogoUrl} />
+          </a>
+        </TopBar>
         <h1>{title}</h1>
         <Description>{description}</Description>
         <Divider />
