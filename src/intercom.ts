@@ -1,3 +1,4 @@
+import * as logger from './logger';
 import { IntercomMethod } from './types';
 
 /**
@@ -11,6 +12,6 @@ export const IntercomAPI = (method: IntercomMethod, ...args: Array<any>) => {
   if (window.Intercom) {
     return window.Intercom.apply(null, [method, ...args]);
   } else {
-    console.warn('[intercom] Intercom instance is not initialized yet');
+    logger.log('error', `${method} Intercom instance is not initalized yet`);
   }
 };
