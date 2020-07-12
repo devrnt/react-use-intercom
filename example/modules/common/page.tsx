@@ -62,7 +62,7 @@ const Page = ({ title, description, children }: Props) => {
         <TopBar>
           <Logo src={logoUrl} />
           <a
-            href="https://devrnt.github.io/react-use-intercom"
+            href="https://github.com/devrnt/react-use-intercom"
             target="_blank"
             rel="noreferrer noopener"
           >
