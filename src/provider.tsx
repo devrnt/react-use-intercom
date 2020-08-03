@@ -7,7 +7,7 @@ import IntercomContext from './context';
 import { IntercomContextValues, IntercomProviderProps } from './contextTypes';
 import { IntercomProps, RawIntercomBootProps } from './types';
 import { mapIntercomPropsToRawIntercomProps } from './mappers';
-import { isEmptyObject } from './utils';
+import { isEmptyObject, isSSR } from './utils';
 
 export const IntercomProvider = ({
   appId,
@@ -16,7 +16,7 @@ export const IntercomProvider = ({
   onHide,
   onShow,
   onUnreadCountChange,
-  shouldInitialize = true,
+  shouldInitialize = !isSSR,
   ...rest
 }: IntercomProviderProps) => {
   if (!isEmptyObject(rest))
@@ -32,7 +32,7 @@ export const IntercomProvider = ({
   const isBooted = React.useRef(autoBoot);
   const memoizedShouldInitialize = React.useRef(shouldInitialize);
 
-  if (!window.Intercom && memoizedShouldInitialize.current) {
+  if (!isSSR && !window.Intercom && memoizedShouldInitialize.current) {
     initialize(memoizedAppId.current);
     // Only add listeners on initialization
     if (onHide) IntercomAPI('onHide', onHide);
@@ -48,6 +48,7 @@ export const IntercomProvider = ({
 
   const ensureIntercom = React.useCallback(
     (functionName: string = 'A function', callback: Function) => {
+      if (isSSR) return;
       if (!window.Intercom && !memoizedShouldInitialize.current) {
         logger.log(
           'warn',
@@ -72,6 +73,7 @@ export const IntercomProvider = ({
   );
 
   const boot = React.useCallback((props?: IntercomProps) => {
+    if (isSSR) return;
     if (!window.Intercom && !memoizedShouldInitialize.current) {
       logger.log(
         'warn',
@@ -92,14 +94,14 @@ export const IntercomProvider = ({
   }, []);
 
   const shutdown = React.useCallback(() => {
-    if (!isBooted.current) return;
+    if (isSSR || !isBooted.current) return;
 
     IntercomAPI('shutdown');
     isBooted.current = false;
   }, []);
 
   const hardShutdown = React.useCallback(() => {
-    if (!isBooted.current) return;
+    if (isSSR || !isBooted.current) return;
 
     IntercomAPI('shutdown');
     delete window.Intercom;
