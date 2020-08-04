@@ -93,6 +93,8 @@ export type DataAttributesCompany = {
   website?: string;
   /** The industry of the company */
   industry?: string;
+  /** Custom attributes */
+  customAttributes?: Record<string, any>;
 };
 
 export type RawDataAttributesAvatar = {
@@ -132,12 +134,12 @@ export type RawDataAttributes = {
 
 export type DataAttributes = {
   /** The email address of the currently logged in user
-   * 
+   *
   @remarks Only applicable to users
   */
   email?: string;
   /** The user ID of the currently logged in user
-   * 
+   *
   @remarks Only applicable to users
   */
   userId?: string;
