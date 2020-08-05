@@ -79,6 +79,7 @@ const mapDataAttributesCompanyToRawDataAttributesCompany = (
   size: attributes.size,
   website: attributes.website,
   industry: attributes.industry,
+  ...attributes.customAttributes,
 });
 
 const mapRawDataAttributesAvatarToDataAttributesAvatar = (
