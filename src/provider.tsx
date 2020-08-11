@@ -7,7 +7,7 @@ import IntercomContext from './context';
 import { IntercomContextValues, IntercomProviderProps } from './contextTypes';
 import { IntercomProps, RawIntercomBootProps } from './types';
 import { mapIntercomPropsToRawIntercomProps } from './mappers';
-import { isEmptyObject } from './utils';
+import { isEmptyObject, isSSR } from './utils';
 
 export const IntercomProvider = ({
   appId,
@@ -16,7 +16,7 @@ export const IntercomProvider = ({
   onHide,
   onShow,
   onUnreadCountChange,
-  shouldInitialize = true,
+  shouldInitialize = !isSSR,
   ...rest
 }: IntercomProviderProps) => {
   if (!isEmptyObject(rest))
@@ -32,7 +32,7 @@ export const IntercomProvider = ({
   const isBooted = React.useRef(autoBoot);
   const memoizedShouldInitialize = React.useRef(shouldInitialize);
 
-  if (!window.Intercom && memoizedShouldInitialize.current) {
+  if (!isSSR && !window.Intercom && memoizedShouldInitialize.current) {
     initialize(memoizedAppId.current);
     // Only add listeners on initialization
     if (onHide) IntercomAPI('onHide', onHide);
