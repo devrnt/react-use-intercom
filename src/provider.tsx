@@ -48,7 +48,6 @@ export const IntercomProvider = ({
 
   const ensureIntercom = React.useCallback(
     (functionName: string = 'A function', callback: Function) => {
-      if (isSSR) return;
       if (!window.Intercom && !memoizedShouldInitialize.current) {
         logger.log(
           'warn',
@@ -73,7 +72,6 @@ export const IntercomProvider = ({
   );
 
   const boot = React.useCallback((props?: IntercomProps) => {
-    if (isSSR) return;
     if (!window.Intercom && !memoizedShouldInitialize.current) {
       logger.log(
         'warn',
@@ -94,14 +92,14 @@ export const IntercomProvider = ({
   }, []);
 
   const shutdown = React.useCallback(() => {
-    if (isSSR || !isBooted.current) return;
+    if (!isBooted.current) return;
 
     IntercomAPI('shutdown');
     isBooted.current = false;
   }, []);
 
   const hardShutdown = React.useCallback(() => {
-    if (isSSR || !isBooted.current) return;
+    if (!isBooted.current) return;
 
     IntercomAPI('shutdown');
     delete window.Intercom;
