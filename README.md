@@ -15,6 +15,7 @@
 * Written in TypeScript
 * Documented, self explaining methods 
 * [Tiny size](https://bundlephobia.com/result?p=react-use-intercom@latest) without any external libraries
+* Safeguard for SSR environments
 
 ## Installation
 
