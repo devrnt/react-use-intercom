@@ -1,12 +1,11 @@
 import * as React from 'react';
-
-import * as logger from './logger';
 import IntercomAPI from './api';
-import initialize from './initialize';
 import IntercomContext from './context';
 import { IntercomContextValues, IntercomProviderProps } from './contextTypes';
-import { IntercomProps, RawIntercomBootProps } from './types';
+import initialize from './initialize';
+import * as logger from './logger';
 import { mapIntercomPropsToRawIntercomProps } from './mappers';
+import { IntercomProps, RawIntercomBootProps } from './types';
 import { isEmptyObject, isSSR } from './utils';
 
 export const IntercomProvider = ({
@@ -17,6 +16,7 @@ export const IntercomProvider = ({
   onShow,
   onUnreadCountChange,
   shouldInitialize = !isSSR,
+  apiBase,
   ...rest
 }: IntercomProviderProps) => {
   if (!isEmptyObject(rest))
@@ -29,6 +29,8 @@ export const IntercomProvider = ({
     );
 
   const memoizedAppId = React.useRef(appId);
+  const memoizedApiBase = React.useRef(apiBase);
+
   const isBooted = React.useRef(autoBoot);
   const memoizedShouldInitialize = React.useRef(shouldInitialize);
 
@@ -41,8 +43,14 @@ export const IntercomProvider = ({
       IntercomAPI('onUnreadCountChange', onUnreadCountChange);
 
     if (autoBoot) {
-      IntercomAPI('boot', { app_id: memoizedAppId.current });
-      window.intercomSettings = { app_id: memoizedAppId.current };
+      IntercomAPI('boot', {
+        app_id: memoizedAppId.current,
+        api_base: memoizedApiBase.current,
+      });
+      window.intercomSettings = {
+        app_id: memoizedAppId.current,
+        api_base: memoizedApiBase.current,
+      };
     }
   }
 
@@ -83,6 +91,7 @@ export const IntercomProvider = ({
 
     const metaData: RawIntercomBootProps = {
       app_id: memoizedAppId.current,
+      api_base: memoizedApiBase.current,
       ...(props && mapIntercomPropsToRawIntercomProps(props)),
     };
 
