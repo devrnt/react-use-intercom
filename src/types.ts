@@ -244,7 +244,10 @@ export type IntercomMethod =
 
 export type RawIntercomProps = RawMessengerAttributes & RawDataAttributes;
 
-export type RawIntercomBootProps = { app_id: string } & RawIntercomProps;
+export type RawIntercomBootProps = {
+  app_id: string;
+  api_base?: string;
+} & RawIntercomProps;
 
 export type IntercomProps = MessengerAttributes & DataAttributes;
 
