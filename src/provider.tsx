@@ -45,11 +45,11 @@ export const IntercomProvider = ({
     if (autoBoot) {
       IntercomAPI('boot', {
         app_id: memoizedAppId.current,
-        api_base: memoizedApiBase.current,
+        ...(memoizedApiBase.current && { api_base: memoizedApiBase.current }),
       });
       window.intercomSettings = {
         app_id: memoizedAppId.current,
-        api_base: memoizedApiBase.current,
+        ...(memoizedApiBase.current && { api_base: memoizedApiBase.current }),
       };
     }
   }
@@ -91,7 +91,7 @@ export const IntercomProvider = ({
 
     const metaData: RawIntercomBootProps = {
       app_id: memoizedAppId.current,
-      api_base: memoizedApiBase.current,
+      ...(memoizedApiBase.current && { api_base: memoizedApiBase.current }),
       ...(props && mapIntercomPropsToRawIntercomProps(props)),
     };
 
