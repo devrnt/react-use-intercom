@@ -73,7 +73,7 @@ Place the `IntercomProvider` as high as possible in your application. This will 
 | onShow              | () => void       | triggered when the Messenger shows                                                      | false    |         |
 | onUnreadCountChange | (number) => void | triggered when the current number of unread messages changes                            | false    |         |
 | shouldInitialize    | boolean | indicates if the Intercom should be initialized. Can be used in multistaged environment          | false    | true    |
-| apiBase    | string | If you need to route your Messenger requests through a different endpoint than the default. Generally speaking, this is not needed.<br/> Format `https://${INTERCOM_APP_ID}.intercom-messenger.com` (See: [https://github.com/devrnt/react-use-intercom/pull/96](https://github.com/devrnt/react-use-intercom/pull/96))         | false    |         |
+| apiBase    | string | If you need to route your Messenger requests through a different endpoint than the default. Generally speaking, this is not needed.<br/> Format: `https://${INTERCOM_APP_ID}.intercom-messenger.com` (See: [https://github.com/devrnt/react-use-intercom/pull/96](https://github.com/devrnt/react-use-intercom/pull/96))         | false    |         |
 
 #### Example
 ```javascript
