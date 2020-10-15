@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 
 import config from '../config';
@@ -48,5 +48,28 @@ describe('IntercomProvider', () => {
     });
 
     expect(mockOnShow).not.toBeCalled();
+  });
+
+  test('should set `window.intercomSettings.apiBase` on autoBoot', () => {
+    const apiBase = `https://${INTERCOM_APP_ID}.intercom-messenger.com`;
+
+    const { result } = renderHook(() => useIntercom(), {
+      wrapper: ({ children }) => (
+        <IntercomProvider appId={INTERCOM_APP_ID} apiBase={apiBase}>
+          {children}
+        </IntercomProvider>
+      ),
+    });
+
+    const { boot } = result.current;
+
+    act(() => {
+      boot();
+    });
+
+    expect(window.intercomSettings).toEqual({
+      app_id: INTERCOM_APP_ID,
+      api_base: apiBase,
+    });
   });
 });

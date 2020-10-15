@@ -7,7 +7,7 @@ export type IntercomContextValues = {
    * @remarks This is useful in situations like a one-page Javascript based application
    * where the user may not be logged in when the page loads.
    * @param props the standard optional intercom props
-   * 
+   *
    * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#section-intercomboot-intercomsettings}
 
    */
@@ -21,7 +21,7 @@ export type IntercomContextValues = {
    * given device or computer  will keep these conversations in the Messenger for one week.
    *
    * @remarks This method will effectively clear out any user data that you have been passing through the JS API.
-   
+
    * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#section-intercomshutdown}
    */
   shutdown: () => void;
@@ -153,4 +153,12 @@ export type IntercomProviderProps = {
    * @remarks can be used for multistaged environments
    */
   shouldInitialize?: boolean;
+
+  /**
+   * If you need to route your Messenger requests through a different endpoint than the default
+   *
+   * @remarks Generally speaking, this is not needed.
+   * Format https://${INTERCOM_APP_ID}.intercom-messenger.com
+   */
+  apiBase?: string;
 };

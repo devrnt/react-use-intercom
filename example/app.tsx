@@ -6,6 +6,7 @@ import {
   ProviderPage,
   UseIntercomPage,
   ProviderEventsPage,
+  ProviderApiPage,
   UseIntercomTourPage,
 } from './modules';
 
@@ -43,6 +44,7 @@ const App = () => {
         <Router>
           <Route path="/provider" component={ProviderPage} />
           <Route path="/providerEvents" component={ProviderEventsPage} />
+          <Route path="/providerApi" component={ProviderApiPage} />
           <Route path="/useIntercom" component={UseIntercomPage} />
           <Route path="/useIntercomTour" component={UseIntercomTourPage} />
           <Route path="/" exact>

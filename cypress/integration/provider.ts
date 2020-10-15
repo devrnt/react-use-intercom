@@ -60,3 +60,16 @@ describe('provider with events', () => {
     cy.get('[data-cy=onHideText]').should('have.text', 'hide was called');
   });
 });
+
+describe('provider with `apiBase`', () => {
+  it('should set `api_base` if provided', () => {
+    cy.visit('/providerApi');
+
+    cy.get('p').should('be.visible');
+
+    cy.window().should('have.deep.property', 'intercomSettings', {
+      app_id: 'jcabc7e3',
+      api_base: 'https://jcabc7e3.intercom-messenger.com',
+    });
+  });
+});
