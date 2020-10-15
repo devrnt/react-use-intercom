@@ -155,7 +155,9 @@ export type IntercomProviderProps = {
   shouldInitialize?: boolean;
 
   /**
-   * For some ISPs can not load messenger box
+   * If you need to route your Messenger requests through a different endpoint than the default
+   *
+   * @remarks Generally speaking, this is not needed.
    * Format https://${INTERCOM_APP_ID}.intercom-messenger.com
    */
   apiBase?: string;
