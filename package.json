@@ -22,6 +22,11 @@
   "engines": {
     "node": ">=10"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/react-use-intercom.esm.js"
+    }
+  },
   "keywords": [
     "react",
     "hooks",
