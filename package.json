@@ -43,6 +43,7 @@
     "cypress": "cypress run",
     "cypress:open": "cypress open",
     "lint": "tsdx lint",
+    "lint:fix": "tsdx lint --fix",
     "prepare": "tsdx build",
     "bundlesize": "yarn build && bundlesize",
     "release": "np"

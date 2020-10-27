@@ -1,16 +1,16 @@
 import {
-  RawMessengerAttributes,
-  MessengerAttributes,
-  RawDataAttributesCompany,
-  DataAttributesCompany,
-  RawDataAttributesAvatar,
-  DataAttributesAvatar,
-  RawDataAttributes,
   DataAttributes,
-  RawIntercomProps,
-  IntercomProps,
-  RawIntercomBootProps,
+  DataAttributesAvatar,
+  DataAttributesCompany,
   IntercomBootProps,
+  IntercomProps,
+  MessengerAttributes,
+  RawDataAttributes,
+  RawDataAttributesAvatar,
+  RawDataAttributesCompany,
+  RawIntercomBootProps,
+  RawIntercomProps,
+  RawMessengerAttributes,
 } from './types';
 
 /**
