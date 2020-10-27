@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { act, render } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
+import * as React from 'react';
 
 import config from '../config';
 import { IntercomProvider, useIntercom } from '../src';

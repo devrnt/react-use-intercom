@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import IntercomAPI from './api';
 import IntercomContext from './context';
 import { IntercomContextValues, IntercomProviderProps } from './contextTypes';

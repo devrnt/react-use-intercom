@@ -1,8 +1,7 @@
+import { act, renderHook } from '@testing-library/react-hooks';
 import * as React from 'react';
-import { renderHook, act } from '@testing-library/react-hooks';
 
 import config from '../config';
-
 import { IntercomProvider, useIntercom } from '../src';
 
 const INTERCOM_APP_ID = config.INTERCOM_APP_ID;

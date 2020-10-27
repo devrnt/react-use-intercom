@@ -43,6 +43,7 @@
     "cypress": "cypress run",
     "cypress:open": "cypress open",
     "lint": "tsdx lint",
+    "lint:fix": "tsdx lint --fix",
     "prepare": "tsdx build",
     "bundlesize": "yarn build && bundlesize",
     "release": "np"
@@ -71,6 +72,7 @@
     "bundlesize": "^0.18.0",
     "cypress": "5.4.0",
     "dotenv": "^8.2.0",
+    "eslint-plugin-simple-import-sort": "^5.0.3",
     "husky": "^4.2.5",
     "jsdom": "^16.3.0",
     "np": "^6.3.2",
