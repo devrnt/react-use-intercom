@@ -254,7 +254,6 @@ export type IntercomProps = MessengerAttributes & DataAttributes;
 export type IntercomBootProps = {
   /** The app ID of your Intercom app which will indicate where to store any data  */
   appId: string;
-} & MessengerAttributes &
-  DataAttributes;
+} & IntercomProps;
 
 export type LogLevel = 'info' | 'error' | 'warn';
