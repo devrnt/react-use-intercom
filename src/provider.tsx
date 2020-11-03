@@ -20,7 +20,7 @@ export const IntercomProvider = ({
   apiBase,
   ...rest
 }: IntercomProviderProps) => {
-  if (!isEmptyObject(rest))
+  if (!isEmptyObject(rest) && __DEV__)
     logger.log(
       'error',
       [
