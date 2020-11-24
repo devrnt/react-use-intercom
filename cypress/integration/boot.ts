@@ -37,15 +37,15 @@ describe('boot', () => {
 
     cy.get('[data-cy=update]').click();
     cy.get('.intercom-lightweight-app-launcher-icon-open').should(
-      'not.be.visible',
+      'not.exist',
     );
     cy.get('[data-cy=update-seeded]').click();
     cy.get('.intercom-lightweight-app-launcher-icon-open').should(
-      'not.be.visible',
+      'not.exist',
     );
     cy.get('[data-cy=show]').click();
     cy.get('.intercom-lightweight-app-launcher-icon-open').should(
-      'not.be.visible',
+      'not.exist',
     );
   });
 });

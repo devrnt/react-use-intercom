@@ -13,7 +13,7 @@ describe('shutdown', () => {
     cy.get('[data-cy=boot]').click();
     cy.get('[data-cy=shutdown]').click();
     cy.get('.intercom-lightweight-app-launcher-icon-open').should(
-      'not.be.visible',
+      'not.exist',
     );
   });
 
@@ -28,7 +28,7 @@ describe('shutdown', () => {
       app_id: 'jcabc7e3',
     });
     cy.get('.intercom-lightweight-app-launcher-icon-open').should(
-      'not.be.visible',
+      'not.exist',
     );
   });
 
@@ -43,7 +43,7 @@ describe('shutdown', () => {
       .its('intercomSettings')
       .should('be.undefined');
     cy.get('.intercom-lightweight-app-launcher-icon-open').should(
-      'not.be.visible',
+      'not.exist',
     );
   });
 });
