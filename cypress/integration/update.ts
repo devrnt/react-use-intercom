@@ -19,7 +19,7 @@ describe('update', () => {
       name: 'ponas',
     });
     cy.get('.intercom-lightweight-app-launcher-icon-open').should(
-      'not.be.visible',
+      'not.exist',
     );
   });
 });

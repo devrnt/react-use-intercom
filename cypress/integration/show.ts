@@ -21,7 +21,7 @@ describe('showMessages', () => {
     cy.get('.intercom-messenger-frame > iframe').should('be.visible');
 
     cy.get('[data-cy=hide]').click({ force: true });
-    cy.get('.intercom-messenger-frame > iframe').should('not.be.visible');
+    cy.get('.intercom-messenger-frame > iframe').should('not.exist');
   });
 });
 
