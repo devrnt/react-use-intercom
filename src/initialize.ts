@@ -30,7 +30,10 @@ const initialize = (appId: string) => {
       var x = d.getElementsByTagName('script')[0];
       x.parentNode.insertBefore(s, x);
     };
-    if (w.attachEvent) {
+    if (document.readyState === 'complete') {
+      l();
+    } 
+    else if (w.attachEvent) {
       w.attachEvent('onload', l);
     } else {
       w.addEventListener('load', l, false);
