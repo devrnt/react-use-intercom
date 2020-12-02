@@ -1,4 +1,4 @@
-<p align="center"><img src="./assets/logo.png" alt="Logo" height="120px" style="margin-top: 20px;"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/devrnt/react-use-intercom/master/assets/logo.png" alt="Logo" height="120px" style="margin-top: 20px;"/></p>
 <h1 align="center">react-use-intercom</h1>
 <p align="center">A React <a href="https://www.intercom.com" alt="Intercom">Intercom </a> integration powered by hooks.</p>
 
@@ -15,7 +15,7 @@
 * Written in TypeScript
 * Documented, self explaining methods 
 * [Tiny size](https://bundlephobia.com/result?p=react-use-intercom@latest) without any external libraries
-* Safeguard for SSR environments
+* Safeguard for SSR environments (NextJS, Gatsby)
 
 ## Installation
 
