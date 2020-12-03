@@ -2,14 +2,18 @@ import * as React from 'react';
 
 import IntercomAPI from './api';
 import IntercomContext from './context';
-import { IntercomContextValues, IntercomProviderProps } from './contextTypes';
 import initialize from './initialize';
 import * as logger from './logger';
 import { mapIntercomPropsToRawIntercomProps } from './mappers';
-import { IntercomProps, RawIntercomBootProps } from './types';
+import {
+  IntercomContextValues,
+  IntercomProps,
+  IntercomProviderProps,
+  RawIntercomBootProps,
+} from './types';
 import { isEmptyObject, isSSR } from './utils';
 
-export const IntercomProvider = ({
+export const IntercomProvider: React.FC<IntercomProviderProps> = ({
   appId,
   autoBoot = false,
   children,
@@ -19,7 +23,7 @@ export const IntercomProvider = ({
   shouldInitialize = !isSSR,
   apiBase,
   ...rest
-}: IntercomProviderProps) => {
+}) => {
   if (!isEmptyObject(rest) && __DEV__)
     logger.log(
       'error',
