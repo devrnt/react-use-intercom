@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { IntercomContextValues } from './contextTypes';
 import * as logger from './logger';
+import { IntercomContextValues } from './types';
 
 const NO_INTERCOM_PROVIDER_MESSAGE =
   'Please wrap your component with `IntercomProvider`.';
