@@ -49,6 +49,7 @@ const HomePage = () => {
 ## Links
 * [API](#api)
 * [Playground](#playground)
+* [Examples](#examples)
 * [TypeScript](#typescript)
 * [Troubleshoot](#troubleshoot)
 * [Advanced](#advanced)
@@ -217,6 +218,9 @@ Small playground to showcase the functionalities of `react-use-intercom`.
 ### useIntercom (with Intercom tour)
 [https://devrnt.github.io/react-use-intercom/#/useIntercomTour](https://devrnt.github.io/react-use-intercom/#/useIntercomTour)
 
+## Examples 
+Go to [examples](https://github.com/devrnt/react-use-intercom/tree/master/examples) to check out some integrations (Gatsby, NextJS...).
+
 ## TypeScript
 All the possible pre-defined options to pass to the Intercom instance are typed. So whenever you have to pass [IntercomProps](src/types.ts), all the possible properties will be available out of the box.
 These props are `JavaScript` 'friendly', so [camelCase](https://en.wikipedia.org/wiki/Camel_case). No need to pass the props with [snake_cased](https://en.wikipedia.org/wiki/Snake_case) keys.
@@ -225,7 +229,7 @@ These props are `JavaScript` 'friendly', so [camelCase](https://en.wikipedia.org
 
 
 ## Troubleshoot
-* I'm seeing "Please wrap your component with IntercomProvider." in the console.
+* I'm seeing `Please wrap your component with IntercomProvider` in the console.
 > Make sure `IntercomProvider` is initialized before calling `useIntercom()`. You only need to initialize `IntercomProvider` once. It is advised to initialize `IntercomProvider` as high as possible in your application tree.
 
 > Make sure you aren't calling `useIntercom()` in the same component where you initialized `IntercomProvider`.
