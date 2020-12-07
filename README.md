@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/devrnt/react-use-intercom/master/assets/logo.png" alt="Logo" height="120px" style="margin-top: 20px;"/></p>
+This will make sure you can<p align="center"><img src="https://raw.githubusercontent.com/devrnt/react-use-intercom/master/assets/logo.png" alt="Logo" height="120px" style="margin-top: 20px;"/></p>
 <h1 align="center">react-use-intercom</h1>
 <p align="center">A React <a href="https://www.intercom.com" alt="Intercom">Intercom </a> integration powered by hooks.</p>
 
@@ -61,7 +61,7 @@ const HomePage = () => {
 ### IntercomProvider 
 `IntercomProvider` is used to initialize the `window.Intercom` instance. It makes sure the initialization is only done once. If any listeners are passed, the `IntercomProvider` will make sure these are attached.
 
-Place the `IntercomProvider` as high as possible in your application. This will make sure you can `useIntercom()` anywhere.
+Place the `IntercomProvider` as high as possible in your application. This will make sure you can call `useIntercom` anywhere.
 
 #### Props
 | name                | type             | description                                                                             | required | default |
@@ -209,7 +209,7 @@ All the Intercom default attributes/props are camel cased (`appId` instead of `a
  ```
 
 ## Playground
-Example playground to showcase the functionalities of `react-use-intercom`. 
+Small playground to showcase the functionalities of `react-use-intercom`. 
 
 ### useIntercom
 [https://devrnt.github.io/react-use-intercom/#/useIntercom](https://devrnt.github.io/react-use-intercom/#/useIntercom)
