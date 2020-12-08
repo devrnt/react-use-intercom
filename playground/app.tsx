@@ -39,7 +39,7 @@ const App = () => {
       <Style />
       <Page
         title="react-use-intercom"
-        description="Example playground to showcase the functionalities of this package"
+        description="Playground to showcase the functionalities of this package"
       >
         <Router>
           <Route path="/provider" component={ProviderPage} />

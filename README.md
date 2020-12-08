@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/devrnt/react-use-intercom/master/assets/logo.png" alt="Logo" height="120px" style="margin-top: 20px;"/></p>
+This will make sure you can<p align="center"><img src="https://raw.githubusercontent.com/devrnt/react-use-intercom/master/assets/logo.png" alt="Logo" height="120px" style="margin-top: 20px;"/></p>
 <h1 align="center">react-use-intercom</h1>
 <p align="center">A React <a href="https://www.intercom.com" alt="Intercom">Intercom </a> integration powered by hooks.</p>
 
@@ -49,6 +49,7 @@ const HomePage = () => {
 ## Links
 * [API](#api)
 * [Playground](#playground)
+* [Examples](#examples)
 * [TypeScript](#typescript)
 * [Troubleshoot](#troubleshoot)
 * [Advanced](#advanced)
@@ -61,7 +62,7 @@ const HomePage = () => {
 ### IntercomProvider 
 `IntercomProvider` is used to initialize the `window.Intercom` instance. It makes sure the initialization is only done once. If any listeners are passed, the `IntercomProvider` will make sure these are attached.
 
-Place the `IntercomProvider` as high as possible in your application. This will make sure you can `useIntercom()` anywhere.
+Place the `IntercomProvider` as high as possible in your application. This will make sure you can call `useIntercom` anywhere.
 
 #### Props
 | name                | type             | description                                                                             | required | default |
@@ -209,13 +210,16 @@ All the Intercom default attributes/props are camel cased (`appId` instead of `a
  ```
 
 ## Playground
-Example playground to showcase the functionalities of `react-use-intercom`. 
+Small playground to showcase the functionalities of `react-use-intercom`. 
 
 ### useIntercom
 [https://devrnt.github.io/react-use-intercom/#/useIntercom](https://devrnt.github.io/react-use-intercom/#/useIntercom)
 
 ### useIntercom (with Intercom tour)
 [https://devrnt.github.io/react-use-intercom/#/useIntercomTour](https://devrnt.github.io/react-use-intercom/#/useIntercomTour)
+
+## Examples 
+Go to [examples](https://github.com/devrnt/react-use-intercom/tree/master/examples) to check out some integrations (Gatsby, NextJS...).
 
 ## TypeScript
 All the possible pre-defined options to pass to the Intercom instance are typed. So whenever you have to pass [IntercomProps](src/types.ts), all the possible properties will be available out of the box.
@@ -225,7 +229,7 @@ These props are `JavaScript` 'friendly', so [camelCase](https://en.wikipedia.org
 
 
 ## Troubleshoot
-* I'm seeing "Please wrap your component with IntercomProvider." in the console.
+* I'm seeing `Please wrap your component with IntercomProvider` in the console.
 > Make sure `IntercomProvider` is initialized before calling `useIntercom()`. You only need to initialize `IntercomProvider` once. It is advised to initialize `IntercomProvider` as high as possible in your application tree.
 
 > Make sure you aren't calling `useIntercom()` in the same component where you initialized `IntercomProvider`.
