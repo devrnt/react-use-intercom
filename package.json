@@ -37,7 +37,9 @@
     "intercom-react",
     "typescript",
     "react-hooks",
-    "react-use-intercom"
+    "react-use-intercom",
+    "nextjs",
+    "gatsby"
   ],
   "scripts": {
     "start": "tsdx watch",
