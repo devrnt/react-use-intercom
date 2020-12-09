@@ -1,0 +1,53 @@
+<svg width="484" height="484" viewBox="0 0 484 484" fill="none"
+  xmlns="http://www.w3.org/2000/svg">
+  <rect width="484" height="484" rx="45" fill="url(#paint0_linear)"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M148.318 213.177C110.279 223.13 82.8468 251.372 82.8468 284.659C82.8468 302.714 90.9182 319.286 104.375 332.259L103.269 334.479L91.8889 362.948C91.8889 362.948 106.937 355.333 116.168 350.699C118.954 349.3 122.508 348.337 126.11 347.676C141.162 355.448 159.166 359.968 178.511 359.968C219.802 359.968 254.983 339.373 268.384 310.521C201.557 308.334 148.269 266.784 148.269 215.848C148.269 214.955 148.285 214.064 148.318 213.177Z" fill="white"/>
+  <path d="M398.973 211.41C398.973 260.74 345.398 300.73 279.309 300.73C213.221 300.73 159.646 260.74 159.646 211.41C159.646 162.08 213.221 122.09 279.309 122.09C345.398 122.09 398.973 162.08 398.973 211.41Z" fill="white"/>
+  <path d="M366.071 256.503L373.427 270.499L387.662 304.264C387.662 304.264 368.839 295.234 357.292 289.737C345.746 284.24 323.679 284.426 323.679 284.426L366.071 256.503Z" fill="white"/>
+  <defs>
+    <linearGradient id="paint0_linear" x1="-13.0811" y1="416.414" x2="704.198" y2="-78.4865" gradientUnits="userSpaceOnUse">
+      <stop id="first" stop-color="#42E880"/>
+      <stop id="second" offset="1" stop-color="#08E1F4"/>
+    </linearGradient>
+  </defs>
+  <style>
+  
+        @keyframes gradientBackground {
+          0% {
+            background-position: 0% 50%;
+            offset: 1;
+            stop-color: #42E880;
+          }
+          50% {
+            background-position: 100% 50%;
+            stop-color: #08E1F4;
+          }
+          100% {
+            background-position: 0% 50%;
+            stop-color: #42E880;
+          }
+        }
+  path {
+    transform-origin: center center;
+  }
+
+        @keyframes fadeIn {
+          0% {
+            opacity: 0;
+          }
+          66% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+        #first {
+          animation: gradientBackground 10s ease infinite;
+        }
+        #second {
+          animation: gradientBackground 15s ease infinite;
+          animation-direction: reverse;
+        }
+  </style>
+</svg>

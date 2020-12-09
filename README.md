@@ -1,4 +1,4 @@
-This will make sure you can<p align="center"><img src="https://raw.githubusercontent.com/devrnt/react-use-intercom/master/assets/logo.png" alt="Logo" height="120px" style="margin-top: 20px;"/></p>
+This will make sure you can<p align="center"><img src="./assets/logo.svg" alt="Logo" height="120px" style="margin-top: 20px;"/></p>
 <h1 align="center">react-use-intercom</h1>
 <p align="center">A React <a href="https://www.intercom.com" alt="Intercom">Intercom </a> integration powered by hooks.</p>
 
