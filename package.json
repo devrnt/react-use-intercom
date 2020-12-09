@@ -81,7 +81,7 @@
     "bundlesize": "^0.18.0",
     "cypress": "6.1.0",
     "dotenv": "^8.2.0",
-    "eslint-plugin-simple-import-sort": "^6.0.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^4.3.0",
     "jsdom": "^16.4.0",
     "np": "^7.0.0",
