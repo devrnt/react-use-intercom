@@ -5,7 +5,7 @@
 <p align="center">
 <img alt="ci" src="https://github.com/devrnt/react-use-intercom/workflows/CI/badge.svg?branch=master">
 <img alt="version" src="https://img.shields.io/npm/v/react-use-intercom.svg" />
-<img alt="downloads" src="https://badgen.net/npm/dt/react-use-intercom" />
+<img alt="downloads" src="https://badgen.net/npm/dw/react-use-intercom" />
 <img alt="minzipped size" src="https://badgen.net/bundlephobia/minzip/react-use-intercom">
 <img alt="known vulnerabilities" src="https://snyk.io/test/github/devrnt/react-use-intercom/badge.svg">
 </p>
