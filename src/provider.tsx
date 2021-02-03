@@ -4,14 +4,17 @@ import IntercomAPI from './api';
 import IntercomContext from './context';
 import initialize from './initialize';
 import * as logger from './logger';
-import { mapIntercomPropsToRawIntercomProps } from './mappers';
 import {
   IntercomContextValues,
   IntercomProps,
   IntercomProviderProps,
   RawIntercomBootProps,
 } from './types';
-import { isEmptyObject, isSSR } from './utils';
+import {
+  isEmptyObject,
+  isSSR,
+  transformCamelObjectToSnakeCaseObject,
+} from './utils';
 
 export const IntercomProvider: React.FC<IntercomProviderProps> = ({
   appId,
@@ -97,7 +100,7 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
     const metaData: RawIntercomBootProps = {
       app_id: memoizedAppId.current,
       ...(memoizedApiBase.current && { api_base: memoizedApiBase.current }),
-      ...(props && mapIntercomPropsToRawIntercomProps(props)),
+      ...(props && transformCamelObjectToSnakeCaseObject(props)),
     };
 
     window.intercomSettings = metaData;
@@ -135,7 +138,7 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
           refresh();
           return;
         }
-        const rawProps = mapIntercomPropsToRawIntercomProps(props);
+        const rawProps = transformCamelObjectToSnakeCaseObject(props);
         window.intercomSettings = { ...window.intercomSettings, ...rawProps };
         IntercomAPI('update', rawProps);
       });
