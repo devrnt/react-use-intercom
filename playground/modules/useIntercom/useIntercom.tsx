@@ -220,7 +220,7 @@ const RawUseIntercomPage = () => {
       </Item>
       <Item>
         <p>
-          hows the Messenger as if a new conversation was just created with the
+          shows the Messenger as if a new conversation was just created with the
           prefilled content
         </p>
         <Button

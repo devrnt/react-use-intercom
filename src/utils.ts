@@ -6,7 +6,7 @@ export const isSSR = typeof window === 'undefined';
 /**
  * Removes object entries where the value equals to `undefined`
  *
- * @param obj The object ot remove undefined values
+ * @param obj The object to remove undefined values
  */
 export const removeUndefined = (obj: any) => {
   Object.keys(obj).forEach(key => {
@@ -105,24 +105,3 @@ export const transformCamelObjectToSnakeCaseObject = (
 
   return object;
 };
-
-// export const transformSnakeObjectToCamelCase = (
-//   object: Record<string, any>,
-// ) => {
-//   const camelCaseObject = Object.keys(object).reduce((acc, key) => {
-//     const camelKey = transformSnakeToCamelCase(key);
-
-//     const value: any = isObject(object[key])
-//       ? transformSnakeObjectToCamelCase(object[key])
-//       : Array.isArray(object[key])
-//       ? object[key].map((a: any) => transformSnakeToCamelCase(a))
-//       : object[key];
-
-//     return {
-//       ...acc,
-//       [camelKey]: ...value,
-//     } as object;
-//   }, {});
-//   console.log({ camelCaseObject });
-//   return camelCaseObject;
-// };
