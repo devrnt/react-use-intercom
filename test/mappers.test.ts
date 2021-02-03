@@ -101,7 +101,7 @@ const createTransformedProps = (): IntercomBootProps => {
     },
     createdAt: '01-01-2000',
     customLauncherSelector: 'yes',
-    email: 'devrient.John@gmail.com',
+    email: 'john@doe.com',
     hideDefaultLauncher: false,
     horizontalPadding: 1,
     languageOverride: 'nl',
