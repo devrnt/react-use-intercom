@@ -82,7 +82,7 @@
     "cypress": "6.4.0",
     "dotenv": "^8.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
-    "husky": "^4.3.0",
+    "husky": "^5.0.9",
     "jsdom": "^16.4.0",
     "np": "^7.0.0",
     "react": "^17.0.1",
