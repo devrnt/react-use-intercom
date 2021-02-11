@@ -6,10 +6,8 @@ const createRawIntercomProps = (): RawIntercomBootProps => {
     app_id: 'test',
     action_color: 'red',
     alignment: 'center',
-    customAttributes: {
-      name: 'John',
-      created_at: '01-01-2000',
-    },
+    custom_name: 'John',
+    custom_created_at: '01-01-2000',
     avatar: {
       type: 'John',
       image_url: 'https://devrnt.github.io/react-use-intercom/#/useIntercom',
@@ -67,8 +65,8 @@ const createTransformedProps = (): IntercomBootProps => {
     actionColor: 'red',
     alignment: 'center',
     customAttributes: {
-      name: 'John',
-      createdAt: '01-01-2000',
+      custom_name: 'John',
+      custom_created_at: '01-01-2000',
     },
     avatar: {
       type: 'John',

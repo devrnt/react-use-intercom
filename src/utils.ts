@@ -21,7 +21,7 @@ export const removeUndefined = (obj: any) => {
  *
  * @param value The camel case value
  */
-export const transformSnakeToCamelCase = (value: string) => {
+const transformSnakeToCamelCase = (value: string) => {
   return value.replace(/([-_][a-z])/gi, $1 => {
     return $1
       .toUpperCase()
@@ -35,7 +35,7 @@ export const transformSnakeToCamelCase = (value: string) => {
  *
  * @param value The camel case value
  */
-export const transformCamelToSnakeCase = (value: string) => {
+const transformCamelToSnakeCase = (value: string) => {
   return value.replace(
     /[A-Z]/g,
     (letter: string) => `_${letter.toLowerCase()}`,
@@ -87,16 +87,23 @@ export const transformCamelObjectToSnakeCaseObject = (
   object: Record<string, any>,
 ): Record<string, any> => {
   if (isObject(object)) {
-    const n: Record<string, any> = {};
+    const normalized: Record<string, any> = {};
 
     Object.keys(object).forEach(key => {
-      n[transformCamelToSnakeCase(key)] = transformCamelObjectToSnakeCaseObject(
+      if (key === 'customAttributes') {
+        Object.keys(object[key]).forEach(k => {
+          normalized[k] = object[key][k];
+        });
+      }
+      normalized[
+        transformCamelToSnakeCase(key)
+      ] = transformCamelObjectToSnakeCaseObject(
         // @ts-ignore
         object[key],
       );
     });
 
-    return n;
+    return normalized;
   } else if (Array.isArray(object)) {
     return object.map(i => {
       return transformCamelObjectToSnakeCaseObject(i);

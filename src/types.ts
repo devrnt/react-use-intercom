@@ -129,7 +129,7 @@ export type RawDataAttributes = {
   user_hash?: string;
   company?: RawDataAttributesCompany;
   companies?: RawDataAttributesCompany[];
-  customAttributes?: Record<string, any>;
+  [customAttributeKey: string]: any;
 };
 
 export type DataAttributes = {
