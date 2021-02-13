@@ -1,3 +1,5 @@
+import { BaseSyntheticEvent } from 'react';
+
 export const isEmptyObject = (obj: object) =>
   Object.keys(obj).length === 0 && obj.constructor === Object;
 
@@ -14,6 +16,14 @@ export const removeUndefined = (obj: any) => {
     else if (obj[key] === undefined) delete obj[key];
   });
   return obj;
+};
+
+export const isSyntaticEvent = (obj: object | BaseSyntheticEvent) => {
+  if ('nativeEvent' in obj && obj.nativeEvent instanceof Event) {
+    return true;
+  }
+
+  return false;
 };
 
 /**
@@ -94,13 +104,11 @@ export const transformCamelObjectToSnakeCaseObject = (
         Object.keys(object[key]).forEach(k => {
           normalized[k] = object[key][k];
         });
+      } else {
+        normalized[
+          transformCamelToSnakeCase(key)
+        ] = transformCamelObjectToSnakeCaseObject(object[key]);
       }
-      normalized[
-        transformCamelToSnakeCase(key)
-      ] = transformCamelObjectToSnakeCaseObject(
-        // @ts-ignore
-        object[key],
-      );
     });
 
     return normalized;

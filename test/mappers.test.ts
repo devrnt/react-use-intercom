@@ -1,5 +1,5 @@
 import { IntercomBootProps, RawIntercomBootProps } from '../src/types';
-import { transformSnakeObjectToCamelCase } from '../src/utils';
+import { transformCamelObjectToSnakeCaseObject } from '../src/utils';
 
 const createRawIntercomProps = (): RawIntercomBootProps => {
   return {
@@ -120,11 +120,11 @@ const createTransformedProps = (): IntercomBootProps => {
 };
 
 describe('mappers', () => {
-  test('should transform raw intercom props to camel case props', () => {
-    const raw = createRawIntercomProps();
-    const expected = createTransformedProps();
+  test('should transform intercom props to raw snake case props', () => {
+    const props = createTransformedProps();
+    const expected = createRawIntercomProps();
 
-    const transformed = transformSnakeObjectToCamelCase(raw);
+    const transformed = transformCamelObjectToSnakeCaseObject(props);
 
     expect(transformed).toEqual(expected);
   });

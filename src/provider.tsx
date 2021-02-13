@@ -13,6 +13,7 @@ import {
 import {
   isEmptyObject,
   isSSR,
+  isSyntaticEvent,
   transformCamelObjectToSnakeCaseObject,
 } from './utils';
 
@@ -100,7 +101,9 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
     const metaData: RawIntercomBootProps = {
       app_id: memoizedAppId.current,
       ...(memoizedApiBase.current && { api_base: memoizedApiBase.current }),
-      ...(props && transformCamelObjectToSnakeCaseObject(props)),
+      ...(props &&
+        !isSyntaticEvent(props) &&
+        transformCamelObjectToSnakeCaseObject(props)),
     };
 
     window.intercomSettings = metaData;
@@ -138,7 +141,9 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
           refresh();
           return;
         }
-        const rawProps = transformCamelObjectToSnakeCaseObject(props);
+        const rawProps =
+          !isSyntaticEvent(props) &&
+          transformCamelObjectToSnakeCaseObject(props);
         window.intercomSettings = { ...window.intercomSettings, ...rawProps };
         IntercomAPI('update', rawProps);
       });
