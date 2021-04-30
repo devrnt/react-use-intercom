@@ -23,14 +23,14 @@ const initialize = (appId: string, timeout = 0) => {
     };
     w.Intercom = i;
     var l = function() {
-      setTimeout(function () {
-          var s = d.createElement('script');
-          s.type = 'text/javascript';
-          s.async = true;
-          s.src = 'https://widget.intercom.io/widget/' + appId;
-          var x = d.getElementsByTagName('script')[0];
-          x.parentNode.insertBefore(s, x);
-      }, timeout)
+      setTimeout(function() {
+        var s = d.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'https://widget.intercom.io/widget/' + appId;
+        var x = d.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s, x);
+      }, timeout);
     };
     if (document.readyState === 'complete') {
       l();
