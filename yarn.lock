@@ -2419,14 +2419,14 @@ camelcase@^6.0.0:
   integrity sha512-8KMDF1Vz2gzOq54ONPJS65IvTUaB1cHJ2DMM7MbPmLZljDH1qpzzLsWdiN9pHh6qvkRVDTi/07+eNGch/oLU4w==
 
 caniuse-lite@^1.0.30001043:
-  version "1.0.30001061"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001061.tgz#80ca87ef14eb543a7458e7fd2b5e2face3458c9f"
-  integrity sha512-SMICCeiNvMZnyXpuoO+ot7FHpMVPlrsR+HmfByj6nY4xYDHXLqMTbgH7ecEkDNXWkH1vaip+ZS0D7VTXwM1KYQ==
+  version "1.0.30001219"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001219.tgz"
+  integrity sha512-c0yixVG4v9KBc/tQ2rlbB3A/bgBFRvl8h8M4IeUbqCca4gsiCfvtaheUssbnux/Mb66Vjz7x8yYjDgYcNQOhyQ==
 
 caniuse-lite@^1.0.30001135:
-  version "1.0.30001135"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001135.tgz#995b1eb94404a3c9a0d7600c113c9bb27f2cd8aa"
-  integrity sha512-ziNcheTGTHlu9g34EVoHQdIu5g4foc8EsxMGC7Xkokmvw0dqNtX8BS8RgCgFBaAiSp2IdjvBxNdh0ssib28eVQ==
+  version "1.0.30001219"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001219.tgz"
+  integrity sha512-c0yixVG4v9KBc/tQ2rlbB3A/bgBFRvl8h8M4IeUbqCca4gsiCfvtaheUssbnux/Mb66Vjz7x8yYjDgYcNQOhyQ==
 
 capture-exit@^2.0.0:
   version "2.0.0"
