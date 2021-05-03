@@ -3,6 +3,7 @@
  * Snippet to initialize the Intercom instance
  *
  * @param appId - Intercom app id
+ * @param [timeout=0] - Amount of milliseconds that the initialization should be delayed, defaults to 0
  *
  * @see {@link https://developers.intercom.com/installing-intercom/docs/basic-javascript}
  */
