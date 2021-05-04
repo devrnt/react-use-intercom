@@ -420,9 +420,9 @@ export type IntercomProviderProps = {
    */
   apiBase?: string;
   /**
-   * Indicates if the intercom initialization should be delayed
+   * Indicates if the intercom initialization should be delayed, dealy is in ms
    *
    * @remarks If not set delay is set to 0ms
    * */
-  initializeDelayInMs?: number;
+  initializeDelay?: number;
 };
