@@ -8,6 +8,7 @@ import {
   ProviderEventsPage,
   ProviderApiPage,
   UseIntercomTourPage,
+  UseIntercomWithDelay
 } from './modules';
 
 import { Page, Style } from './modules/common';
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/providerApi" component={ProviderApiPage} />
           <Route path="/useIntercom" component={UseIntercomPage} />
           <Route path="/useIntercomTour" component={UseIntercomTourPage} />
+          <Route path="/useIntercomWithTimeout" component={UseIntercomWithDelay} />
           <Route path="/" exact>
             <Navigation>
               <Link to="/provider">
@@ -60,6 +62,9 @@ const App = () => {
               </Link>
               <Link to="/useIntercomTour">
                 <code>useIntercom with tour</code>
+              </Link>
+              <Link to="/useIntercomWithTimeout">
+                <code>useIntercom with delayed boot</code>
               </Link>
             </Navigation>
           </Route>
