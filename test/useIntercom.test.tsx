@@ -46,9 +46,11 @@ describe('useIntercom', () => {
   });
 
   test('should set wait for a certain amount of ms until booting, booting before that will do nothing', async () => {
-    const { result, waitFor  } = renderHook(() => useIntercom(), {
+    const { result, waitFor } = renderHook(() => useIntercom(), {
       wrapper: ({ children }) => (
-        <IntercomProvider appId={INTERCOM_APP_ID} initializeDelay={5000}>{children}</IntercomProvider>
+        <IntercomProvider appId={INTERCOM_APP_ID} initializeDelay={5000}>
+          {children}
+        </IntercomProvider>
       ),
     });
 
@@ -58,15 +60,14 @@ describe('useIntercom', () => {
       boot();
     });
 
-    expect(window.intercomSettings).toEqual({app_id: undefined});
+    expect(window.intercomSettings).toEqual({ app_id: undefined });
 
-    await waitFor(() => {}, {timeout: 5000});
+    await waitFor(() => {}, { timeout: 5000 });
 
     act(() => {
       boot();
     });
 
     expect(window.intercomSettings).toEqual({ app_id: INTERCOM_APP_ID });
-    
   });
 });
