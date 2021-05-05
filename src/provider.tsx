@@ -57,7 +57,10 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
   }
 
   const ensureIntercom = React.useCallback(
-    (functionName: string = 'A function', callback: Function) => {
+    (
+      functionName: string = 'A function',
+      callback: (() => void) | (() => string),
+    ) => {
       if (!window.Intercom && !shouldInitialize) {
         logger.log(
           'warn',
@@ -174,8 +177,8 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
 
   const getVisitorId = React.useCallback(() => {
     return ensureIntercom('getVisitorId', () => {
-      return (IntercomAPI('getVisitorId') as unknown) as string;
-    });
+      return IntercomAPI('getVisitorId');
+    }) as string;
   }, [ensureIntercom]);
 
   const startTour = React.useCallback(
