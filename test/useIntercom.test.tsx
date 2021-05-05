@@ -45,7 +45,7 @@ describe('useIntercom', () => {
     expect(window.intercomSettings).toEqual({ app_id: INTERCOM_APP_ID });
   });
 
-  test('should set wait for a certain amount of ms until booting, booting before that will do nothing', async () => {
+  test('should await a certain amount on delayed initialization', async () => {
     const { result, waitFor } = renderHook(() => useIntercom(), {
       wrapper: ({ children }) => (
         <IntercomProvider appId={INTERCOM_APP_ID} initializeDelay={5000}>
