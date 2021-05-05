@@ -2418,12 +2418,7 @@ camelcase@^6.0.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-6.0.0.tgz#5259f7c30e35e278f1bdc2a4d91230b37cad981e"
   integrity sha512-8KMDF1Vz2gzOq54ONPJS65IvTUaB1cHJ2DMM7MbPmLZljDH1qpzzLsWdiN9pHh6qvkRVDTi/07+eNGch/oLU4w==
 
-caniuse-lite@^1.0.30001043:
-  version "1.0.30001219"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001219.tgz"
-  integrity sha512-c0yixVG4v9KBc/tQ2rlbB3A/bgBFRvl8h8M4IeUbqCca4gsiCfvtaheUssbnux/Mb66Vjz7x8yYjDgYcNQOhyQ==
-
-caniuse-lite@^1.0.30001135:
+caniuse-lite@^1.0.30001043, caniuse-lite@^1.0.30001135:
   version "1.0.30001219"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001219.tgz"
   integrity sha512-c0yixVG4v9KBc/tQ2rlbB3A/bgBFRvl8h8M4IeUbqCca4gsiCfvtaheUssbnux/Mb66Vjz7x8yYjDgYcNQOhyQ==
@@ -3172,9 +3167,9 @@ dot-prop@^6.0.1:
     is-obj "^2.0.0"
 
 dotenv@^8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
-  integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.4.0.tgz#08576a9d5dc63b4fc58df087015c768eb102e0f3"
+  integrity sha512-l+pIWjvRva0AhnLerv9VvpscgXa72iPW1qKlCgA7COzJA414vGQ/PMcOuNfR1CmQbK208WWYeVwQUa8yfuqH8Q==
 
 duplexer3@^0.1.4:
   version "0.1.4"
