@@ -22,7 +22,7 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
   onUnreadCountChange,
   shouldInitialize = !isSSR,
   apiBase,
-  initializeDelayInMs,
+  initializeDelay,
   ...rest
 }) => {
   const isBooted = React.useRef(autoBoot);
@@ -37,7 +37,7 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
     );
 
   if (!isSSR && !window.Intercom && shouldInitialize) {
-    initialize(appId, initializeDelayInMs);
+    initialize(appId, initializeDelay);
     // Only add listeners on initialization
     if (onHide) IntercomAPI('onHide', onHide);
     if (onShow) IntercomAPI('onShow', onShow);
