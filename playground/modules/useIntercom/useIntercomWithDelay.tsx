@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { IntercomProvider, useIntercom } from '../../../.';
+import { IntercomProvider } from '../../../.';
 
 import { Button } from '../common';
 
@@ -24,16 +24,11 @@ const Item = styled.div`
 `;
 
 const RawUseIntercomPage = () => {
-  const {
-    boot,
-  } = useIntercom();
-  const handleBoot = React.useCallback(() => boot(), [boot]);
-
   return (
     <Grid>
       <Item>
         <p>
-          Intercom will be autobooted after 5000ms
+          Intercom will be initialized (and autobooted) after 5000ms
         </p>
       </Item>
     </Grid>
