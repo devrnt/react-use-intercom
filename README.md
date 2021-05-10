@@ -75,6 +75,7 @@ Place the `IntercomProvider` as high as possible in your application. This will 
 | onUnreadCountChange | (number) => void | triggered when the current number of unread messages changes                            | false    |         |
 | shouldInitialize    | boolean | indicates if the Intercom should be initialized. Can be used in multistaged environment          | false    | true    |
 | apiBase    | string | If you need to route your Messenger requests through a different endpoint than the default. Generally speaking, this is not needed.<br/> Format: `https://${INTERCOM_APP_ID}.intercom-messenger.com` (See: [https://github.com/devrnt/react-use-intercom/pull/96](https://github.com/devrnt/react-use-intercom/pull/96))         | false    |         |
+| initializeDelay | number | Indicates if the intercom initialization should be delayed, delay is in ms, defaults to 0. See https://github.com/devrnt/react-use-intercom/pull/236 | false    |         |
 
 #### Example
 ```javascript
@@ -239,6 +240,15 @@ These props are `JavaScript` 'friendly', so [camelCase](https://en.wikipedia.org
 > Mind that all the properties in `react-use-intercom` are camel cased, except for the `customAttributes` property in the `boot` and `update` method from `useIntercom`.
 
 ## Advanced
+
+### Delay initialization
+
+`<IntercomProvider />` uses an official intercom snippet and is directly initialized on load. In the background this snippet will load some external code that makes Intercom work. All of this magic happens on the initial load and in some use cases this can become problematic (E.g. when LCP is priority).
+
+Since [v1.2.0](https://github.com/devrnt/react-use-intercom/releases/tag/v1.2.0) it's possible to delay this initialisation by passing `initializeDelay` in `<IntercomProvider />` (it's in milliseconds). However most of the users won't need to mess with this.
+
+For reference see https://github.com/devrnt/react-use-intercom/pull/236 and https://forum.intercom.com/s/question/0D52G00004WxWLs/can-i-delay-loading-intercom-on-my-site-to-reduce-the-js-load
+### useCallback
 To reduce the amount of re-renders in your React application I suggest to make use of [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback)
 
 **TLDR:** `useCallback` will return a memoized version of the callback that only changes if one of the dependencies has changed.

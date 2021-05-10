@@ -419,4 +419,10 @@ export type IntercomProviderProps = {
    * Format https://${INTERCOM_APP_ID}.intercom-messenger.com
    */
   apiBase?: string;
+  /**
+   * Indicates if the intercom initialization should be delayed, delay is in ms
+   *
+   * @remarks If not set delay is set to 0ms
+   * */
+  initializeDelay?: number;
 };
