@@ -3,8 +3,6 @@ import styled from 'styled-components';
 
 import { IntercomProvider } from '../../../.';
 
-import { Button } from '../common';
-
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -27,9 +25,7 @@ const RawUseIntercomPage = () => {
   return (
     <Grid>
       <Item>
-        <p>
-          Intercom will be initialized (and autobooted) after 5000ms
-        </p>
+        <p>Intercom will be initialized (and autobooted) after 5000ms</p>
       </Item>
     </Grid>
   );
