@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import logoUrl from '../../assets/images/logo.png';
 import githubLogoUrl from '../../assets/images/githubLogo.svg';
+import logoUrl from '../../assets/images/logo.png';
 
 type Props = {
   title: string;
