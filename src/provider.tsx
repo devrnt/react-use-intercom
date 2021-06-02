@@ -36,7 +36,7 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
       ].join(''),
     );
 
-  if (!isSSR && !window.Intercom && shouldInitialize) {
+  if (!isSSR && shouldInitialize) {
     initialize(appId, initializeDelay);
     // Only add listeners on initialization
     if (onHide) IntercomAPI('onHide', onHide);
@@ -61,7 +61,7 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
       functionName: string = 'A function',
       callback: (() => void) | (() => string),
     ) => {
-      if (!window.Intercom && !shouldInitialize) {
+      if (!shouldInitialize) {
         logger.log(
           'warn',
           'Intercom instance is not initialized because `shouldInitialize` is set to `false` in `IntercomProvider`',
@@ -86,7 +86,7 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
 
   const boot = React.useCallback(
     (props?: IntercomProps) => {
-      if (!window.Intercom && !shouldInitialize) {
+      if (!shouldInitialize) {
         logger.log(
           'warn',
           'Intercom instance is not initialized because `shouldInitialize` is set to `false` in `IntercomProvider`',
