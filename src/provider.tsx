@@ -36,24 +36,46 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
       ].join(''),
     );
 
-  if (!isSSR && !window.Intercom && shouldInitialize) {
-    initialize(appId, initializeDelay);
-    // Only add listeners on initialization
-    if (onHide) IntercomAPI('onHide', onHide);
-    if (onShow) IntercomAPI('onShow', onShow);
-    if (onUnreadCountChange)
-      IntercomAPI('onUnreadCountChange', onUnreadCountChange);
+  const areListenersAttached = React.useRef(false);
+  const attachListeners = () => {
+    if (!areListenersAttached.current) {
+      if (onHide) IntercomAPI('onHide', onHide);
+      if (onShow) IntercomAPI('onShow', onShow);
+      if (onUnreadCountChange)
+        IntercomAPI('onUnreadCountChange', onUnreadCountChange);
 
-    if (autoBoot) {
-      IntercomAPI('boot', {
-        app_id: appId,
-        ...(apiBase && { api_base: apiBase }),
-      });
-      window.intercomSettings = {
-        app_id: appId,
-        ...(apiBase && { api_base: apiBase }),
-      };
+      areListenersAttached.current = true;
     }
+  };
+
+  const boot = React.useCallback(
+    (props?: IntercomProps) => {
+      if (!window.Intercom && !shouldInitialize) {
+        logger.log(
+          'warn',
+          'Intercom instance is not initialized because `shouldInitialize` is set to `false` in `IntercomProvider`',
+        );
+        return;
+      }
+      if (isBooted.current) return;
+
+      const metaData: RawIntercomBootProps = {
+        app_id: appId,
+        ...(apiBase && { api_base: apiBase }),
+        ...(props && mapIntercomPropsToRawIntercomProps(props)),
+      };
+
+      window.intercomSettings = metaData;
+      IntercomAPI('boot', metaData);
+      isBooted.current = true;
+    },
+    [apiBase, appId, shouldInitialize],
+  );
+
+  if (!isSSR && shouldInitialize) {
+    initialize(appId, initializeDelay);
+    attachListeners();
+    if (autoBoot) boot();
   }
 
   const ensureIntercom = React.useCallback(
@@ -82,30 +104,6 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
       return callback();
     },
     [shouldInitialize],
-  );
-
-  const boot = React.useCallback(
-    (props?: IntercomProps) => {
-      if (!window.Intercom && !shouldInitialize) {
-        logger.log(
-          'warn',
-          'Intercom instance is not initialized because `shouldInitialize` is set to `false` in `IntercomProvider`',
-        );
-        return;
-      }
-      if (isBooted.current) return;
-
-      const metaData: RawIntercomBootProps = {
-        app_id: appId,
-        ...(apiBase && { api_base: apiBase }),
-        ...(props && mapIntercomPropsToRawIntercomProps(props)),
-      };
-
-      window.intercomSettings = metaData;
-      IntercomAPI('boot', metaData);
-      isBooted.current = true;
-    },
-    [apiBase, appId, shouldInitialize],
   );
 
   const shutdown = React.useCallback(() => {
