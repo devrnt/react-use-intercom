@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import { IntercomProvider, useIntercom } from '../../../dist';
-
 import { Button } from '../common';
 
 const Grid = styled.div`

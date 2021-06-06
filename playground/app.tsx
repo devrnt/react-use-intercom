@@ -1,16 +1,15 @@
 import * as React from 'react';
+import { HashRouter as Router, NavLink, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
 
 import {
+  ProviderApiPage,
+  ProviderEventsPage,
   ProviderPage,
   UseIntercomPage,
-  ProviderEventsPage,
-  ProviderApiPage,
   UseIntercomTourPage,
-  UseIntercomWithDelay
+  UseIntercomWithDelay,
 } from './modules';
-
 import { Page, Style } from './modules/common';
 
 const Navigation = styled.ul`
@@ -48,7 +47,10 @@ const App = () => {
           <Route path="/providerApi" component={ProviderApiPage} />
           <Route path="/useIntercom" component={UseIntercomPage} />
           <Route path="/useIntercomTour" component={UseIntercomTourPage} />
-          <Route path="/useIntercomWithTimeout" component={UseIntercomWithDelay} />
+          <Route
+            path="/useIntercomWithTimeout"
+            component={UseIntercomWithDelay}
+          />
           <Route path="/" exact>
             <Navigation>
               <Link to="/provider">
