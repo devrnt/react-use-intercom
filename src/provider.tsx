@@ -72,7 +72,7 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
     [apiBase, appId, shouldInitialize],
   );
 
-  if (!isSSR && shouldInitialize) {
+  if (!isSSR && shouldInitialize && !isBooted.current) {
     initialize(appId, initializeDelay);
     attachListeners();
     if (autoBoot) boot();
