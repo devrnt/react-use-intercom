@@ -25,6 +25,7 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
   ...rest
 }) => {
   const isBooted = React.useRef(false);
+  const isInitialized = React.useRef(false);
 
   if (!isEmptyObject(rest) && __DEV__)
     logger.log(
@@ -34,21 +35,6 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
         `Please check following props: ${Object.keys(rest).join(', ')}.`,
       ].join(''),
     );
-
-  const isInitialized = React.useRef(false);
-  const init = React.useCallback(() => {
-    if (!isInitialized.current) {
-      initialize(appId, initializeDelay);
-
-      // attach listeners
-      if (onHide) IntercomAPI('onHide', onHide);
-      if (onShow) IntercomAPI('onShow', onShow);
-      if (onUnreadCountChange)
-        IntercomAPI('onUnreadCountChange', onUnreadCountChange);
-
-      isInitialized.current = true;
-    }
-  }, [appId, initializeDelay, onHide, onShow, onUnreadCountChange]);
 
   const boot = React.useCallback(
     (props?: IntercomProps) => {
@@ -75,9 +61,18 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
     [apiBase, appId, shouldInitialize],
   );
 
-  if (!isSSR && shouldInitialize) {
-    init();
+  if (!isSSR && shouldInitialize && !isInitialized.current) {
+    initialize(appId, initializeDelay);
+
+    // attach listeners
+    if (onHide) IntercomAPI('onHide', onHide);
+    if (onShow) IntercomAPI('onShow', onShow);
+    if (onUnreadCountChange)
+      IntercomAPI('onUnreadCountChange', onUnreadCountChange);
+
     if (autoBoot) boot();
+
+    isInitialized.current = true;
   }
 
   const ensureIntercom = React.useCallback(
