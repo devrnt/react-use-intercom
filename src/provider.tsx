@@ -9,7 +9,6 @@ import {
   IntercomContextValues,
   IntercomProps,
   IntercomProviderProps,
-  RawIntercomBootProps,
 } from './types';
 import { isEmptyObject, isSSR } from './utils';
 
@@ -25,7 +24,7 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
   initializeDelay,
   ...rest
 }) => {
-  const isBooted = React.useRef(autoBoot);
+  const isBooted = React.useRef(false);
 
   if (!isEmptyObject(rest) && __DEV__)
     logger.log(
@@ -36,17 +35,20 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
       ].join(''),
     );
 
-  const areListenersAttached = React.useRef(false);
-  const attachListeners = () => {
-    if (!areListenersAttached.current) {
+  const isInitialized = React.useRef(false);
+  const init = React.useCallback(() => {
+    if (!isInitialized.current) {
+      initialize(appId, initializeDelay);
+
+      // attach listeners
       if (onHide) IntercomAPI('onHide', onHide);
       if (onShow) IntercomAPI('onShow', onShow);
       if (onUnreadCountChange)
         IntercomAPI('onUnreadCountChange', onUnreadCountChange);
 
-      areListenersAttached.current = true;
+      isInitialized.current = true;
     }
-  };
+  }, [appId, initializeDelay, onHide, onShow, onUnreadCountChange]);
 
   const boot = React.useCallback(
     (props?: IntercomProps) => {
@@ -57,9 +59,10 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
         );
         return;
       }
+
       if (isBooted.current) return;
 
-      const metaData: RawIntercomBootProps = {
+      const metaData = {
         app_id: appId,
         ...(apiBase && { api_base: apiBase }),
         ...(props && mapIntercomPropsToRawIntercomProps(props)),
@@ -72,9 +75,8 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
     [apiBase, appId, shouldInitialize],
   );
 
-  if (!isSSR && shouldInitialize && !isBooted.current) {
-    initialize(appId, initializeDelay);
-    attachListeners();
+  if (!isSSR && shouldInitialize) {
+    init();
     if (autoBoot) boot();
   }
 
