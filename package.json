@@ -77,7 +77,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "devDependencies": {
-    "@testing-library/react": "^11.1.1",
+    "@testing-library/react": "^12.0.0",
     "@testing-library/react-hooks": "^7.0.0",
     "@types/jsdom": "^16.2.5",
     "@types/react": "^17.0.0",
