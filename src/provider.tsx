@@ -9,6 +9,7 @@ import {
   IntercomContextValues,
   IntercomProps,
   IntercomProviderProps,
+  RawIntercomBootProps,
 } from './types';
 import { isEmptyObject, isSSR } from './utils';
 
@@ -48,7 +49,7 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
 
       if (isBooted.current) return;
 
-      const metaData = {
+      const metaData: RawIntercomBootProps = {
         app_id: appId,
         ...(apiBase && { api_base: apiBase }),
         ...(props && mapIntercomPropsToRawIntercomProps(props)),
