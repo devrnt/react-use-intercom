@@ -16,6 +16,7 @@ import { isEmptyObject, isSSR } from './utils';
 export const IntercomProvider: React.FC<IntercomProviderProps> = ({
   appId,
   autoBoot = false,
+  autoBootProps,
   children,
   onHide,
   onShow,
@@ -47,7 +48,9 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
         return;
       }
 
-      if (isBooted.current) return;
+      if (isBooted.current) {
+        return;
+      }
 
       const metaData: RawIntercomBootProps = {
         app_id: appId,
@@ -71,7 +74,9 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
     if (onUnreadCountChange)
       IntercomAPI('onUnreadCountChange', onUnreadCountChange);
 
-    if (autoBoot) boot();
+    if (autoBoot) {
+      boot(autoBootProps);
+    }
 
     isInitialized.current = true;
   }
