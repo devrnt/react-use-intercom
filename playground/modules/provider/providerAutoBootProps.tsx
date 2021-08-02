@@ -7,7 +7,9 @@ const ProviderAutoBootProps = () => {
 
   return (
     <IntercomProvider appId="jcabc7e3" autoBootProps={{ phone }} autoBoot>
-      <p>Intercom children</p>
+      <p>
+        Intercom children, phone: <span>{phone}</span>
+      </p>
     </IntercomProvider>
   );
 };
