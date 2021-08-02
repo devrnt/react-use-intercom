@@ -425,4 +425,8 @@ export type IntercomProviderProps = {
    * @remarks If not set delay is set to 0ms
    * */
   initializeDelay?: number;
+  /**
+   * Pass properties to `boot` method when `autoBoot` is `true`
+   */
+  autoBootProps?: IntercomProps;
 };

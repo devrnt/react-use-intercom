@@ -73,3 +73,20 @@ describe('provider with `apiBase`', () => {
     });
   });
 });
+
+describe('provider with `autoBootProps`', () => {
+  it('should set properties if passed to `autoBootProps` when `autoBoot` is `true`', () => {
+    cy.visit('/providerAutoBootProps');
+
+    cy.get('p').should('be.visible');
+
+    cy.get('span')
+      .invoke('text')
+      .then(phone => {
+        cy.window().should('have.deep.property', 'intercomSettings', {
+          app_id: 'jcabc7e3',
+          phone,
+        });
+      });
+  });
+});
