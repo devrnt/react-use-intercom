@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import {
   ProviderApiPage,
+  ProviderAutoBootProps,
   ProviderEventsPage,
   ProviderPage,
   UseIntercomPage,
@@ -45,6 +46,10 @@ const App = () => {
           <Route path="/provider" component={ProviderPage} />
           <Route path="/providerEvents" component={ProviderEventsPage} />
           <Route path="/providerApi" component={ProviderApiPage} />
+          <Route
+            path="/providerAutoBootProps"
+            component={ProviderAutoBootProps}
+          />
           <Route path="/useIntercom" component={UseIntercomPage} />
           <Route path="/useIntercomTour" component={UseIntercomTourPage} />
           <Route
