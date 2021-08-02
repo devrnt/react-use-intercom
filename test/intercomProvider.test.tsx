@@ -72,4 +72,53 @@ describe('IntercomProvider', () => {
       api_base: apiBase,
     });
   });
+
+  test('should pass props when `autoBootProps` is passed', () => {
+    const phone = '123456';
+
+    renderHook(() => useIntercom(), {
+      wrapper: ({ children }) => (
+        <IntercomProvider
+          appId={INTERCOM_APP_ID}
+          autoBootProps={{
+            phone,
+          }}
+          autoBoot
+        >
+          {children}
+        </IntercomProvider>
+      ),
+    });
+
+    expect(window.intercomSettings).toEqual({
+      app_id: INTERCOM_APP_ID,
+      phone,
+    });
+  });
+
+  test('should not pass props when `autoBootProps` is passed and `autoBoot` is `false`', () => {
+    const phone = '123456';
+
+    const { result } = renderHook(() => useIntercom(), {
+      wrapper: ({ children }) => (
+        <IntercomProvider
+          appId={INTERCOM_APP_ID}
+          autoBoot={false}
+          autoBootProps={{
+            phone,
+          }}
+        >
+          {children}
+        </IntercomProvider>
+      ),
+    });
+
+    act(() => {
+      result.current.boot();
+    });
+
+    expect(window.intercomSettings).toEqual({
+      app_id: INTERCOM_APP_ID,
+    });
+  });
 });
