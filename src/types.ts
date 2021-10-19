@@ -146,7 +146,6 @@ export type DataAttributes = {
   /** The Unix timestamp (in seconds) when the user signed up to your app
    *
    * @remarks Only applicable to users
-   * @see {@link https://www.w3schools.com/cssref/css_colors.asp}
    */
   createdAt?: string;
   /** Name of the current user/lead */
