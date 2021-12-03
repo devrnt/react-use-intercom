@@ -239,4 +239,14 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
   );
 };
 
-export const useIntercomContext = () => React.useContext(IntercomContext);
+export const useIntercomContext = () => {
+  const context = React.useContext(IntercomContext);
+
+  if (__DEV__) {
+    if (context === undefined) {
+      throw new Error('`useIntercom` must be used within `IntercomProvider`.');
+    }
+  }
+
+  return context;
+};
