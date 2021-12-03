@@ -248,5 +248,5 @@ export const useIntercomContext = () => {
     }
   }
 
-  return context;
+  return context as IntercomContextValues;
 };
