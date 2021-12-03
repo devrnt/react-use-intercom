@@ -232,11 +232,9 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
     trackEvent,
   ]);
 
-  const content = React.useMemo(() => children, [children]);
-
   return (
     <IntercomContext.Provider value={providerValue}>
-      {content}
+      {children}
     </IntercomContext.Provider>
   );
 };
