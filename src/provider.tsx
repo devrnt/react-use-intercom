@@ -232,13 +232,21 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
     trackEvent,
   ]);
 
-  const content = React.useMemo(() => children, [children]);
-
   return (
     <IntercomContext.Provider value={providerValue}>
-      {content}
+      {children}
     </IntercomContext.Provider>
   );
 };
 
-export const useIntercomContext = () => React.useContext(IntercomContext);
+export const useIntercomContext = () => {
+  const context = React.useContext(IntercomContext);
+
+  if (__DEV__) {
+    if (context === undefined) {
+      throw new Error('`useIntercom` must be used within `IntercomProvider`.');
+    }
+  }
+
+  return context as IntercomContextValues;
+};

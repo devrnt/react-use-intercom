@@ -5,11 +5,10 @@ describe('getVisitorId', () => {
     cy.visit('/useIntercom');
 
     cy.get('[data-cy=boot]').click();
-
-    cy.get('[data-cy="visitorIdValue"]').should('not.exist');
-    cy.wait(2000);
+    cy.wait(1000);
 
     cy.get('[data-cy="visitorId"]').click();
-    cy.get('[data-cy="visitorIdValue"]').should('be.visible');
+
+    cy.get('[data-cy="visitorIdValue"]').should('exist');
   });
 });
