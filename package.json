@@ -56,7 +56,9 @@
     "lint:fix": "tsdx lint --fix",
     "prepare": "tsdx build",
     "bundlesize": "yarn build && size-limit",
-    "release": "np"
+    "release": "np",
+    "changeset": "changeset",
+    "version": "changeset version"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -81,6 +83,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.19.0",
     "@size-limit/preset-small-lib": "^7.0.3",
     "@testing-library/react": "^12.0.0",
     "@testing-library/react-hooks": "^7.0.0",
