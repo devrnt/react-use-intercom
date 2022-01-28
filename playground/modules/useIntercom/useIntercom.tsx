@@ -34,6 +34,7 @@ const RawUseIntercomPage = () => {
     showNewMessages,
     getVisitorId,
     trackEvent,
+    showArticle,
   } = useIntercom();
   const handleBoot = React.useCallback(() => boot(), [boot]);
 
@@ -131,6 +132,10 @@ const RawUseIntercomPage = () => {
   const handleTrackEventWithMetaData = React.useCallback(() => {
     trackEvent('invited-friend', { name: 'Russo' });
   }, [trackEvent]);
+
+  const handleShowArticle = React.useCallback(() => {
+    showArticle(123);
+  }, [showArticle]);
 
   const [visitorId, setVisitorId] = React.useState<string | null>(null);
 
@@ -250,6 +255,12 @@ const RawUseIntercomPage = () => {
           label="Track event with metadata"
           onClick={handleTrackEventWithMetaData}
         />
+      </Item>
+      <Item>
+        <p>
+          opens an article with the given <code>article ID</code>
+        </p>
+        <Button label="Track event with metadata" onClick={handleShowArticle} />
       </Item>
 
       {visitorId && <p data-cy="visitorIdValue">{visitorId}</p>}
