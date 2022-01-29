@@ -134,7 +134,7 @@ const RawUseIntercomPage = () => {
   }, [trackEvent]);
 
   const handleShowArticle = React.useCallback(() => {
-    showArticle(123);
+    showArticle(4013997);
   }, [showArticle]);
 
   const [visitorId, setVisitorId] = React.useState<string | null>(null);
@@ -260,7 +260,7 @@ const RawUseIntercomPage = () => {
         <p>
           opens an article with the given <code>article ID</code>
         </p>
-        <Button label="Track event with metadata" onClick={handleShowArticle} />
+        <Button label="Open article" onClick={handleShowArticle} />
       </Item>
 
       {visitorId && <p data-cy="visitorIdValue">{visitorId}</p>}
