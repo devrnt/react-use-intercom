@@ -204,6 +204,14 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
     [ensureIntercom],
   );
 
+  const showArticle = React.useCallback(
+    (articleId: number) =>
+      ensureIntercom('showArticle', () => {
+        IntercomAPI('showArticle', articleId);
+      }),
+    [ensureIntercom],
+  );
+
   const providerValue = React.useMemo<IntercomContextValues>(() => {
     return {
       boot,
@@ -217,6 +225,7 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
       getVisitorId,
       startTour,
       trackEvent,
+      showArticle,
     };
   }, [
     boot,
@@ -230,6 +239,7 @@ export const IntercomProvider: React.FC<IntercomProviderProps> = ({
     getVisitorId,
     startTour,
     trackEvent,
+    showArticle,
   ]);
 
   return (

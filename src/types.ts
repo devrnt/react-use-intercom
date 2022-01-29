@@ -239,7 +239,8 @@ export type IntercomMethod =
   | 'onUnreadCountChange'
   | 'trackEvent'
   | 'getVisitorId'
-  | 'startTour';
+  | 'startTour'
+  | 'showArticle';
 
 export type RawIntercomProps = RawMessengerAttributes & RawDataAttributes;
 
@@ -376,6 +377,14 @@ export type IntercomContextValues = {
    * ```
    */
   trackEvent: (event: string, metaData?: object) => void;
+  /**
+   * Opens the messenger with the specified article
+   *
+   * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#intercomshowarticle-articleid}
+   *
+   * @remarks if an article with the given ID doesn't exits, Messenger Home is opened instead
+   */
+  showArticle: (articleId: number) => void;
 };
 
 export type IntercomProviderProps = {
