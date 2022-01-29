@@ -378,7 +378,7 @@ export type IntercomContextValues = {
    */
   trackEvent: (event: string, metaData?: object) => void;
   /**
-   * Opens the messenger with the specified article open
+   * Opens the messenger with the specified article
    *
    * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#intercomshowarticle-articleid}
    *

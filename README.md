@@ -126,6 +126,7 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 | getVisitorId    | () => string                               | gets the visitor id                                                                                                                 |
 | startTour       | (tourId: number) => void                   | starts a tour based on the `tourId`                                                                                                 |
 | trackEvent      | (event: string, metaData?: object) => void | submits an `event` with optional `metaData`      
+| showArticle      | (articleId: string) => void | opens the Messenger with the specified article by `articleId`
 
 #### Example
 ```javascript
@@ -154,6 +155,7 @@ const HomePage = () => {
     getVisitorId,
     startTour,
     trackEvent,
+    showArticle
   } = useIntercom();
 
   const bootWithProps = () => boot({ name: 'Russo' });
@@ -167,6 +169,7 @@ const HomePage = () => {
     trackEvent('invited-frind', {
       name: 'Russo',
     });
+  const handleShowArticle = () => showArticle(123456);
 
   return (
     <>
@@ -189,6 +192,7 @@ const HomePage = () => {
       <button onClick={handleTrackEventWithMetaData}>
         Track event with metadata
       </button>
+      <button onClick={handleShowArticle}>Open article in Messenger</button>
     </>
   );
 };
