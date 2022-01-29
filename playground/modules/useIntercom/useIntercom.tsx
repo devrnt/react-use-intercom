@@ -258,7 +258,7 @@ const RawUseIntercomPage = () => {
       </Item>
       <Item>
         <p>
-          opens an article with the given <code>article ID</code>
+          opens an article with the given <code>articleId</code>
         </p>
         <Button label="Open article" onClick={handleShowArticle} />
       </Item>
