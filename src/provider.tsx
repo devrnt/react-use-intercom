@@ -13,7 +13,9 @@ import {
 } from './types';
 import { isEmptyObject, isSSR } from './utils';
 
-export const IntercomProvider: React.FC<IntercomProviderProps> = ({
+export const IntercomProvider: React.FC<React.PropsWithChildren<
+  IntercomProviderProps
+>> = ({
   appId,
   autoBoot = false,
   autoBootProps,
