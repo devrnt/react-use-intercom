@@ -31,7 +31,8 @@ export const IntercomProvider: React.FC<React.PropsWithChildren<
   const isBooted = React.useRef(false);
   const isInitialized = React.useRef(false);
 
-  if (!isEmptyObject(rest) && __DEV__)
+  const restKeys = Object.keys(rest).filter(k => k.startsWith('data-'));
+  if (!isEmptyObject(restKeys) && __DEV__)
     logger.log(
       'error',
       [
