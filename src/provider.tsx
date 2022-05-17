@@ -31,15 +31,24 @@ export const IntercomProvider: React.FC<React.PropsWithChildren<
   const isBooted = React.useRef(false);
   const isInitialized = React.useRef(false);
 
-  const restKeys = Object.keys(rest).filter(k => k.startsWith('data-'));
-  if (!isEmptyObject(restKeys) && __DEV__)
-    logger.log(
-      'error',
-      [
-        'some invalid props were passed to IntercomProvider. ',
-        `Please check following props: ${Object.keys(rest).join(', ')}.`,
-      ].join(''),
+  if (!isEmptyObject(rest) && __DEV__) {
+    // Allow data-x attributes, see https://github.com/devrnt/react-use-intercom/issues/478
+    const invalidProps = Object.fromEntries(
+      Object.entries(rest).filter(([key]) => !key.startsWith('data-')),
     );
+
+    if (!isEmptyObject(invalidProps)) {
+      logger.log(
+        'warn',
+        [
+          'some invalid props were passed to IntercomProvider. ',
+          `Please check following props: ${Object.keys(invalidProps).join(
+            ', ',
+          )}.`,
+        ].join(''),
+      );
+    }
+  }
 
   const boot = React.useCallback(
     (props?: IntercomProps) => {
