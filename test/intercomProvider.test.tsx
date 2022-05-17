@@ -122,8 +122,8 @@ describe('IntercomProvider', () => {
     });
   });
 
-  test('should console.error when invalid prop is passed', () => {
-    console.error = jest.fn();
+  test('should console.warn when invalid prop is passed', () => {
+    console.warn = jest.fn();
     const invalidPropName = 'invalidProp';
 
     render(
@@ -137,13 +137,13 @@ describe('IntercomProvider', () => {
       </div>,
     );
 
-    expect(console.error).toHaveBeenCalledWith(
+    expect(console.warn).toHaveBeenCalledWith(
       `[react-use-intercom] some invalid props were passed to IntercomProvider. Please check following props: ${invalidPropName}.`,
     );
   });
 
-  test('should not console.error when data-x attributes are passed as prop', () => {
-    console.error = jest.fn();
+  test('should not console.warn when data-x attributes are passed as prop', () => {
+    console.warn = jest.fn();
     const dataAttributePropName = 'data-my-attribute';
 
     render(
@@ -157,6 +157,6 @@ describe('IntercomProvider', () => {
       </div>,
     );
 
-    expect(console.error).not.toHaveBeenCalled();
+    expect(console.warn).not.toHaveBeenCalled();
   });
 });
