@@ -123,6 +123,7 @@ export const IntercomProvider: React.FC<React.PropsWithChildren<
     if (!isBooted.current) return;
 
     IntercomAPI('shutdown');
+    delete window.intercomSettings;
     isBooted.current = false;
   }, []);
 
