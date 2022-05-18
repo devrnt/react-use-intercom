@@ -11,7 +11,7 @@ import {
   IntercomProviderProps,
   RawIntercomBootProps,
 } from './types';
-import { isEmptyObject, isSSR } from './utils';
+import { isSSR } from './utils';
 
 export const IntercomProvider: React.FC<React.PropsWithChildren<
   IntercomProviderProps
@@ -31,14 +31,22 @@ export const IntercomProvider: React.FC<React.PropsWithChildren<
   const isBooted = React.useRef(false);
   const isInitialized = React.useRef(false);
 
-  if (!isEmptyObject(rest) && __DEV__)
-    logger.log(
-      'error',
-      [
-        'some invalid props were passed to IntercomProvider. ',
-        `Please check following props: ${Object.keys(rest).join(', ')}.`,
-      ].join(''),
+  if (__DEV__) {
+    // Allow data-x attributes, see https://github.com/devrnt/react-use-intercom/issues/478
+    const invalidPropKeys = Object.keys(rest).filter(
+      key => !key.startsWith('data-'),
     );
+
+    if (invalidPropKeys.length > 0) {
+      logger.log(
+        'warn',
+        [
+          'some invalid props were passed to IntercomProvider. ',
+          `Please check following props: ${invalidPropKeys.join(', ')}.`,
+        ].join(''),
+      );
+    }
+  }
 
   const boot = React.useCallback(
     (props?: IntercomProps) => {

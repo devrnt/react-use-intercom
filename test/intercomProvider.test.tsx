@@ -121,4 +121,42 @@ describe('IntercomProvider', () => {
       app_id: INTERCOM_APP_ID,
     });
   });
+
+  test('should console.warn when invalid prop is passed', () => {
+    console.warn = jest.fn();
+    const invalidPropName = 'invalidProp';
+
+    render(
+      <div>
+        <IntercomProvider
+          appId={INTERCOM_APP_ID}
+          {...{ [invalidPropName]: 'invalid' }}
+        >
+          children
+        </IntercomProvider>
+      </div>,
+    );
+
+    expect(console.warn).toHaveBeenCalledWith(
+      `[react-use-intercom] some invalid props were passed to IntercomProvider. Please check following props: ${invalidPropName}.`,
+    );
+  });
+
+  test('should not console.warn when data-x attributes are passed as prop', () => {
+    console.warn = jest.fn();
+    const dataAttributePropName = 'data-my-attribute';
+
+    render(
+      <div>
+        <IntercomProvider
+          appId={INTERCOM_APP_ID}
+          {...{ [dataAttributePropName]: 'valid' }}
+        >
+          children
+        </IntercomProvider>
+      </div>,
+    );
+
+    expect(console.warn).not.toHaveBeenCalled();
+  });
 });
