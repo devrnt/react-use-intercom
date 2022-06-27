@@ -12,24 +12,20 @@ describe('shutdown', () => {
 
     cy.get('[data-cy=boot]').click();
     cy.get('[data-cy=shutdown]').click();
-    cy.get('.intercom-lightweight-app-launcher-icon-open').should(
-      'not.exist',
-    );
+    cy.get('.intercom-lightweight-app-launcher-icon-open').should('not.exist');
   });
 
-  it('should keep `app_id` when calling `shutdown`', () => {
+  it('should remove keep `window.intercomSettings` when calling `shutdown`', () => {
     cy.visit('/useIntercom');
 
     cy.window().should('not.have.property', 'intercomSettings');
 
     cy.get('[data-cy=boot]').click();
     cy.get('[data-cy=shutdown]').click();
-    cy.window().should('have.deep.property', 'intercomSettings', {
-      app_id: 'jcabc7e3',
-    });
-    cy.get('.intercom-lightweight-app-launcher-icon-open').should(
-      'not.exist',
-    );
+    cy.window()
+      .its('intercomSettings')
+      .should('be.undefined');
+    cy.get('.intercom-lightweight-app-launcher-icon-open').should('not.exist');
   });
 
   it('should remove `app_id` when calling `hardShutdown`', () => {
@@ -42,8 +38,6 @@ describe('shutdown', () => {
     cy.window()
       .its('intercomSettings')
       .should('be.undefined');
-    cy.get('.intercom-lightweight-app-launcher-icon-open').should(
-      'not.exist',
-    );
+    cy.get('.intercom-lightweight-app-launcher-icon-open').should('not.exist');
   });
 });
