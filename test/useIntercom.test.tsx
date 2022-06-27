@@ -70,4 +70,19 @@ describe('useIntercom', () => {
 
     expect(window.intercomSettings).toEqual({ app_id: INTERCOM_APP_ID });
   });
+
+  it('should remove `window.intercomSettings` on shutdown', () => {
+    const { result } = renderHook(() => useIntercom(), {
+      wrapper: ({ children }) => (
+        <IntercomProvider appId={INTERCOM_APP_ID}>{children}</IntercomProvider>
+      ),
+    });
+
+    act(() => {
+      result.current.boot();
+      result.current.shutdown();
+    });
+
+    expect(window.intercomSettings).toEqual(undefined);
+  })
 });

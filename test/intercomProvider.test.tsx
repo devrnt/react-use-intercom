@@ -26,7 +26,7 @@ describe('IntercomProvider', () => {
     expect(getByText('children')).toBeDefined();
   });
 
-  test('should set `window.intercomSettings` on initialize', () => {
+  test('should set `window.Intercom` on initialize', () => {
     render(
       <div>
         <IntercomProvider appId={INTERCOM_APP_ID}>children</IntercomProvider>
