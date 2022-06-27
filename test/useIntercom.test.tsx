@@ -84,5 +84,5 @@ describe('useIntercom', () => {
     });
 
     expect(window.intercomSettings).toEqual(undefined);
-  })
+  });
 });
