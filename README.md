@@ -110,7 +110,12 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 
  Make sure `IntercomProvider` is wrapped around your component when calling `useIntercom()`. 
 
-**Remark** - You can't use `useIntercom()` in the same component where `IntercomProvider` is initialized. 
+**Remark** - You can't use `useIntercom()` in the same component where `IntercomProvider` is initialized.
+
+#### State
+| name                | type             | description                                                                             |
+|---------------------|------------------|-----------------------------------------------------------------------------------------|
+| isOpen              | boolean          | the visibility status of the messenger                                                  |
 
 #### Methods
 | name            | type                                       | description                                                                                                                         |

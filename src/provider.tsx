@@ -75,12 +75,24 @@ export const IntercomProvider: React.FC<React.PropsWithChildren<
     [apiBase, appId, shouldInitialize],
   );
 
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const onHideWrapper = React.useCallback(() => {
+    setIsOpen(false);
+    if (onHide) onHide();
+  }, [onHide, setIsOpen]);
+
+  const onShowWrapper = React.useCallback(() => {
+    setIsOpen(true);
+    if (onShow) onShow();
+  }, [onShow, setIsOpen]);
+
   if (!isSSR && shouldInitialize && !isInitialized.current) {
     initialize(appId, initializeDelay);
 
     // attach listeners
-    if (onHide) IntercomAPI('onHide', onHide);
-    if (onShow) IntercomAPI('onShow', onShow);
+    IntercomAPI('onHide', onHideWrapper);
+    IntercomAPI('onShow', onShowWrapper);
     if (onUnreadCountChange)
       IntercomAPI('onUnreadCountChange', onUnreadCountChange);
 
@@ -231,6 +243,7 @@ export const IntercomProvider: React.FC<React.PropsWithChildren<
       update,
       hide,
       show,
+      isOpen,
       showMessages,
       showNewMessages,
       getVisitorId,
@@ -245,6 +258,7 @@ export const IntercomProvider: React.FC<React.PropsWithChildren<
     update,
     hide,
     show,
+    isOpen,
     showMessages,
     showNewMessages,
     getVisitorId,
