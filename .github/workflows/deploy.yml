@@ -9,12 +9,13 @@ jobs:
   deploy:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - name: Begin CI...
+        uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v1
+      - name: Setup Node 16
+        uses: actions/setup-node@v3
         with:
-          node-version: '12.x'
+          node-version: 16.17
 
       - name: Get yarn cache
         id: yarn-cache
