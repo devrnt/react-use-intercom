@@ -397,10 +397,6 @@ export type IntercomProviderProps = {
    * */
   autoBoot?: boolean;
   /**
-   * React children
-   */
-  children: React.ReactNode;
-  /**
    * When we hide the messenger, you can hook into the event. This requires a function argument.
    */
   onHide?: () => void;
