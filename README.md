@@ -206,7 +206,7 @@ const HomePage = () => {
 All the Intercom default attributes/props are camel cased (`appId` instead of `app_id`) in `react-use-intercom`, see [IntercomProps](src/types.ts) to see what attributes you can pass to `boot` or `update`. Or check the Intercom [docs](https://developers.intercom.com/installing-intercom/docs/javascript-api-attributes-objects)
  to see all the available attributes/props.
 
- **Remark** - all the listed Intercom attributes [here](https://developers.intercom.com/installing-intercom/docs/javascript-api-attributes-objects) are snake cased, in `react-use-intercom` are these camel cased.
+ **Remark** - all the listed Intercom attributes [here](https://developers.intercom.com/installing-intercom/docs/javascript-api-attributes-objects) are snake cased, in `react-use-intercom` these are camel cased.
 
  #### Custom attributes
  Still want to pass custom attributes to Intercom? Whether `boot` or `update` is used, you can add your custom properties by passing these through `customAttributes` in the `boot` or `update` method. 
