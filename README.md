@@ -127,7 +127,7 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 | hide            | () => void                                 | hides the Messenger, will call `onHide` if supplied to `IntercomProvider`                                                           |
 | show            | () => void                                 | shows the Messenger, will call `onShow` if supplied to `IntercomProvider`                                                           |
 | showMessages    | () => void                                 | shows the Messenger with the message list                                                                                           |
-| showNewMessages | (content?: string) => void                 | shows the Messenger as if a new conversation was just created. If `content` is passed, it will fill in the message composer         |
+| showNewMessage  | (content?: string) => void                 | shows the Messenger as if a new conversation was just created. If `content` is passed, it will fill in the message composer         |
 | getVisitorId    | () => string                               | gets the visitor id                                                                                                                 |
 | startTour       | (tourId: number) => void                   | starts a tour based on the `tourId`                                                                                                 |
 | trackEvent      | (event: string, metaData?: object) => void | submits an `event` with optional `metaData`      
