@@ -8,6 +8,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [18]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -17,10 +20,10 @@ jobs:
         with:
           version: 7
 
-      - name: Use Node 16
+      - name: Use Node ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
 
       - name: Install dependencies
