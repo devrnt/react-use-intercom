@@ -16,7 +16,10 @@ declare global {
 
 describe('useIntercom', () => {
   test('should be available when wrapped in context', () => {
-    const { result } = renderHook(() => useIntercom(), {
+    const { result } = renderHook<
+      { children: React.ReactNode },
+      ReturnType<typeof useIntercom>
+    >(() => useIntercom(), {
       wrapper: ({ children }) => (
         <IntercomProvider appId={INTERCOM_APP_ID}>{children}</IntercomProvider>
       ),
@@ -30,7 +33,10 @@ describe('useIntercom', () => {
   });
 
   test('should set `window.intercomSettings.appId` on boot', () => {
-    const { result } = renderHook(() => useIntercom(), {
+    const { result } = renderHook<
+      { children: React.ReactNode },
+      ReturnType<typeof useIntercom>
+    >(() => useIntercom(), {
       wrapper: ({ children }) => (
         <IntercomProvider appId={INTERCOM_APP_ID}>{children}</IntercomProvider>
       ),
@@ -46,7 +52,10 @@ describe('useIntercom', () => {
   });
 
   test('should await a certain amount on delayed initialization', async () => {
-    const { result, waitFor } = renderHook(() => useIntercom(), {
+    const { result, waitFor } = renderHook<
+      { children: React.ReactNode },
+      ReturnType<typeof useIntercom>
+    >(() => useIntercom(), {
       wrapper: ({ children }) => (
         <IntercomProvider appId={INTERCOM_APP_ID} initializeDelay={5000}>
           {children}
@@ -69,5 +78,23 @@ describe('useIntercom', () => {
     });
 
     expect(window.intercomSettings).toEqual({ app_id: INTERCOM_APP_ID });
+  });
+
+  it('should remove `window.intercomSettings` on shutdown', () => {
+    const { result } = renderHook<
+      { children: React.ReactNode },
+      ReturnType<typeof useIntercom>
+    >(() => useIntercom(), {
+      wrapper: ({ children }) => (
+        <IntercomProvider appId={INTERCOM_APP_ID}>{children}</IntercomProvider>
+      ),
+    });
+
+    act(() => {
+      result.current.boot();
+      result.current.shutdown();
+    });
+
+    expect(window.intercomSettings).toEqual(undefined);
   });
 });

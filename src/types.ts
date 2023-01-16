@@ -315,6 +315,10 @@ export type IntercomContextValues = {
    */
   show: () => void;
   /**
+   * The visibility status of the messenger.
+   */
+  isOpen: boolean;
+  /**
    * Opens the Messenger with the message list.
    */
   showMessages: () => void;
@@ -396,10 +400,6 @@ export type IntercomProviderProps = {
    * @remarks if `true`, 'boot' does not need to be called manually
    * */
   autoBoot?: boolean;
-  /**
-   * React children
-   */
-  children: React.ReactNode;
   /**
    * When we hide the messenger, you can hook into the event. This requires a function argument.
    */

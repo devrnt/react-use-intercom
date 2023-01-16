@@ -47,6 +47,11 @@ const HomePage = () => {
 };
 ```
 
+## Context
+This library is a React abstraction of [IntercomJS](https://developers.intercom.com/installing-intercom/docs/intercom-for-web). `react-use-intercom` tries to keep as close as a one-on-one abstraction of the "vanilla" Intercom functionality.
+ 
+Note that a lot of issues could be related to the vanilla IntercomJS. Please see https://forum.intercom.com/s/ before reporting an issue here.
+
 ## Links
 * [API](#api)
 * [Playground](#playground)
@@ -110,7 +115,12 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 
  Make sure `IntercomProvider` is wrapped around your component when calling `useIntercom()`. 
 
-**Remark** - You can't use `useIntercom()` in the same component where `IntercomProvider` is initialized. 
+**Remark** - You can't use `useIntercom()` in the same component where `IntercomProvider` is initialized.
+
+#### State
+| name                | type             | description                                                                             |
+|---------------------|------------------|-----------------------------------------------------------------------------------------|
+| isOpen              | boolean          | the visibility status of the messenger                                                  |
 
 #### Methods
 | name            | type                                       | description                                                                                                                         |
@@ -201,7 +211,7 @@ const HomePage = () => {
 All the Intercom default attributes/props are camel cased (`appId` instead of `app_id`) in `react-use-intercom`, see [IntercomProps](src/types.ts) to see what attributes you can pass to `boot` or `update`. Or check the Intercom [docs](https://developers.intercom.com/installing-intercom/docs/javascript-api-attributes-objects)
  to see all the available attributes/props.
 
- **Remark** - all the listed Intercom attributes [here](https://developers.intercom.com/installing-intercom/docs/javascript-api-attributes-objects) are snake cased, in `react-use-intercom` are these camel cased.
+ **Remark** - all the listed Intercom attributes [here](https://developers.intercom.com/installing-intercom/docs/javascript-api-attributes-objects) are snake cased, in `react-use-intercom` these are camel cased.
 
  #### Custom attributes
  Still want to pass custom attributes to Intercom? Whether `boot` or `update` is used, you can add your custom properties by passing these through `customAttributes` in the `boot` or `update` method. 
@@ -254,41 +264,3 @@ These props are `JavaScript` 'friendly', so [camelCase](https://en.wikipedia.org
 Since [v1.2.0](https://github.com/devrnt/react-use-intercom/releases/tag/v1.2.0) it's possible to delay this initialisation by passing `initializeDelay` in `<IntercomProvider />` (it's in milliseconds). However most of the users won't need to mess with this.
 
 For reference see https://github.com/devrnt/react-use-intercom/pull/236 and https://forum.intercom.com/s/question/0D52G00004WxWLs/can-i-delay-loading-intercom-on-my-site-to-reduce-the-js-load
-### useCallback
-To reduce the amount of re-renders in your React application I suggest to make use of [`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback)
-
-**TLDR:** `useCallback` will return a memoized version of the callback that only changes if one of the dependencies has changed.
-
-This can be applied to both the `IntercomProvider` events and the `useIntercom` methods. It depends on how many times your main app gets re-rendered.
-
-### Example
-```javascript
-import * as React from 'react';
-
-import { IntercomProvider, useIntercom } from 'react-use-intercom';
-
-const INTERCOM_APP_ID = 'your-intercom-app-id';
-
-const App = () => {
-  // const onHide = () => console.log('Intercom did hide the Messenger');
-  const onHide = React.useCallback(
-    () => console.log('Intercom did hide the Messenger'),
-    [],
-  );
-
-  return (
-    <IntercomProvider appId={INTERCOM_APP_ID} onHide={onHide}>
-      <HomePage />
-    </IntercomProvider>
-  );
-};
-
-const HomePage = () => {
-  const { boot } = useIntercom();
-
-  // const bootWithProps = () => boot({ name: 'Russo' });
-  const bootWithProps = React.useCallback(() => boot({ name: 'Russo' }), [boot]);
-
-  return <button onClick={bootWithProps}>Boot with props</button>;
-};
-```
