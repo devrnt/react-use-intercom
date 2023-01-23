@@ -91,7 +91,7 @@
     "dotenv": "^16.0.0",
     "eslint-plugin-simple-import-sort": "^8.0.0",
     "husky": "^7.0.0",
-    "jsdom": "^16.4.0",
+    "jsdom": "^21.1.0",
     "np": "^7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
