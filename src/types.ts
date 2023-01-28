@@ -62,7 +62,7 @@ export type MessengerAttributes = {
 export type RawDataAttributesCompany = {
   company_id: string;
   name?: string;
-  created_at?: string;
+  created_at?: string | number;
   plan?: string;
   monthly_spend?: number;
   user_count?: number;
@@ -77,7 +77,7 @@ export type DataAttributesCompany = {
   /** The name of the company */
   name?: string;
   /** The time the company was created in your system */
-  createdAt?: string;
+  createdAt?: string | number;
   /** The name of the plan the company is on */
   plan?: string;
   /** How much revenue the company generates for your business */
@@ -114,10 +114,10 @@ export type DataAttributesAvatar = {
 export type RawDataAttributes = {
   email?: string;
   user_id?: string;
-  created_at?: string;
+  created_at?: string | number;
   name?: string;
   phone?: string;
-  last_request_at?: string;
+  last_request_at?: string | number;
   unsubscribed_from_emails?: boolean;
   language_override?: string;
   utm_campaign?: string;
@@ -146,8 +146,10 @@ export type DataAttributes = {
   /** The Unix timestamp (in seconds) when the user signed up to your app
    *
    * @remarks Only applicable to users
+   *
+   * @see {@link https://www.intercom.com/help/en/articles/3605703-how-dates-work-in-intercom}
    */
-  createdAt?: string;
+  createdAt?: string | number;
   /** Name of the current user/lead */
   name?: string;
   /** Name of the current user/lead */
@@ -156,7 +158,7 @@ export type DataAttributes = {
    *
    * @remarks It automatically uses the time of the last request but is a this is a reserved attribute
    */
-  lastRequestAt?: string;
+  lastRequestAt?: string | number;
   /** Sets the unsubscribe status of the record
    *
    * @see {@link https://www.intercom.com/help/en/articles/270-how-do-i-unsubscribe-users-from-receiving-emails}
