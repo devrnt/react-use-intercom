@@ -16,7 +16,7 @@ specifiers:
   '@types/react-dom': ^18.0.6
   cypress: 8.7.0
   dotenv: ^16.0.0
-  eslint-plugin-simple-import-sort: ^8.0.0
+  eslint-plugin-simple-import-sort: ^10.0.0
   husky: ^7.0.0
   jsdom: ^16.4.0
   np: ^7.0.0
@@ -38,7 +38,7 @@ devDependencies:
   '@types/react-dom': 18.0.10
   cypress: 8.7.0
   dotenv: 16.0.1
-  eslint-plugin-simple-import-sort: 8.0.0
+  eslint-plugin-simple-import-sort: 10.0.0
   husky: 7.0.4
   jsdom: 16.7.0
   np: 7.6.1
@@ -3750,8 +3750,8 @@ packages:
       xregexp: 4.3.0
     dev: true
 
-  /eslint-plugin-simple-import-sort/8.0.0:
-    resolution: {integrity: sha512-bXgJQ+lqhtQBCuWY/FUWdB27j4+lqcvXv5rUARkzbeWLwea+S5eBZEQrhnO+WgX3ZoJHVj0cn943iyXwByHHQw==}
+  /eslint-plugin-simple-import-sort/10.0.0:
+    resolution: {integrity: sha512-AeTvO9UCMSNzIHRkg8S6c3RPy5YEwKWSQPx3DYghLedo2ZQxowPFLGDN1AZ2evfg6r6mjBSZSLxLFsWSu3acsw==}
     peerDependencies:
       eslint: '>=5.0.0'
     dev: true
