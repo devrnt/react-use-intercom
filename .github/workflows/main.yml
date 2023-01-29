@@ -3,40 +3,33 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-20.04
-
+    strategy:
+      matrix:
+        node-version: [16,18]
+        
     steps:
-      - name: Begin CI...
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Use Node 12
-        uses: actions/setup-node@v1
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
         with:
-          node-version: 12.x
+          version: 7
 
-      - name: Use cached node_modules
-        uses: actions/cache@v1
+      - name: Use Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          path: node_modules
-          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            nodeModules-
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
-        env:
-          CI: true
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: yarn lint
-        env:
-          CI: true
+        run: pnpm lint
 
       - name: Test
-        run: yarn test --ci --coverage --maxWorkers=2
-        env:
-          CI: true
+        run: pnpm test -- --coverage --maxWorkers=2
 
       - name: Build
-        run: yarn build
-        env:
-          CI: true
+        run: pnpm build
