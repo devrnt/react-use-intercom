@@ -89,7 +89,7 @@
     "@types/react-dom": "^18.0.6",
     "cypress": "8.7.0",
     "dotenv": "^16.0.0",
-    "eslint-plugin-simple-import-sort": "^9.0.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "husky": "^7.0.0",
     "jsdom": "^16.4.0",
     "np": "^7.0.0",
