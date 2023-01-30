@@ -186,7 +186,7 @@ export const IntercomProvider: React.FC<React.PropsWithChildren<
     });
   }, [ensureIntercom]);
 
-  const showNewMessages = React.useCallback(
+  const showNewMessage = React.useCallback(
     (message?: string) => {
       ensureIntercom('showNewMessage', () => {
         if (!message) {
@@ -245,7 +245,7 @@ export const IntercomProvider: React.FC<React.PropsWithChildren<
       show,
       isOpen,
       showMessages,
-      showNewMessages,
+      showNewMessage,
       getVisitorId,
       startTour,
       trackEvent,
@@ -260,7 +260,7 @@ export const IntercomProvider: React.FC<React.PropsWithChildren<
     show,
     isOpen,
     showMessages,
-    showNewMessages,
+    showNewMessage,
     getVisitorId,
     startTour,
     trackEvent,

@@ -158,7 +158,7 @@ const HomePage = () => {
     hide,
     show,
     showMessages,
-    showNewMessages,
+    showNewMessage,
     getVisitorId,
     startTour,
     trackEvent,
@@ -167,8 +167,8 @@ const HomePage = () => {
 
   const bootWithProps = () => boot({ name: 'Russo' });
   const updateWithProps = () => update({ name: 'Ossur' });
-  const handleNewMessages = () => showNewMessages();
-  const handleNewMessagesWithContent = () => showNewMessages('content');
+  const handleNewMessages = () => showNewMessage();
+  const handleNewMessagesWithContent = () => showNewMessage('content');
   const handleGetVisitorId = () => console.log(getVisitorId());
   const handleStartTour = () => startTour(123);
   const handleTrackEvent = () => trackEvent('invited-friend');
