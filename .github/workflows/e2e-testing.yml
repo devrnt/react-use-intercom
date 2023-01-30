@@ -25,10 +25,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Cypress install
+        run: ./node_modules/cypress/bin/cypress install
+
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          # Already installed on step above
           install: false
           start: pnpm start:playground
           wait-on: 'http://localhost:1234'
