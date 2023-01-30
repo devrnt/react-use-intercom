@@ -25,8 +25,8 @@ describe('showMessages', () => {
   });
 });
 
-describe('showNewMessages', () => {
-  it('should show new message `showNewMessages`', () => {
+describe('showNewMessage', () => {
+  it('should show new message `showNewMessage`', () => {
     cy.visit('/useIntercom');
 
     cy.get('[data-cy=boot]').click();
@@ -38,7 +38,7 @@ describe('showNewMessages', () => {
       .should('exist');
   });
 
-  it('should show new message with content when calling `showNewMessages`', () => {
+  it('should show new message with content when calling `showNewMessage`', () => {
     cy.visit('/useIntercom');
 
     cy.get('[data-cy=boot]').click();

@@ -31,7 +31,7 @@ const RawUseIntercomPage = () => {
     hide,
     show,
     showMessages,
-    showNewMessages,
+    showNewMessage,
     getVisitorId,
     trackEvent,
     showArticle,
@@ -111,13 +111,13 @@ const RawUseIntercomPage = () => {
     update({ name: 'ponas' });
   }, [update]);
 
-  const handleNewMessages = React.useCallback(() => showNewMessages(), [
-    showNewMessages,
+  const handleNewMessages = React.useCallback(() => showNewMessage(), [
+    showNewMessage,
   ]);
 
   const handleNewMessagesWithContent = React.useCallback(
-    () => showNewMessages('pre-definded-content'),
-    [showNewMessages],
+    () => showNewMessage('pre-definded-content'),
+    [showNewMessage],
   );
 
   const handleGetVisitorId = React.useCallback(() => {

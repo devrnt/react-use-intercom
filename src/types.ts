@@ -338,7 +338,7 @@ export type IntercomContextValues = {
    * showMessages('pre-populated-content');
    * ```
    */
-  showNewMessages: (prePopulatedContent?: string) => void;
+  showNewMessage: (prePopulatedContent?: string) => void;
   /**
    * A visitor is someone who goes to your site but does not use the messenger.
    * You can track these visitors via the visitor `user_id`.
