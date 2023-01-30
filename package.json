@@ -4,7 +4,7 @@
   "module": "dist/react-use-intercom.esm.js",
   "description": "React Intercom integration without the hassle, driven by hooks.",
   "homepage": "https://github.com/devrnt/react-use-intercom#readme",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -44,9 +44,9 @@
   ],
   "scripts": {
     "start": "tsdx watch",
-    "start:playground": "yarn --cwd ./playground install && yarn --cwd ./playground start",
+    "start:playground": "pnpm install --dir playground && pnpm run --dir playground start",
     "build": "tsdx build",
-    "build:playground": "yarn --cwd ./playground install && yarn --cwd ./playground build",
+    "build:playground": "pnpm install --dir playground && pnpm run --dir playground build",
     "test": "tsdx test --passWithNoTests",
     "test:watch": "tsdx test --watch",
     "test:coverage": "tsdx test --coverage",
@@ -55,7 +55,7 @@
     "lint": "tsdx lint",
     "lint:fix": "tsdx lint --fix",
     "prepare": "tsdx build",
-    "bundlesize": "yarn build && size-limit",
+    "bundlesize": "pnpm build && size-limit",
     "release": "np"
   },
   "peerDependencies": {
@@ -82,6 +82,7 @@
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.3",
+    "@types/jest": "^27.5.1",
     "@testing-library/react": "^13.4.0",
     "@testing-library/react-hooks": "^8.0.1",
     "@types/jsdom": "^16.2.5",
@@ -89,7 +90,7 @@
     "@types/react-dom": "^18.0.6",
     "cypress": "8.7.0",
     "dotenv": "^16.0.0",
-    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "husky": "^7.0.0",
     "jsdom": "^16.4.0",
     "np": "^7.0.0",
@@ -101,10 +102,12 @@
     "tslib": "^2.0.3",
     "typescript": "^4.0.5"
   },
-  "resolutions": {
-    "**/**/yargs-parser": "^13.1.2",
-    "**/typescript": "^4.0.5",
-    "**/@typescript-eslint/eslint-plugin": "^4.6.1",
-    "**/@typescript-eslint/parser": "^4.6.1"
+  "pnpm": {
+    "overrides": {
+      "yargs-parser": "^13.1.2",
+      "typescript": "^4.0.5",
+      "@typescript-eslint/eslint-plugin": "^4.6.1",
+      "@typescript-eslint/parser": "^4.6.1"
+    }
   }
 }

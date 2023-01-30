@@ -315,6 +315,10 @@ export type IntercomContextValues = {
    */
   show: () => void;
   /**
+   * The visibility status of the messenger.
+   */
+  isOpen: boolean;
+  /**
    * Opens the Messenger with the message list.
    */
   showMessages: () => void;

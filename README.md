@@ -115,11 +115,13 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 
  Make sure `IntercomProvider` is wrapped around your component when calling `useIntercom()`. 
 
-**Remark** - You can't use `useIntercom()` in the same component where `IntercomProvider` is initialized. 
+**Remark** - You can't use `useIntercom()` in the same component where `IntercomProvider` is initialized.
 
-#### Methods
+#### API
+
 | name            | type                                       | description                                                                                                                         |
 |-----------------|--------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| isOpen              | boolean          | the visibility status of the messenger                                                  |
 | boot            | (props?: IntercomProps) => void            | boots the Intercom instance, not needed if `autoBoot` in `IntercomProvider` is `true`                                               |
 | shutdown        | () => void                                 | shuts down the Intercom instance                                                                                                     |
 | hardShutdown    | () => void                                 | same functionality as `shutdown`, but makes sure the Intercom cookies, `window.Intercom` and `window.intercomSettings` are removed. |
