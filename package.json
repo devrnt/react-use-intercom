@@ -82,7 +82,7 @@
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.3",
-    "@types/jest": "^27.5.1",
+    "@types/jest": "^29.4.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/react-hooks": "^8.0.1",
     "@types/jsdom": "^16.2.5",
