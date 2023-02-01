@@ -1,9 +1,5 @@
 module.exports = {
-  extends: [
-    'react-app',
-    'prettier/@typescript-eslint',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['react-app', 'plugin:prettier/recommended'],
   plugins: ['simple-import-sort'],
   settings: {
     react: {
@@ -13,6 +9,7 @@ module.exports = {
   rules: {
     'simple-import-sort/imports': 'error',
     'sort-imports': 'off',
-    'import/order': 'off'
-  }
+    'import/order': 'off',
+    'import/no-anonymous-default-export': 'off',
+  },
 };

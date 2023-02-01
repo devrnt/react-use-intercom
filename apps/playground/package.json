@@ -1,0 +1,29 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "homepage": "https://devrnt.github.io/react-use-intercom/",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-use-intercom": "workspace:*",
+    "styled-components": "^5.3.6",
+    "styled-normalize": "^8.0.7"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/styled-components": "^5.1.2",
+    "@vitejs/plugin-react": "^3.0.1",
+    "typescript": "^4.9.5",
+    "vite": "^4.0.4"
+  }
+}

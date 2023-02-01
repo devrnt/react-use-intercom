@@ -32,7 +32,6 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           install: false
-          start: pnpm start:playground
-          wait-on: 'http://localhost:1234'
-          browser: chrome
+          start: pnpm dev:playground
+          wait-on: 'http://localhost:5173'
           headless: true

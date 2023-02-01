@@ -1,16 +1,20 @@
-name: Deploy to Github Pages
+name: Release
 
 on:
   push:
     branches:
       - main
 
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
-  deploy:
+  release:
+    name: Release
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        node-version: [18]
+        node-version: [16,18]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,18 +29,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
-
+      
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: pnpm build
-
-      - name: Build playground
-        run: pnpm build:playground
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./apps/playground/dist
+          # This expects you to have a script called release which does a build for your packages and calls changeset publish
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

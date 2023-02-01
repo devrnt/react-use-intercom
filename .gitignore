@@ -11,4 +11,4 @@ test/config/.env
 /cypress/screenshots
 /cypress/fixtures
 
-.parcel-cache
+.turbo

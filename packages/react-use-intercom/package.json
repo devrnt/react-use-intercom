@@ -1,0 +1,111 @@
+{
+  "name": "react-use-intercom",
+  "author": "devrnt",
+  "module": "dist/react-use-intercom.esm.js",
+  "description": "React Intercom integration without the hassle, driven by hooks.",
+  "homepage": "https://github.com/devrnt/react-use-intercom#readme",
+  "version": "3.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devrnt/react-use-intercom"
+  },
+  "bugs": {
+    "url": "https://github.com/devrnt/react-use-intercom/issues"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/react-use-intercom.esm.js",
+      "browser": "./dist/react-use-intercom.esm.js"
+    }
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "intercom",
+    "intercomjs",
+    "react-intercom",
+    "intercom-react",
+    "typescript",
+    "react-hooks",
+    "react-use-intercom",
+    "nextjs",
+    "gatsby"
+  ],
+  "scripts": {
+    "dev": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "test:watch": "tsdx test --watch",
+    "test:coverage": "tsdx test --coverage",
+    "e2e": "cypress run",
+    "e2e:open": "cypress open",
+    "lint": "tsdx lint",
+    "lint:fix": "tsdx lint --fix",
+    "prepare": "tsdx build",
+    "bundlesize": "pnpm build && size-limit",
+    "release": "np"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "size-limit": [
+    {
+      "path": "./dist/react-use-intercom.cjs.production.min.js",
+      "limit": "3 kB"
+    },
+    {
+      "path": "./dist/react-use-intercom.esm.js",
+      "limit": "3 kB"
+    }
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^7.0.3",
+    "@types/jest": "^27.5.1",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@types/jsdom": "^16.2.5",
+    "@types/react": "^18.0.20",
+    "@types/react-dom": "^18.0.6",
+    "cypress": "8.7.0",
+    "dotenv": "^16.0.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "husky": "^7.0.0",
+    "jsdom": "^16.4.0",
+    "np": "^7.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-test-renderer": "^18.0.0",
+    "size-limit": "^7.0.3",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.0.3",
+    "typescript": "^4.0.5"
+  },
+  "pnpm": {
+    "overrides": {
+      "yargs-parser": "^13.1.2",
+      "typescript": "^4.0.5",
+      "@typescript-eslint/eslint-plugin": "^4.6.1",
+      "@typescript-eslint/parser": "^4.6.1"
+    }
+  }
+}
