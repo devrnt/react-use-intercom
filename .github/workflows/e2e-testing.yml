@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        node-version: [16,18]
+        node-version: [18]
 
     steps:
       - name: Checkout
@@ -33,5 +33,5 @@ jobs:
         with:
           install: false
           start: pnpm dev:playground
-          wait-on: 'http://localhost:5173'
-          working-directory: packages/cypress
+          wait-on: 'http://localhost:5173/'
+          project: packages/react-use-intercom
