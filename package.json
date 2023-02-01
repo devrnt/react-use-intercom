@@ -8,14 +8,16 @@
     "build": "turbo run build",
     "build:playground": "turbo run build --filter=playground",
     "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
     "clean": "turbo run clean && rm -rf node_modules",
     "e2e": "turbo run e2e --filter=react-use-intercom",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build --filter=docs^... && changeset publish"
+    "release": "turbo run build --filter=react-use-intercom && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-react-app": "^7.0.1",

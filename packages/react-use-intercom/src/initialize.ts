@@ -15,16 +15,16 @@ const initialize = (appId: string, timeout = 0) => {
     ic('update', w.intercomSettings);
   } else {
     var d = document;
-    var i = function() {
+    var i = function () {
       i.c(arguments);
     };
     i.q = [];
-    i.c = function(args) {
+    i.c = function (args) {
       i.q.push(args);
     };
     w.Intercom = i;
-    var l = function() {
-      setTimeout(function() {
+    var l = function () {
+      setTimeout(function () {
         var s = d.createElement('script');
         s.type = 'text/javascript';
         s.async = true;

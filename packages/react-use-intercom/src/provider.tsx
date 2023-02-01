@@ -104,10 +104,7 @@ export const IntercomProvider: React.FC<
   }
 
   const ensureIntercom = React.useCallback(
-    (
-      functionName: string = 'A function',
-      callback: (() => void) | (() => string),
-    ) => {
+    (functionName: string, callback: (() => void) | (() => string)) => {
       if (!window.Intercom && !shouldInitialize) {
         logger.log(
           'warn',
@@ -119,7 +116,7 @@ export const IntercomProvider: React.FC<
         logger.log(
           'warn',
           [
-            `'${functionName}' was called but Intercom has not booted yet. `,
+            `"${functionName}" was called but Intercom has not booted yet. `,
             `Please call 'boot' before calling '${functionName}' or `,
             `set 'autoBoot' to true in the IntercomProvider.`,
           ].join(''),

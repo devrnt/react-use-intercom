@@ -51,8 +51,8 @@
     "test:coverage": "tsdx test --coverage",
     "e2e": "cypress run",
     "e2e:open": "cypress open",
-    "lint": "tsdx lint",
-    "lint:fix": "tsdx lint --fix",
+    "lint": "eslint src test",
+    "lint:fix": "eslint --fix",
     "prepare": "tsdx build",
     "bundlesize": "pnpm build && size-limit",
     "release": "np"
