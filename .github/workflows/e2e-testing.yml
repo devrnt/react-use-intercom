@@ -34,4 +34,4 @@ jobs:
           install: false
           start: pnpm dev:playground
           wait-on: 'http://localhost:5173'
-          headless: true
+          working-directory: packages/cypress
