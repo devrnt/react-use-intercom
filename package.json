@@ -1,47 +1,5 @@
 {
-  "name": "react-use-intercom",
-  "author": "devrnt",
-  "module": "dist/react-use-intercom.esm.js",
-  "description": "React Intercom integration without the hassle, driven by hooks.",
-  "homepage": "https://github.com/devrnt/react-use-intercom#readme",
-  "version": "3.0.0",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/devrnt/react-use-intercom"
-  },
-  "bugs": {
-    "url": "https://github.com/devrnt/react-use-intercom/issues"
-  },
-  "files": [
-    "dist",
-    "src"
-  ],
-  "engines": {
-    "node": ">=10"
-  },
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/react-use-intercom.esm.js",
-      "browser": "./dist/react-use-intercom.esm.js"
-    }
-  },
-  "keywords": [
-    "react",
-    "reactjs",
-    "intercom",
-    "intercomjs",
-    "react-intercom",
-    "intercom-react",
-    "typescript",
-    "react-hooks",
-    "react-use-intercom",
-    "nextjs",
-    "gatsby"
-  ],
+  "private": true,
   "scripts": {
     "start": "tsdx watch",
     "start:playground": "pnpm install --dir playground && pnpm run --dir playground start",
@@ -81,15 +39,8 @@
     "registry": "https://registry.npmjs.org"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^7.0.3",
-    "@types/jest": "^27.5.1",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/react-hooks": "^8.0.1",
-    "@types/jsdom": "^16.2.5",
-    "@types/react": "^18.0.20",
-    "@types/react-dom": "^18.0.6",
-    "cypress": "8.7.0",
-    "dotenv": "^16.0.0",
+    "@changesets/cli": "^2.26.0",
+    "eslint": "^8.33.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "husky": "^7.0.0",
     "jsdom": "^16.4.0",
