@@ -24,10 +24,10 @@
   },
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
       "import": "./dist/react-use-intercom.esm.js",
-      "browser": "./dist/react-use-intercom.esm.js",
-      "types": "./dist/index.d.ts"
+      "browser": "./dist/react-use-intercom.esm.js"
     }
   },
   "keywords": [
