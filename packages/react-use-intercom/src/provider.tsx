@@ -31,21 +31,19 @@ export const IntercomProvider: React.FC<
   const isBooted = React.useRef(false);
   const isInitialized = React.useRef(false);
 
-  if (__DEV__) {
-    // Allow data-x attributes, see https://github.com/devrnt/react-use-intercom/issues/478
-    const invalidPropKeys = Object.keys(rest).filter(
-      (key) => !key.startsWith('data-'),
-    );
+  // Allow data-x attributes, see https://github.com/devrnt/react-use-intercom/issues/478
+  const invalidPropKeys = Object.keys(rest).filter(
+    (key) => !key.startsWith('data-'),
+  );
 
-    if (invalidPropKeys.length > 0) {
-      logger.log(
-        'warn',
-        [
-          'some invalid props were passed to IntercomProvider. ',
-          `Please check following props: ${invalidPropKeys.join(', ')}.`,
-        ].join(''),
-      );
-    }
+  if (invalidPropKeys.length > 0) {
+    logger.log(
+      'warn',
+      [
+        'some invalid props were passed to IntercomProvider. ',
+        `Please check following props: ${invalidPropKeys.join(', ')}.`,
+      ].join(''),
+    );
   }
 
   const boot = React.useCallback(
@@ -274,10 +272,8 @@ export const IntercomProvider: React.FC<
 export const useIntercomContext = () => {
   const context = React.useContext(IntercomContext);
 
-  if (__DEV__) {
-    if (context === undefined) {
-      throw new Error('`useIntercom` must be used within `IntercomProvider`.');
-    }
+  if (context === undefined) {
+    throw new Error('"useIntercom" must be used within `IntercomProvider`.');
   }
 
   return context as IntercomContextValues;

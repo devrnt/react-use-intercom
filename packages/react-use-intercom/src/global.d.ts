@@ -1,7 +1,5 @@
 export {};
 declare global {
-  var __DEV__: boolean;
-
   interface Window {
     Intercom: any;
     intercomSettings: any;
