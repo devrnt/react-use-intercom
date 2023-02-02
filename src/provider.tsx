@@ -150,8 +150,8 @@ export const IntercomProvider: React.FC<React.PropsWithChildren<
 
   const refresh = React.useCallback(() => {
     ensureIntercom('update', () => {
-      const lastRequestedAt = new Date().getTime();
-      IntercomAPI('update', { last_requested_at: lastRequestedAt });
+      const last_request_at = Math.floor(new Date().getTime() / 1000);
+      IntercomAPI('update', { last_request_at });
     });
   }, [ensureIntercom]);
 
