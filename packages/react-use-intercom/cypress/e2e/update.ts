@@ -18,8 +18,6 @@ describe('update', () => {
       app_id: 'jcabc7e3',
       name: 'ponas',
     });
-    cy.get('.intercom-lightweight-app-launcher-icon-open').should(
-      'not.exist',
-    );
+    cy.get('.intercom-lightweight-app-launcher-icon-open').should('not.exist');
   });
 });

@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+/// <reference path="../support/index.d.ts" />
 
 describe('show', () => {
   it('should show when calling `show`', () => {

@@ -24,19 +24,14 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 Cypress.Commands.add(
+  // @ts-ignore
   'iframe',
-  { prevSubject: 'element' },
-  ($iframe, selector) => {
-    Cypress.log({
-      name: 'iframe',
-      consoleProps() {
-        return {
-          iframe: $iframe,
-        };
-      },
-    });
-    return new Cypress.Promise(resolve => {
-      resolve($iframe.contents().find(selector));
-    });
+  (selector: string) => {
+    return (
+      cy
+        .get(selector)
+        // Wraps "body" DOM element to allow chaining more Cypress commands like ".find(...)"
+        .then((body) => cy.wrap(body))
+    );
   },
 );

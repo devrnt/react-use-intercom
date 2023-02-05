@@ -1,9 +1,15 @@
+/// <reference types="cypress" />
+
 declare namespace Cypress {
-  interface Chainable {
+  interface Chainable<Subject> {
     /**
-     * Custom command to select an element in the iframe element
-     * @example cy.iframe('elementInIframe')
+     * Retrieve iframe's body content after it has loaded for us to chain like .find() or .within() after it
+     *
+     * @example
+     * cy.iframe(iframeSelector).within(() => { ... })
      */
-    iframe(value: string): Chainable<Element>;
+    iframe(iframeSelector: string): Chainable<Subject>;
+
+    // Typing out all of our custom plugins i.e. cy.task(...)
   }
 }
