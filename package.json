@@ -13,7 +13,6 @@
     "clean": "turbo run clean && rm -rf node_modules",
     "e2e": "turbo run e2e --filter=react-use-intercom",
     "changeset": "changeset",
-    "version-packages": "changeset version",
     "release": "turbo run build --filter=react-use-intercom && changeset publish"
   },
   "devDependencies": {
