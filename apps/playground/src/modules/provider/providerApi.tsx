@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { IntercomProvider } from 'react-use-intercom';
 
 const Provider = () => {

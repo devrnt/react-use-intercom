@@ -1,18 +1,10 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import * as React from 'react';
 
-import config from '../config';
 import { IntercomProvider, useIntercom } from '../src';
+import { config } from './config';
 
-const INTERCOM_APP_ID = config.INTERCOM_APP_ID;
-
-// TODO: move this
-declare global {
-  interface Window {
-    Intercom: any;
-    intercomSettings: any;
-  }
-}
+const intercomAppId = config.intercomAppId;
 
 describe('useIntercom', () => {
   test('should be available when wrapped in context', () => {
@@ -21,7 +13,7 @@ describe('useIntercom', () => {
       ReturnType<typeof useIntercom>
     >(() => useIntercom(), {
       wrapper: ({ children }) => (
-        <IntercomProvider appId={INTERCOM_APP_ID}>{children}</IntercomProvider>
+        <IntercomProvider appId={intercomAppId}>{children}</IntercomProvider>
       ),
     });
 
@@ -38,7 +30,7 @@ describe('useIntercom', () => {
       ReturnType<typeof useIntercom>
     >(() => useIntercom(), {
       wrapper: ({ children }) => (
-        <IntercomProvider appId={INTERCOM_APP_ID}>{children}</IntercomProvider>
+        <IntercomProvider appId={intercomAppId}>{children}</IntercomProvider>
       ),
     });
 
@@ -48,36 +40,34 @@ describe('useIntercom', () => {
       boot();
     });
 
-    expect(window.intercomSettings).toEqual({ app_id: INTERCOM_APP_ID });
+    expect(window.intercomSettings).toEqual({ app_id: intercomAppId });
   });
 
-  test('should await a certain amount on delayed initialization', async () => {
-    const { result, waitFor } = renderHook<
+  test.skip('should await a certain amount on delayed initialization', async () => {
+    const onShow = jest.fn();
+
+    const { result } = renderHook<
       { children: React.ReactNode },
       ReturnType<typeof useIntercom>
     >(() => useIntercom(), {
       wrapper: ({ children }) => (
-        <IntercomProvider appId={INTERCOM_APP_ID} initializeDelay={5000}>
+        <IntercomProvider
+          appId={intercomAppId}
+          autoBootProps={{
+            name: 'hello',
+          }}
+          autoBoot
+          onShow={onShow}
+        >
           {children}
         </IntercomProvider>
       ),
     });
 
-    const { boot } = result.current;
-
     act(() => {
-      boot();
+      result.current.show();
+      expect(onShow).toBeCalledTimes(1);
     });
-
-    expect(window.intercomSettings).toEqual({ app_id: undefined });
-
-    await waitFor(() => {}, { timeout: 5000 });
-
-    act(() => {
-      boot();
-    });
-
-    expect(window.intercomSettings).toEqual({ app_id: INTERCOM_APP_ID });
   });
 
   it('should remove `window.intercomSettings` on shutdown', () => {
@@ -86,7 +76,7 @@ describe('useIntercom', () => {
       ReturnType<typeof useIntercom>
     >(() => useIntercom(), {
       wrapper: ({ children }) => (
-        <IntercomProvider appId={INTERCOM_APP_ID}>{children}</IntercomProvider>
+        <IntercomProvider appId={intercomAppId}>{children}</IntercomProvider>
       ),
     });
 

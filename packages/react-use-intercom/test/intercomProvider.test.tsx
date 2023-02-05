@@ -2,24 +2,16 @@ import { act, render } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import * as React from 'react';
 
-import config from '../config';
 import { IntercomProvider, useIntercom } from '../src';
+import { config } from './config';
 
-const INTERCOM_APP_ID = config.INTERCOM_APP_ID;
-
-// TODO: move this
-declare global {
-  interface Window {
-    Intercom: any;
-    intercomSettings: any;
-  }
-}
+const intercomAppId = config.intercomAppId;
 
 describe('IntercomProvider', () => {
   test('should render children', () => {
     const { getByText } = render(
       <div>
-        <IntercomProvider appId={INTERCOM_APP_ID}>children</IntercomProvider>
+        <IntercomProvider appId={intercomAppId}>children</IntercomProvider>
       </div>,
     );
 
@@ -29,7 +21,7 @@ describe('IntercomProvider', () => {
   test('should set `window.Intercom` on initialize', () => {
     render(
       <div>
-        <IntercomProvider appId={INTERCOM_APP_ID}>children</IntercomProvider>
+        <IntercomProvider appId={intercomAppId}>children</IntercomProvider>
       </div>,
     );
 
@@ -43,11 +35,7 @@ describe('IntercomProvider', () => {
       () => useIntercom(),
       {
         wrapper: ({ children }) => (
-          <IntercomProvider
-            appId={INTERCOM_APP_ID}
-            onShow={mockOnShow}
-            autoBoot
-          >
+          <IntercomProvider appId={intercomAppId} onShow={mockOnShow} autoBoot>
             {children}
           </IntercomProvider>
         ),
@@ -58,14 +46,14 @@ describe('IntercomProvider', () => {
   });
 
   test('should set `window.intercomSettings.apiBase` on autoBoot', () => {
-    const apiBase = `https://${INTERCOM_APP_ID}.intercom-messenger.com`;
+    const apiBase = `https://${intercomAppId}.intercom-messenger.com`;
 
     const { result } = renderHook<
       { children: React.ReactNode },
       ReturnType<typeof useIntercom>
     >(() => useIntercom(), {
       wrapper: ({ children }) => (
-        <IntercomProvider appId={INTERCOM_APP_ID} apiBase={apiBase}>
+        <IntercomProvider appId={intercomAppId} apiBase={apiBase}>
           {children}
         </IntercomProvider>
       ),
@@ -78,7 +66,7 @@ describe('IntercomProvider', () => {
     });
 
     expect(window.intercomSettings).toEqual({
-      app_id: INTERCOM_APP_ID,
+      app_id: intercomAppId,
       api_base: apiBase,
     });
   });
@@ -91,7 +79,7 @@ describe('IntercomProvider', () => {
       {
         wrapper: ({ children }) => (
           <IntercomProvider
-            appId={INTERCOM_APP_ID}
+            appId={intercomAppId}
             autoBootProps={{
               phone,
             }}
@@ -104,7 +92,7 @@ describe('IntercomProvider', () => {
     );
 
     expect(window.intercomSettings).toEqual({
-      app_id: INTERCOM_APP_ID,
+      app_id: intercomAppId,
       phone,
     });
   });
@@ -118,7 +106,7 @@ describe('IntercomProvider', () => {
     >(() => useIntercom(), {
       wrapper: ({ children }) => (
         <IntercomProvider
-          appId={INTERCOM_APP_ID}
+          appId={intercomAppId}
           autoBoot={false}
           autoBootProps={{
             phone,
@@ -134,7 +122,7 @@ describe('IntercomProvider', () => {
     });
 
     expect(window.intercomSettings).toEqual({
-      app_id: INTERCOM_APP_ID,
+      app_id: intercomAppId,
     });
   });
 
@@ -145,7 +133,7 @@ describe('IntercomProvider', () => {
     render(
       <div>
         <IntercomProvider
-          appId={INTERCOM_APP_ID}
+          appId={intercomAppId}
           {...{ [invalidPropName]: 'invalid' }}
         >
           children
@@ -165,7 +153,7 @@ describe('IntercomProvider', () => {
     render(
       <div>
         <IntercomProvider
-          appId={INTERCOM_APP_ID}
+          appId={intercomAppId}
           {...{ [dataAttributePropName]: 'valid' }}
         >
           children
