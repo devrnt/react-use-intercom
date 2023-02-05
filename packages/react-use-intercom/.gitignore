@@ -1,5 +1,4 @@
-config/.env
-test/config/.env
+/coverage/
 
 /cypress/videos
 /cypress/screenshots
