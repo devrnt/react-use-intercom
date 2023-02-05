@@ -34,7 +34,6 @@ jobs:
           install: false
           start: pnpm dev:playground
           wait-on: 'http://localhost:5173/'
-          project: ./packages/react-use-intercom
 
       # after the test run completes
       # store videos and any screenshots
@@ -42,7 +41,7 @@ jobs:
       # thus we store screenshots only on failures
       # Alternative: create and commit an empty cypress/screenshots folder
       # to always have something to upload
-      - name Upload Cypress artifacts
+      - name: Upload Cypress artifacts
         uses: actions/upload-artifact@v3
         if: failure()
         with:
