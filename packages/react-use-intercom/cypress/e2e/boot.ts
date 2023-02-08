@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe('boot', () => {
   beforeEach(() => {
     cy.visit('/useIntercom');
