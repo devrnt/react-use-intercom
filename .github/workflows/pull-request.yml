@@ -25,7 +25,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build
+        run: pnpm build
+
       - uses: preactjs/compressed-size-action@v2
         with:
           repo-token: '${{ secrets.GITHUB_TOKEN }}'
-          pattern: "packages/react-use-intercom/dist/**/*.js"
+          pattern: "{**/dist/**/*.{mjs,js}"
