@@ -26,6 +26,8 @@ describe('getVisitorId', () => {
 
     cy.get('[data-cy="visitorId"]').click();
 
+    cy.wait(2000);
+
     cy.get('[data-cy="visitorIdValue"]').should('exist');
   });
 });
