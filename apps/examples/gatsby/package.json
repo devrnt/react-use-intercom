@@ -1,0 +1,21 @@
+{
+  "name": "gatsby-example",
+  "private": true,
+  "description": "My Gatsby Site",
+  "author": "devrnt",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "dev": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "gatsby": "^5.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-use-intercom": "workspace:*"
+  }
+}

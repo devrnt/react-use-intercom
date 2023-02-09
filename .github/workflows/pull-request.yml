@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        node-version: [18]
+        node-version: [18.14]
     
     steps:
       - name: Checkout
@@ -25,6 +25,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build
+        run: pnpm build
+
       - uses: preactjs/compressed-size-action@v2
         with:
           repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          pattern: "packages/**/dist/**/*.?(m)js"

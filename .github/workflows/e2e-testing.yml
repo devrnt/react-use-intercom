@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        node-version: [16,18]
+        node-version: [18]
 
     steps:
       - name: Checkout
@@ -25,14 +25,34 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build
+        run: pnpm build
+
       - name: Cypress install
         run: ./node_modules/cypress/bin/cypress install
 
       - name: Cypress run
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v4
         with:
           install: false
-          start: pnpm start:playground
-          wait-on: 'http://localhost:1234'
-          browser: chrome
-          headless: true
+          # build playground
+          # build: pnpm dev:playground
+          # start playground
+          start: pnpm dev:playground
+          command: pnpm e2e
+          # FIXME: this breaks it
+          # wait-on: 'http://localhost:5173'
+          # project: /packages/react-use-intercom
+
+      # after the test run completes
+      # store videos and any screenshots
+      # NOTE: screenshots will be generated only if E2E test failed
+      # thus we store screenshots only on failures
+      # Alternative: create and commit an empty cypress/screenshots folder
+      # to always have something to upload
+      - name: Upload Cypress artifacts
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: ./packages/react-use-intercom/cypress/screenshots
