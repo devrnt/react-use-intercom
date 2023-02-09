@@ -4,7 +4,7 @@ module.exports = defineConfig({
   entry: ['src/index.ts'],
   format: ['esm', 'cjs'],
   external: ['react'],
-  sourcemap: false,
+  sourcemap: true,
   treeshake: true,
   clean: true,
   splitting: false,
