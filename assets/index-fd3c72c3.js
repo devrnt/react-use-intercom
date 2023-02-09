@@ -79,7 +79,7 @@ Error generating stack: `+i.message+`
   &:hover {
     background-image: linear-gradient(to right, #45e87b, #05e1f9);
   }
-`,fe=({label:e,...t})=>E(Ug,{...t,children:e}),Bg="/assets/githubLogo-12794390.svg",Hg="/assets/logo-3e7c3623.png",Wg=ke.main`
+`,fe=({label:e,...t})=>E(Ug,{...t,children:e}),Bg="/react-use-intercom/assets/githubLogo-12794390.svg",Hg="/react-use-intercom/assets/logo-3e7c3623.png",Wg=ke.main`
   display: flex;
   justify-content: center;
   padding: 1.5rem 0;
