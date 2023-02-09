@@ -1,7 +1,7 @@
 # react-use-intercom
 
-## 3.0.3
+## 4.0.0
 
-### Patch Changes
+### Major Changes
 
-- c6aed4d: Restructure project and change build pipeline
+- c8b050d: Update built target to es2017
