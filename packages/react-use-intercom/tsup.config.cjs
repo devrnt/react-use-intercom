@@ -10,4 +10,5 @@ module.exports = defineConfig({
   splitting: false,
   dts: true,
   minify: true,
+  target: 'es2017',
 });
