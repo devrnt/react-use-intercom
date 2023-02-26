@@ -41,9 +41,10 @@ const RawUseIntercomPage = () => {
   } = useIntercom();
   const handleBoot = React.useCallback(() => boot(), [boot]);
 
-  const handleSeededBoot = React.useCallback(() => boot({ name: 'Russo' }), [
-    boot,
-  ]);
+  const handleSeededBoot = React.useCallback(
+    () => boot({ name: 'Russo' }),
+    [boot],
+  );
 
   const handleExtendedSeededBoot = React.useCallback(
     () =>
@@ -114,9 +115,10 @@ const RawUseIntercomPage = () => {
     update({ name: 'ponas' });
   }, [update]);
 
-  const handleNewMessages = React.useCallback(() => showNewMessage(), [
-    showNewMessage,
-  ]);
+  const handleNewMessages = React.useCallback(
+    () => showNewMessage(),
+    [showNewMessage],
+  );
 
   const handleNewMessagesWithContent = React.useCallback(
     () => showNewMessage('pre-definded-content'),

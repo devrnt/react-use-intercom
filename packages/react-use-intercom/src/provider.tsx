@@ -23,6 +23,7 @@ export const IntercomProvider: React.FC<
   onHide,
   onShow,
   onUnreadCountChange,
+  onUserEmailSupplied,
   shouldInitialize = !isSSR,
   apiBase,
   initializeDelay,
@@ -91,6 +92,8 @@ export const IntercomProvider: React.FC<
     // attach listeners
     IntercomAPI('onHide', onHideWrapper);
     IntercomAPI('onShow', onShowWrapper);
+    IntercomAPI('onUserEmailSupplied', onUserEmailSupplied);
+
     if (onUnreadCountChange)
       IntercomAPI('onUnreadCountChange', onUnreadCountChange);
 

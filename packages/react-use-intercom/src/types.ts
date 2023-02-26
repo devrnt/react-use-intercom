@@ -240,6 +240,7 @@ export type IntercomMethod =
   | 'onHide'
   | 'onShow'
   | 'onUnreadCountChange'
+  | 'onUserEmailSupplied'
   | 'trackEvent'
   | 'getVisitorId'
   | 'startTour'
@@ -427,6 +428,10 @@ export type IntercomProviderProps = {
    * when invoked, and again whenever the current number of unread messages changes.
    */
   onUnreadCountChange?: (unreadCount: number) => void;
+  /**
+   * When a visitor enters their email into the Messenger, you can hook into the event. This requires a function argument.
+   */
+  onUserEmailSupplied?: () => void;
   /**
    * Indicates if Intercom should be initialized. This will ping to the Intercom servers.
    *

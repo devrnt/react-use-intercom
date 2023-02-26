@@ -2,8 +2,7 @@
   "private": true,
   "packageManager": "pnpm@7.26.3",
   "scripts": {
-    "dev": "turbo run dev --filter=react-use-intercom --filter=playground --no-cache --continue",
-    "dev:playground": "turbo run dev --parallel --filter=playground --filter=react-use-intercom",
+    "dev": "turbo run dev --parallel --filter=playground --filter=react-use-intercom",
     "dev:examples": "turbo run dev --parallel --filter=*-example --filter=react-use-intercom",
     "test": "turbo run test",
     "build": "turbo run build",
