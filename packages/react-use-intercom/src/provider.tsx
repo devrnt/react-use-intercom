@@ -230,6 +230,15 @@ export const IntercomProvider: React.FC<
     [ensureIntercom],
   );
 
+  const startSurvey = React.useCallback(
+    (surveyId: number) => {
+      ensureIntercom('startSurvey', () => {
+        IntercomAPI('startSurvey', surveyId);
+      });
+    },
+    [ensureIntercom],
+  );
+
   const providerValue = React.useMemo<IntercomContextValues>(() => {
     return {
       boot,
@@ -245,6 +254,7 @@ export const IntercomProvider: React.FC<
       startTour,
       trackEvent,
       showArticle,
+      startSurvey,
     };
   }, [
     boot,
@@ -260,6 +270,7 @@ export const IntercomProvider: React.FC<
     startTour,
     trackEvent,
     showArticle,
+    startSurvey,
   ]);
 
   return (

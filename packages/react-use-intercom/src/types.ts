@@ -236,6 +236,7 @@ export type IntercomMethod =
   | 'show'
   | 'showMessages'
   | 'showNewMessage'
+  | 'startSurvey'
   | 'onHide'
   | 'onShow'
   | 'onUnreadCountChange'
@@ -391,6 +392,17 @@ export type IntercomContextValues = {
    * @remarks if an article with the given ID doesn't exits, Messenger Home is opened instead
    */
   showArticle: (articleId: number) => void;
+  /**
+   * Trigger a survey in the Messenger
+   *
+   * You can use the startSurvey method. The id of the survey can be found in the “Additional ways to share your survey” section
+   * of the survey editor as well as in the URL of the editor.
+   *
+   * Please note that surveys shown via this API must be live. If you're calling this API using an invalid survey id, nothing will happen.
+   *
+   * @param surveyId The id of the survey
+   */
+  startSurvey: (surveyId: number) => void;
 };
 
 export type IntercomProviderProps = {
