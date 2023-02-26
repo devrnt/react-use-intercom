@@ -38,7 +38,7 @@ jobs:
           # build playground
           # build: pnpm dev:playground
           # start playground
-          start: pnpm dev:playground
+          start: pnpm dev
           command: pnpm e2e
           # FIXME: this breaks it
           # wait-on: 'http://localhost:5173'
