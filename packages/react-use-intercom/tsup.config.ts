@@ -1,6 +1,6 @@
-const { defineConfig } = require('tsup');
+import type { Options } from 'tsup';
 
-module.exports = defineConfig({
+export const tsup: Options = {
   entry: ['src/index.ts'],
   format: ['esm', 'cjs'],
   external: ['react'],
@@ -11,4 +11,4 @@ module.exports = defineConfig({
   dts: true,
   minify: true,
   target: 'es2017',
-});
+};
