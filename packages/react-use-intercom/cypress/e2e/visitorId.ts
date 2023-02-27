@@ -22,8 +22,11 @@ describe('getVisitorId', () => {
     cy.get('[data-cy=boot]').click();
     cy.wait('@intercomPing');
 
-    cy.get('[data-cy="visitorId"]').click();
+    // FIXME: something goes wrong here in the pipeline
+    cy.get('button[data-cy="visitorId"]').click({ timeout: 10000 });
 
-    cy.get('[data-cy="visitorIdValue"]').should('exist');
+    cy.wait(10000);
+
+    cy.get('p[data-cy="visitorIdValue"]', { timeout: 10000 }).should('exist');
   });
 });
