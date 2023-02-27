@@ -79,6 +79,7 @@ Place the `IntercomProvider` as high as possible in your application. This will 
 | onHide              | () => void       | triggered when the Messenger hides                                                      | false    |         |
 | onShow              | () => void       | triggered when the Messenger shows                                                      | false    |         |
 | onUnreadCountChange | (number) => void | triggered when the current number of unread messages changes                            | false    |         |
+| onUserEmailSupplied | () => void | triggered when a visitor enters their email into the Messenger                         | false    |         |
 | shouldInitialize    | boolean | indicates if the Intercom should be initialized. Can be used in multistaged environment          | false    | true    |
 | apiBase    | string | If you need to route your Messenger requests through a different endpoint than the default. Generally speaking, this is not needed.<br/> Format: `https://${INTERCOM_APP_ID}.intercom-messenger.com` (See: [https://github.com/devrnt/react-use-intercom/pull/96](https://github.com/devrnt/react-use-intercom/pull/96))         | false    |         |
 | initializeDelay | number | Indicates if the intercom initialization should be delayed, delay is in ms, defaults to 0. See https://github.com/devrnt/react-use-intercom/pull/236 | false    |         |
@@ -95,6 +96,9 @@ const App = () => {
     console.log('Intercom has a new unread message');
     setUnreadMessagesCount(amount);
   };
+  const onUserEmailSupplied = () => {
+    console.log('Visitor has entered email');
+  };
 
   return (
     <IntercomProvider
@@ -102,6 +106,7 @@ const App = () => {
       onHide={onHide}
       onShow={onShow}
       onUnreadCountChange={onUnreadCountChange}
+      onUserEmailSupplied={onUserEmailSupplied}
       autoBoot
     >
       <p>Hi there, I am a child of the IntercomProvider</p>
@@ -134,6 +139,7 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 | startTour       | (tourId: number) => void                   | starts a tour based on the `tourId`                                                                                                 |
 | trackEvent      | (event: string, metaData?: object) => void | submits an `event` with optional `metaData`      
 | showArticle      | (articleId: string) => void | opens the Messenger with the specified article by `articleId`
+| startSurvey      | (surveyId: number) => void | Trigger a survey in the Messenger by `surveyId`
 
 #### Example
 ```javascript
@@ -162,7 +168,8 @@ const HomePage = () => {
     getVisitorId,
     startTour,
     trackEvent,
-    showArticle
+    showArticle,
+    startSurvey
   } = useIntercom();
 
   const bootWithProps = () => boot({ name: 'Russo' });
@@ -177,6 +184,7 @@ const HomePage = () => {
       name: 'Russo',
     });
   const handleShowArticle = () => showArticle(123456);
+  const handleStartSurvey = () => startSurvey(123456);
 
   return (
     <>
@@ -200,6 +208,7 @@ const HomePage = () => {
         Track event with metadata
       </button>
       <button onClick={handleShowArticle}>Open article in Messenger</button>
+      <button onClick={handleStartSurvey}>Start survey in Messenger</button>
     </>
   );
 };
