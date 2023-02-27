@@ -1,5 +1,29 @@
 /// <reference types="cypress" />
 
+beforeEach(() => {
+  cy.intercept('https://api-iam.intercom.io/messenger/web/ping').as(
+    'intercomPing',
+  );
+  cy.intercept('https://api-iam.intercom.io/messenger/web/open').as(
+    'intercomOpen',
+  );
+  cy.intercept('https://api-iam.intercom.io/messenger/web/metrics').as(
+    'intercomMetrics',
+  );
+  cy.intercept('https://api-iam.intercom.io/messenger/web/messages').as(
+    'intercomMessages',
+  );
+  cy.intercept('https://api-iam.intercom.io/messenger/web/home').as(
+    'intercomHome',
+  );
+  cy.intercept('https://api-iam.intercom.io/messenger/web/conversations').as(
+    'intercomConversations',
+  );
+  cy.intercept(
+    'https://api-iam.intercom.io/messenger/web/self_serve_suggestions',
+  ).as('intercomSelfServeSuggestions');
+});
+
 describe('provider', () => {
   it('should render children', () => {
     cy.visit('/provider');
@@ -51,6 +75,45 @@ describe('provider with events', () => {
 
     cy.get('[data-cy=onHideText]').should('have.text', 'hide was called');
   });
+
+  it('should execute `onUserEmailSupplied` event on `onUserEmailSupplied`', () => {
+    cy.get('[data-cy=onUserEmailSuppliedText]').should('have.text', 'default');
+
+    cy.get('[data-cy=boot]').click();
+
+    cy.get('[data-cy=show]').click();
+
+    cy.get('iframe[name="intercom-messenger-frame"]').then(($iframe) => {
+      const $body = $iframe.contents().find('body');
+
+      cy.wrap($body).contains('Send us a message').click();
+
+      cy.wait('@intercomHome');
+      cy.wait('@intercomConversations');
+
+      cy.wrap($body)
+        .find('textarea[name="message"]')
+        .should('exist')
+        .type('hello')
+        .type('{enter}');
+
+      cy.wait('@intercomMessages');
+
+      cy.wrap($body).contains('Get notified by email', { timeout: 10000 });
+
+      cy.wrap($body)
+        .find('input[type="email"]')
+        .type('hello@email.com')
+        .type('{enter}');
+
+      cy.wait('@intercomSelfServeSuggestions');
+
+      cy.get('[data-cy=onUserEmailSuppliedText]').should(
+        'have.text',
+        'on user email supplied was called',
+      );
+    });
+  });
 });
 
 describe('provider with `apiBase`', () => {
@@ -69,6 +132,10 @@ describe('provider with `apiBase`', () => {
 });
 
 describe('provider with `autoBootProps`', () => {
+  beforeEach(() => {
+    cy.visit('/providerAutoBootProps');
+  });
+
   it('should set properties if passed to `autoBootProps` when `autoBoot` is `true`', () => {
     cy.get('p').should('be.visible');
 
