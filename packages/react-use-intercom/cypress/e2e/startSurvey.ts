@@ -15,18 +15,29 @@ before(() => {
   cy.intercept('https://api-iam.intercom.io/messenger/web/home_cards').as(
     'intercomHomeCards',
   );
+
+  cy.intercept('https://api-iam.intercom.io/messenger/web/surveys/*/fetch').as(
+    'intercomStartSurvey',
+  );
 });
 
-describe('getVisitorId', () => {
-  it('should get visitor id when calling `getVisitorId`', () => {
+describe('startSurvey', () => {
+  it('start start the survey', () => {
     cy.get('[data-cy=boot]').click();
     cy.wait('@intercomPing');
 
-    // FIXME: something goes wrong here in the pipeline
-    cy.get('button[data-cy="visitorId"]').click({ timeout: 10000 });
+    cy.get('[data-cy="start-survey"]').click();
 
-    cy.wait(10000);
+    cy.wait(2000);
 
-    cy.get('p[data-cy="visitorIdValue"]', { timeout: 10000 }).should('exist');
+    cy.wait('@intercomStartSurvey');
+
+    cy.get('iframe[name="intercom-modal-frame"]').then(($iframe) => {
+      const $body = $iframe.contents().find('body');
+
+      cy.wrap($body).contains(
+        'Want to see your feature requests on our roadmap?',
+      );
+    });
   });
 });

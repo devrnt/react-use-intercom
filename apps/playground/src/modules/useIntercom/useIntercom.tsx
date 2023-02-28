@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { IntercomProvider, useIntercom } from 'react-use-intercom';
 import styled from 'styled-components';
 
-import { IntercomProvider, useIntercom } from 'react-use-intercom';
 import { Button } from '../common';
 
 const Grid = styled.div`
@@ -23,6 +23,8 @@ const Item = styled.div`
 `;
 
 const RawUseIntercomPage = () => {
+  const [visitorId, setVisitorId] = React.useState<string | null>(null);
+
   const {
     boot,
     shutdown,
@@ -35,12 +37,14 @@ const RawUseIntercomPage = () => {
     getVisitorId,
     trackEvent,
     showArticle,
+    startSurvey,
   } = useIntercom();
   const handleBoot = React.useCallback(() => boot(), [boot]);
 
-  const handleSeededBoot = React.useCallback(() => boot({ name: 'Russo' }), [
-    boot,
-  ]);
+  const handleSeededBoot = React.useCallback(
+    () => boot({ name: 'Russo' }),
+    [boot],
+  );
 
   const handleExtendedSeededBoot = React.useCallback(
     () =>
@@ -111,9 +115,10 @@ const RawUseIntercomPage = () => {
     update({ name: 'ponas' });
   }, [update]);
 
-  const handleNewMessages = React.useCallback(() => showNewMessage(), [
-    showNewMessage,
-  ]);
+  const handleNewMessages = React.useCallback(
+    () => showNewMessage(),
+    [showNewMessage],
+  );
 
   const handleNewMessagesWithContent = React.useCallback(
     () => showNewMessage('pre-definded-content'),
@@ -137,7 +142,7 @@ const RawUseIntercomPage = () => {
     showArticle(4013997);
   }, [showArticle]);
 
-  const [visitorId, setVisitorId] = React.useState<string | null>(null);
+  const handleStartSurvey = () => startSurvey(29938254);
 
   return (
     <Grid>
@@ -240,6 +245,7 @@ const RawUseIntercomPage = () => {
           data-cy="visitorId"
           onClick={handleGetVisitorId}
         />
+        {visitorId ? <p data-cy="visitorIdValue">{visitorId}</p> : null}
       </Item>
       <Item>
         <p>
@@ -262,8 +268,16 @@ const RawUseIntercomPage = () => {
         </p>
         <Button label="Open article" onClick={handleShowArticle} />
       </Item>
-
-      {visitorId && <p data-cy="visitorIdValue">{visitorId}</p>}
+      <Item>
+        <p>
+          start survey with the given <code>surveyId</code>
+        </p>
+        <Button
+          data-cy="start-survey"
+          label="Start survey"
+          onClick={handleStartSurvey}
+        />
+      </Item>
     </Grid>
   );
 };

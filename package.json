@@ -2,8 +2,7 @@
   "private": true,
   "packageManager": "pnpm@7.26.3",
   "scripts": {
-    "dev": "turbo run dev --filter=react-use-intercom --filter=playground --no-cache --continue",
-    "dev:playground": "turbo run dev --parallel --filter=playground --filter=react-use-intercom",
+    "dev": "turbo run dev --parallel --filter=playground --filter=react-use-intercom",
     "dev:examples": "turbo run dev --parallel --filter=*-example --filter=react-use-intercom",
     "test": "turbo run test",
     "build": "turbo run build",
@@ -12,6 +11,7 @@
     "lint:fix": "turbo run lint:fix",
     "clean": "turbo run clean && rm -rf node_modules",
     "e2e": "turbo run e2e --filter=react-use-intercom",
+    "e2e:open": "turbo run e2e:open --filter=react-use-intercom",
     "changeset": "changeset",
     "release": "turbo run build --filter=react-use-intercom && changeset publish"
   },
@@ -24,6 +24,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "prettier": "^2.8.3",
-    "turbo": "^1.7.3"
+    "turbo": "^1.8.3"
   }
 }

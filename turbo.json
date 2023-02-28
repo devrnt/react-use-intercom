@@ -9,7 +9,14 @@
       "outputs": ["coverage/**"],
       "dependsOn": []
     },
-    "e2e": {},
+    "e2e": {
+      "cache": false,
+      "persistent": true
+    },
+    "e2e:open": {
+      "cache": false,
+      "persistent": true
+    },
     "lint": {},
     "lint:fix": {},
     "dev": {

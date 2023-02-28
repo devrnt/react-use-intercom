@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { IntercomProvider, useIntercom } from 'react-use-intercom';
 import styled from 'styled-components';
 
-import { IntercomProvider, useIntercom } from 'react-use-intercom';
 import { Button } from '../common';
 
 const Grid = styled.div`
@@ -25,11 +25,13 @@ const Item = styled.div`
 type RawProviderEventsProps = {
   onShowText: string;
   onHideText: string;
+  onUserEmailSuppliedText: string;
 };
 
 const RawProviderEvents = ({
   onShowText,
   onHideText,
+  onUserEmailSuppliedText,
 }: RawProviderEventsProps) => {
   const { boot, show, hide } = useIntercom();
 
@@ -38,6 +40,7 @@ const RawProviderEvents = ({
       <p>Intercom children</p>
       <p data-cy="onShowText">{onShowText}</p>
       <p data-cy="onHideText">{onHideText}</p>
+      <p data-cy="onUserEmailSuppliedText">{onUserEmailSuppliedText}</p>
 
       <Grid>
         <Item>
@@ -61,13 +64,26 @@ const RawProviderEvents = ({
 const ProviderEvents = () => {
   const [onShowText, setOnShowText] = React.useState('default');
   const [onHideText, setHideText] = React.useState('default');
+  const [onUserEmailSuppliedText, setOnUserEmailSupplied] =
+    React.useState('default');
 
   const onShow = React.useCallback(() => setOnShowText('show was called'), []);
   const onHide = React.useCallback(() => setHideText('hide was called'), []);
+  const onUserEmailSupplied = () =>
+    setOnUserEmailSupplied('on user email supplied was called');
 
   return (
-    <IntercomProvider appId="jcabc7e3" onShow={onShow} onHide={onHide}>
-      <RawProviderEvents onShowText={onShowText} onHideText={onHideText} />
+    <IntercomProvider
+      appId="jcabc7e3"
+      onShow={onShow}
+      onHide={onHide}
+      onUserEmailSupplied={onUserEmailSupplied}
+    >
+      <RawProviderEvents
+        onUserEmailSuppliedText={onUserEmailSuppliedText}
+        onShowText={onShowText}
+        onHideText={onHideText}
+      />
     </IntercomProvider>
   );
 };
