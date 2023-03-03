@@ -16,7 +16,7 @@
 * Documented, self explaining methods 
 * [Tiny size](https://bundlephobia.com/result?p=react-use-intercom@latest) without any external libraries
 * Safeguard for SSR environments (NextJS, Gatsby)
-* Compatible to hook into existing Intercom intance (loaded by [Segment](https://segment.com/))
+* Compatible to hook into existing Intercom instance (loaded by [Segment](https://segment.com/))
 
 ## Installation
 
