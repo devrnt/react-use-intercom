@@ -57,10 +57,6 @@ export const IntercomProvider: React.FC<
         return;
       }
 
-      if (isBooted.current) {
-        return;
-      }
-
       const metaData: RawIntercomBootProps = {
         app_id: appId,
         ...(apiBase && { api_base: apiBase }),
