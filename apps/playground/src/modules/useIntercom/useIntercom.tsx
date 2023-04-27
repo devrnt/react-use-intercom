@@ -285,7 +285,7 @@ const RawUseIntercomPage = () => {
       </Item>
       <Item>
         <p>
-          opens a messenger with the given <code>space</code>
+          opens the Messenger with the given <code>space</code>
         </p>
         <Button label="Open space" onClick={handleShowSpace} />
       </Item>
