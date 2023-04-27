@@ -140,7 +140,7 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 | trackEvent      | (event: string, metaData?: object) => void | submits an `event` with optional `metaData`      
 | showArticle      | (articleId: string) => void | opens the Messenger with the specified article by `articleId`
 | startSurvey      | (surveyId: number) => void | Trigger a survey in the Messenger by `surveyId`
-| showSpace     | (spaceName: `'home' | 'messages' | 'help' | 'news' | 'tasks'`) => void | Opens the Messenger with the specified space
+| showSpace     | (spaceName: IntercomSpace) => void | Opens the Messenger with the specified space
 
 #### Example
 ```javascript
