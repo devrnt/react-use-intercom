@@ -244,7 +244,8 @@ export type IntercomMethod =
   | 'trackEvent'
   | 'getVisitorId'
   | 'startTour'
-  | 'showArticle';
+  | 'showArticle'
+  | 'showSpace';
 
 export type RawIntercomProps = RawMessengerAttributes & RawDataAttributes;
 
@@ -261,6 +262,8 @@ export type IntercomBootProps = {
 } & IntercomProps;
 
 export type LogLevel = 'info' | 'error' | 'warn';
+
+export type IntercomSpace = 'home' | 'messages' | 'help' | 'news' | 'tasks';
 
 export type IntercomContextValues = {
   /**
@@ -404,6 +407,17 @@ export type IntercomContextValues = {
    * @param surveyId The id of the survey
    */
   startSurvey: (surveyId: number) => void;
+  /**
+   *
+   * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#intercomshowspace-spacename}
+   *
+   * @remarks if a space with the given name doesn't exist, you will see a type error
+   *
+   * @param spaceName The name of the space
+   *
+   * @example showSpace('tasks')
+   */
+  showSpace: (spaceName: IntercomSpace) => void;
 };
 
 export type IntercomProviderProps = {

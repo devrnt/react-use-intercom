@@ -9,6 +9,7 @@ import {
   IntercomContextValues,
   IntercomProps,
   IntercomProviderProps,
+  IntercomSpace,
   RawIntercomBootProps,
 } from './types';
 import { isSSR } from './utils';
@@ -229,6 +230,14 @@ export const IntercomProvider: React.FC<
     [ensureIntercom],
   );
 
+  const showSpace = React.useCallback(
+    (spaceName: IntercomSpace) =>
+      ensureIntercom('showSpace', () => {
+        IntercomAPI('showSpace', spaceName);
+      }),
+    [ensureIntercom],
+  );
+
   const startSurvey = React.useCallback(
     (surveyId: number) => {
       ensureIntercom('startSurvey', () => {
@@ -254,6 +263,7 @@ export const IntercomProvider: React.FC<
       trackEvent,
       showArticle,
       startSurvey,
+      showSpace,
     };
   }, [
     boot,
@@ -270,6 +280,7 @@ export const IntercomProvider: React.FC<
     trackEvent,
     showArticle,
     startSurvey,
+    showSpace,
   ]);
 
   return (
