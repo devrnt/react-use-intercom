@@ -1,5 +1,11 @@
 # react-use-intercom
 
+## 5.1.0
+
+### Minor Changes
+
+- e30828d: Add "showSpace" method
+
 ## 5.0.0
 
 ### Major Changes
