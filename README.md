@@ -20,13 +20,20 @@
 
 ## Installation
 
-```
+```sh
+# pnpm
+pnpm add react-use-intercom
+
+# npm
+npm install react-use-intercom
+
+# yarn
 yarn add react-use-intercom
 ```
 
 ## Quickstart
 
-```js
+```ts
 import * as React from 'react';
 
 import { IntercomProvider, useIntercom } from 'react-use-intercom';
@@ -86,7 +93,7 @@ Place the `IntercomProvider` as high as possible in your application. This will 
 | autoBootProps | IntercomProps | Pass properties to `boot` method when `autoBoot` is `true` | false    |         |
 
 #### Example
-```javascript
+```ts
 const App = () => {
   const [unreadMessagesCount, setUnreadMessagesCount] = React.useState(0);
 
@@ -143,7 +150,7 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 | showSpace     | (spaceName: IntercomSpace) => void | Opens the Messenger with the specified space
 
 #### Example
-```javascript
+```ts
 import * as React from 'react';
 
 import { IntercomProvider, useIntercom } from 'react-use-intercom';
@@ -227,7 +234,7 @@ All the Intercom default attributes/props are camel cased (`appId` instead of `a
  Still want to pass custom attributes to Intercom? Whether `boot` or `update` is used, you can add your custom properties by passing these through `customAttributes` in the `boot` or `update` method. 
 
 **Remark** - the keys of the `customAttributes` object should be snake cased (this is how Intercom wants them). They are rawly passed to Intercom.
- ```javascript
+ ```ts
  const { boot } = useIntercom();
 
  boot({ 
