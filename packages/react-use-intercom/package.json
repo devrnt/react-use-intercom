@@ -4,7 +4,7 @@
   "module": "dist/index.mjs",
   "description": "React Intercom integration without the hassle, driven by hooks.",
   "homepage": "https://github.com/devrnt/react-use-intercom#readme",
-  "version": "5.1.2",
+  "version": "5.1.3",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
