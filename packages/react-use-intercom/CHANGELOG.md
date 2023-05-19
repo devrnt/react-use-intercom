@@ -1,5 +1,11 @@
 # react-use-intercom
 
+## 5.1.1
+
+### Patch Changes
+
+- 5e7dd7e: Do not publish src folder to registry
+
 ## 5.1.0
 
 ### Minor Changes
