@@ -1,5 +1,11 @@
 # react-use-intercom
 
+## 5.1.3
+
+### Patch Changes
+
+- e89a073: Do not publish src folder to registry
+
 ## 5.1.2
 
 ### Patch Changes
