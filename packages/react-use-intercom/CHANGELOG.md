@@ -1,5 +1,11 @@
 # react-use-intercom
 
+## 5.1.4
+
+### Patch Changes
+
+- d86105a: Fix incompatible node engine version
+
 ## 5.1.3
 
 ### Patch Changes
