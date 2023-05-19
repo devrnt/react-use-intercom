@@ -50,8 +50,6 @@
     "test": "jest test",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "e2e": "cypress run",
-    "e2e:open": "cypress open",
     "lint": "eslint src test",
     "lint:fix": "eslint --fix",
     "bundlesize": "pnpm build && size-limit"
@@ -81,7 +79,6 @@
     "@types/node": "^18.11.19",
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
-    "cypress": "12.7.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "jest": "^29.4.1",
     "jest-environment-jsdom": "^29.4.1",

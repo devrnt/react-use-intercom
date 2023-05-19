@@ -10,8 +10,8 @@
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "clean": "turbo run clean && rm -rf node_modules",
-    "e2e": "turbo run e2e --filter=react-use-intercom",
-    "e2e:open": "turbo run e2e:open --filter=react-use-intercom",
+    "e2e": "turbo run e2e --filter=playground",
+    "e2e:open": "turbo run e2e:open --filter=playground",
     "changeset": "changeset",
     "release": "turbo run build --filter=react-use-intercom && changeset publish"
   },

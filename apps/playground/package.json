@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "e2e": "cypress run",
+    "e2e:open": "cypress open",
     "preview": "vite preview --host"
   },
   "dependencies": {
@@ -22,6 +24,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.2",
     "@vitejs/plugin-react": "^3.0.1",
+    "cypress": "^12.12.0",
     "typescript": "^4.9.5",
     "vite": "^4.0.4"
   }
