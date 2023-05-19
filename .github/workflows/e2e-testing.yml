@@ -55,4 +55,4 @@ jobs:
         if: failure()
         with:
           name: cypress-screenshots
-          path: ./packages/react-use-intercom/cypress/screenshots
+          path: ./apps/playground/cypress/screenshots

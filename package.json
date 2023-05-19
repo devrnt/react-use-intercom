@@ -10,8 +10,8 @@
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "clean": "turbo run clean && rm -rf node_modules",
-    "e2e": "turbo run e2e --filter=react-use-intercom",
-    "e2e:open": "turbo run e2e:open --filter=react-use-intercom",
+    "e2e": "turbo run e2e --filter=playground",
+    "e2e:open": "turbo run e2e:open --filter=playground",
     "changeset": "changeset",
     "release": "turbo run build --filter=react-use-intercom && changeset publish"
   },
@@ -24,6 +24,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "prettier": "^2.8.3",
-    "turbo": "^1.8.3"
+    "turbo": "^1.9.8"
   }
 }
