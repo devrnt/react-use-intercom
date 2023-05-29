@@ -148,6 +148,8 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 | showArticle      | (articleId: string) => void | opens the Messenger with the specified article by `articleId`
 | startSurvey      | (surveyId: number) => void | Trigger a survey in the Messenger by `surveyId`
 | showSpace     | (spaceName: IntercomSpace) => void | Opens the Messenger with the specified space
+| showNews | (newsId: number) => void | Opens the Messenger with the specified news by `newsId`
+
 
 #### Example
 ```ts

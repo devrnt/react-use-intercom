@@ -247,6 +247,14 @@ export const IntercomProvider: React.FC<
     [ensureIntercom],
   );
 
+  const showNews = React.useCallback(
+    (newsId: number) =>
+      ensureIntercom('showNews', () => {
+        IntercomAPI('showNews', newsId);
+      }),
+    [ensureIntercom],
+  );
+
   const providerValue = React.useMemo<IntercomContextValues>(() => {
     return {
       boot,
@@ -264,6 +272,7 @@ export const IntercomProvider: React.FC<
       showArticle,
       startSurvey,
       showSpace,
+      showNews,
     };
   }, [
     boot,
@@ -281,6 +290,7 @@ export const IntercomProvider: React.FC<
     showArticle,
     startSurvey,
     showSpace,
+    showNews,
   ]);
 
   return (

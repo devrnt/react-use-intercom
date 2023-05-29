@@ -39,6 +39,7 @@ const RawUseIntercomPage = () => {
     showArticle,
     startSurvey,
     showSpace,
+    showNews,
   } = useIntercom();
   const handleBoot = React.useCallback(() => boot(), [boot]);
 
@@ -148,6 +149,10 @@ const RawUseIntercomPage = () => {
   }, [showSpace]);
 
   const handleStartSurvey = () => startSurvey(29938254);
+
+  const handleShowNews = React.useCallback(() => {
+    showNews(33910172);
+  }, [showNews]);
 
   return (
     <Grid>
@@ -288,6 +293,12 @@ const RawUseIntercomPage = () => {
           opens the Messenger with the given <code>space</code>
         </p>
         <Button label="Open space" onClick={handleShowSpace} />
+      </Item>
+      <Item>
+        <p>
+          opens the Messenger with the given <code>newsId</code>
+        </p>
+        <Button label="Open news" onClick={handleShowNews} />
       </Item>
     </Grid>
   );

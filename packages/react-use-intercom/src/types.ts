@@ -245,7 +245,8 @@ export type IntercomMethod =
   | 'getVisitorId'
   | 'startTour'
   | 'showArticle'
-  | 'showSpace';
+  | 'showSpace'
+  | 'showNews';
 
 export type RawIntercomProps = RawMessengerAttributes & RawDataAttributes;
 
@@ -418,6 +419,19 @@ export type IntercomContextValues = {
    * @example showSpace('tasks')
    */
   showSpace: (spaceName: IntercomSpace) => void;
+  /**
+   *
+   * Opens the messenger with the specified news
+   *
+   * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#intercomshownews-newsitemid}
+   *
+   * @remarks if a news with the given id doesn't exist, Messenger Home is opened instead
+   *
+   * @param newsId The id of the news
+   *
+   * @example showNews('tasks')
+   */
+  showNews: (newsId: number) => void;
 };
 
 export type IntercomProviderProps = {
