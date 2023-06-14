@@ -32,6 +32,7 @@ export const IntercomProvider: React.FC<
 }) => {
   const isBooted = React.useRef(false);
   const isInitialized = React.useRef(false);
+  const [unreadCount, setUnReadCount] = React.useState(0);
 
   // Allow data-x attributes, see https://github.com/devrnt/react-use-intercom/issues/478
   const invalidPropKeys = Object.keys(rest).filter(
@@ -83,6 +84,14 @@ export const IntercomProvider: React.FC<
     if (onShow) onShow();
   }, [onShow, setIsOpen]);
 
+  const onUnReadCountChangeWrapper = React.useCallback(
+    (unreadCount: number) => {
+      setUnReadCount(unreadCount);
+      if (onUnreadCountChange) onUnreadCountChange(unreadCount);
+    },
+    [onUnreadCountChange],
+  );
+
   if (!isSSR && shouldInitialize && !isInitialized.current) {
     initialize(appId, initializeDelay);
 
@@ -90,9 +99,7 @@ export const IntercomProvider: React.FC<
     IntercomAPI('onHide', onHideWrapper);
     IntercomAPI('onShow', onShowWrapper);
     IntercomAPI('onUserEmailSupplied', onUserEmailSupplied);
-
-    if (onUnreadCountChange)
-      IntercomAPI('onUnreadCountChange', onUnreadCountChange);
+    IntercomAPI('onUnreadCountChange', onUnReadCountChangeWrapper);
 
     if (autoBoot) {
       boot(autoBootProps);
@@ -264,6 +271,7 @@ export const IntercomProvider: React.FC<
       showArticle,
       startSurvey,
       showSpace,
+      unreadCount,
     };
   }, [
     boot,
@@ -281,6 +289,7 @@ export const IntercomProvider: React.FC<
     showArticle,
     startSurvey,
     showSpace,
+    unreadCount,
   ]);
 
   return (

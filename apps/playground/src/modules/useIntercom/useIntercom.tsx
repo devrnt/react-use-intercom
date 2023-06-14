@@ -39,6 +39,7 @@ const RawUseIntercomPage = () => {
     showArticle,
     startSurvey,
     showSpace,
+    unreadCount,
   } = useIntercom();
   const handleBoot = React.useCallback(() => boot(), [boot]);
 
@@ -289,13 +290,19 @@ const RawUseIntercomPage = () => {
         </p>
         <Button label="Open space" onClick={handleShowSpace} />
       </Item>
+      <Item>
+        <p>Unread messages count: {unreadCount}</p>
+      </Item>
     </Grid>
   );
 };
 
 const UseIntercomPage = () => {
   return (
-    <IntercomProvider appId="jcabc7e3">
+    <IntercomProvider
+      appId="jcabc7e3"
+      onUnreadCountChange={(count) => alert(`another one ${count}`)}
+    >
       <RawUseIntercomPage />
     </IntercomProvider>
   );

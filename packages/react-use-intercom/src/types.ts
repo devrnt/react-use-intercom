@@ -418,6 +418,11 @@ export type IntercomContextValues = {
    * @example showSpace('tasks')
    */
   showSpace: (spaceName: IntercomSpace) => void;
+  /**
+   *
+   * @remark The unread messages count. Updated whenever the current number of unread messages changes.
+   */
+  unreadCount: number;
 };
 
 export type IntercomProviderProps = {
