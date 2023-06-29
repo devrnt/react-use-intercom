@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react';
 import * as React from 'react';
 
 import { IntercomProvider, useIntercom } from '../src';
@@ -8,10 +8,7 @@ const intercomAppId = config.intercomAppId;
 
 describe('useIntercom', () => {
   test('should be available when wrapped in context', () => {
-    const { result } = renderHook<
-      { children: React.ReactNode },
-      ReturnType<typeof useIntercom>
-    >(() => useIntercom(), {
+    const { result } = renderHook(() => useIntercom(), {
       wrapper: ({ children }) => (
         <IntercomProvider appId={intercomAppId}>{children}</IntercomProvider>
       ),
@@ -25,10 +22,7 @@ describe('useIntercom', () => {
   });
 
   test('should set `window.intercomSettings.appId` on boot', () => {
-    const { result } = renderHook<
-      { children: React.ReactNode },
-      ReturnType<typeof useIntercom>
-    >(() => useIntercom(), {
+    const { result } = renderHook(() => useIntercom(), {
       wrapper: ({ children }) => (
         <IntercomProvider appId={intercomAppId}>{children}</IntercomProvider>
       ),
@@ -46,10 +40,7 @@ describe('useIntercom', () => {
   test.skip('should await a certain amount on delayed initialization', async () => {
     const onShow = jest.fn();
 
-    const { result } = renderHook<
-      { children: React.ReactNode },
-      ReturnType<typeof useIntercom>
-    >(() => useIntercom(), {
+    const { result } = renderHook(() => useIntercom(), {
       wrapper: ({ children }) => (
         <IntercomProvider
           appId={intercomAppId}
@@ -71,10 +62,7 @@ describe('useIntercom', () => {
   });
 
   it('should remove `window.intercomSettings` on shutdown', () => {
-    const { result } = renderHook<
-      { children: React.ReactNode },
-      ReturnType<typeof useIntercom>
-    >(() => useIntercom(), {
+    const { result } = renderHook(() => useIntercom(), {
       wrapper: ({ children }) => (
         <IntercomProvider appId={intercomAppId}>{children}</IntercomProvider>
       ),
