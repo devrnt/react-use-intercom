@@ -1,5 +1,6 @@
 {
   "private": true,
+  "packageManager": "pnpm@8.6.5",
   "engines": {
 		"pnpm": "^8.0.0"
 	},
