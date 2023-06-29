@@ -1,6 +1,9 @@
 {
   "private": true,
-  "packageManager": "pnpm@7.26.3",
+  "packageManager": "pnpm@8.6.5",
+  "engines": {
+		"pnpm": "^8.0.0"
+	},
   "scripts": {
     "dev": "turbo run dev --parallel --filter=playground --filter=react-use-intercom",
     "dev:examples": "turbo run dev --parallel --filter=*-example --filter=react-use-intercom",

@@ -1,5 +1,4 @@
-import { act, render } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
+import { act, render, renderHook } from '@testing-library/react';
 import * as React from 'react';
 
 import { IntercomProvider, useIntercom } from '../src';
@@ -31,16 +30,13 @@ describe('IntercomProvider', () => {
   test('should not call `onShow` callback when not calling `show`', () => {
     const mockOnShow = jest.fn();
 
-    renderHook<{ children: React.ReactNode }, ReturnType<typeof useIntercom>>(
-      () => useIntercom(),
-      {
-        wrapper: ({ children }) => (
-          <IntercomProvider appId={intercomAppId} onShow={mockOnShow} autoBoot>
-            {children}
-          </IntercomProvider>
-        ),
-      },
-    );
+    renderHook(() => useIntercom(), {
+      wrapper: ({ children }) => (
+        <IntercomProvider appId={intercomAppId} onShow={mockOnShow} autoBoot>
+          {children}
+        </IntercomProvider>
+      ),
+    });
 
     expect(mockOnShow).not.toBeCalled();
   });
@@ -48,10 +44,7 @@ describe('IntercomProvider', () => {
   test('should set `window.intercomSettings.apiBase` on autoBoot', () => {
     const apiBase = `https://${intercomAppId}.intercom-messenger.com`;
 
-    const { result } = renderHook<
-      { children: React.ReactNode },
-      ReturnType<typeof useIntercom>
-    >(() => useIntercom(), {
+    const { result } = renderHook(() => useIntercom(), {
       wrapper: ({ children }) => (
         <IntercomProvider appId={intercomAppId} apiBase={apiBase}>
           {children}
@@ -74,22 +67,19 @@ describe('IntercomProvider', () => {
   test('should pass props when `autoBootProps` is passed', () => {
     const phone = '123456';
 
-    renderHook<{ children: React.ReactNode }, ReturnType<typeof useIntercom>>(
-      () => useIntercom(),
-      {
-        wrapper: ({ children }) => (
-          <IntercomProvider
-            appId={intercomAppId}
-            autoBootProps={{
-              phone,
-            }}
-            autoBoot
-          >
-            {children}
-          </IntercomProvider>
-        ),
-      },
-    );
+    renderHook(() => useIntercom(), {
+      wrapper: ({ children }) => (
+        <IntercomProvider
+          appId={intercomAppId}
+          autoBootProps={{
+            phone,
+          }}
+          autoBoot
+        >
+          {children}
+        </IntercomProvider>
+      ),
+    });
 
     expect(window.intercomSettings).toEqual({
       app_id: intercomAppId,
@@ -100,10 +90,7 @@ describe('IntercomProvider', () => {
   test('should not pass props when `autoBootProps` is passed and `autoBoot` is `false`', () => {
     const phone = '123456';
 
-    const { result } = renderHook<
-      { children: React.ReactNode },
-      ReturnType<typeof useIntercom>
-    >(() => useIntercom(), {
+    const { result } = renderHook(() => useIntercom(), {
       wrapper: ({ children }) => (
         <IntercomProvider
           appId={intercomAppId}
