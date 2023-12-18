@@ -244,6 +244,7 @@ export type IntercomMethod =
   | 'trackEvent'
   | 'getVisitorId'
   | 'startTour'
+  | 'startChecklist'
   | 'showArticle'
   | 'showSpace';
 
@@ -365,9 +366,22 @@ export type IntercomContextValues = {
    * the “Use tour everywhere” section must be turned on.
    * If you're calling this API using an invalid tour id, nothing will happen.
    *
-   * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#section-intercomstarttour-tourid}
+   * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#intercomstarttour-tourid}
    */
   startTour: (tourId: number) => void;
+   /**
+   * Triggers a checklist based on an action a user or visitor takes in your site or application,
+   * You need to call this method with the id of the checklist you wish to show.
+   *
+   * The id of the checklist can be found in the “Aditional ways to share your checklist” section
+   * of the tour editor.
+   *
+   * @remarks Please note that checklists shown via this API must be published.
+   * If you're calling this API using an invalid tour id, nothing will happen.
+   *
+   * @see {@link https://developers.intercom.com/installing-intercom/web/methods/#intercomstartchecklist-checklistid}
+   */
+   startChecklist: (checklistId: number) => void;
   /**
    * Submits an event, this will associate the event with the currently
    * tracked visitor, lead or user and send it to Intercom
