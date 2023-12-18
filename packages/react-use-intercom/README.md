@@ -144,6 +144,7 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 | showNewMessage  | (content?: string) => void                 | shows the Messenger as if a new conversation was just created. If `content` is passed, it will fill in the message composer         |
 | getVisitorId    | () => string                               | gets the visitor id                                                                                                                 |
 | startTour       | (tourId: number) => void                   | starts a tour based on the `tourId`                                                                                                 |
+| startChecklist       | (checklistId: number) => void                   | starts a checklist based on the `checklistId`                                                                                                 |
 | trackEvent      | (event: string, metaData?: object) => void | submits an `event` with optional `metaData`      
 | showArticle      | (articleId: string) => void | opens the Messenger with the specified article by `articleId`
 | startSurvey      | (surveyId: number) => void | Trigger a survey in the Messenger by `surveyId`
@@ -175,6 +176,7 @@ const HomePage = () => {
     showNewMessage,
     getVisitorId,
     startTour,
+    startChecklist,
     trackEvent,
     showArticle,
     startSurvey,
@@ -187,6 +189,7 @@ const HomePage = () => {
   const handleNewMessagesWithContent = () => showNewMessage('content');
   const handleGetVisitorId = () => console.log(getVisitorId());
   const handleStartTour = () => startTour(123);
+  const handleStartChecklist = () => startChecklist(456);
   const handleTrackEvent = () => trackEvent('invited-friend');
   const handleTrackEventWithMetaData = () =>
     trackEvent('invited-frind', {
@@ -213,6 +216,7 @@ const HomePage = () => {
       </button>
       <button onClick={handleGetVisitorId}>Get visitor id</button>
       <button onClick={handleStartTour}>Start tour</button>
+      <button onClick={handleStartChecklist}>Start checklist</button>
       <button onClick={handleTrackEvent}>Track event</button>
       <button onClick={handleTrackEventWithMetaData}>
         Track event with metadata

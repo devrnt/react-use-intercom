@@ -209,6 +209,15 @@ export const IntercomProvider: React.FC<
     [ensureIntercom],
   );
 
+  const startChecklist = React.useCallback(
+    (checklistId: number) => {
+      ensureIntercom('startChecklist', () => {
+        IntercomAPI('startChecklist', checklistId);
+      });
+    },
+    [ensureIntercom],
+  );
+
   const trackEvent = React.useCallback(
     (event: string, metaData?: object) => {
       ensureIntercom('trackEvent', () => {
@@ -268,6 +277,7 @@ export const IntercomProvider: React.FC<
       showNewMessage,
       getVisitorId,
       startTour,
+      startChecklist,
       trackEvent,
       showArticle,
       startSurvey,
@@ -286,6 +296,7 @@ export const IntercomProvider: React.FC<
     showNewMessage,
     getVisitorId,
     startTour,
+    startChecklist,
     trackEvent,
     showArticle,
     startSurvey,
