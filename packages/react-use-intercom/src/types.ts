@@ -429,7 +429,7 @@ export type IntercomContextValues = {
    *
    * @param newsId The id of the news
    *
-   * @example showNews('tasks')
+   * @example showNews(123)
    */
   showNews: (newsId: number) => void;
 };
