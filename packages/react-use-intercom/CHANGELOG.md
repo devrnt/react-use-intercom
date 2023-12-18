@@ -1,5 +1,11 @@
 # react-use-intercom
 
+## 5.2.0
+
+### Minor Changes
+
+- 8eebbed: Add "showNews" method
+
 ## 5.1.4
 
 ### Patch Changes
