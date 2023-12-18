@@ -1,5 +1,11 @@
 # react-use-intercom
 
+## 5.3.0
+
+### Minor Changes
+
+- 4aac5a9: Expose startChecklist method in useIntercom hook
+
 ## 5.2.0
 
 ### Minor Changes
