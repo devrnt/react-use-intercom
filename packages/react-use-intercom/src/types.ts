@@ -369,7 +369,7 @@ export type IntercomContextValues = {
    * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#intercomstarttour-tourid}
    */
   startTour: (tourId: number) => void;
-   /**
+  /**
    * Triggers a checklist based on an action a user or visitor takes in your site or application,
    * You need to call this method with the id of the checklist you wish to show.
    *
@@ -381,7 +381,7 @@ export type IntercomContextValues = {
    *
    * @see {@link https://developers.intercom.com/installing-intercom/web/methods/#intercomstartchecklist-checklistid}
    */
-   startChecklist: (checklistId: number) => void;
+  startChecklist: (checklistId: number) => void;
   /**
    * Submits an event, this will associate the event with the currently
    * tracked visitor, lead or user and send it to Intercom
