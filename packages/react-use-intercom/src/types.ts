@@ -366,7 +366,7 @@ export type IntercomContextValues = {
    * the “Use tour everywhere” section must be turned on.
    * If you're calling this API using an invalid tour id, nothing will happen.
    *
-   * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#intercomstarttour-tourid}
+   * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#section-intercomstarttour-tourid}
    */
   startTour: (tourId: number) => void;
   /**
