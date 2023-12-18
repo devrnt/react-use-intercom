@@ -366,7 +366,7 @@ export type IntercomContextValues = {
    * the “Use tour everywhere” section must be turned on.
    * If you're calling this API using an invalid tour id, nothing will happen.
    *
-   * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#section-intercomstarttour-tourid}
+   * @see {@link https://developers.intercom.com/installing-intercom/docs/intercom-javascript#intercomstarttour-tourid}
    */
   startTour: (tourId: number) => void;
   /**
@@ -377,7 +377,7 @@ export type IntercomContextValues = {
    * of the tour editor.
    *
    * @remarks Please note that checklists shown via this API must be published.
-   * If you're calling this API using an invalid checklist id, nothing will happen.
+   * If you're calling this API using an invalid tour id, nothing will happen.
    *
    * @see {@link https://developers.intercom.com/installing-intercom/web/methods/#intercomstartchecklist-checklistid}
    */
