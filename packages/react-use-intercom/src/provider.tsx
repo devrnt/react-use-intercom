@@ -83,23 +83,36 @@ export const IntercomProvider: React.FC<
     if (onShow) onShow();
   }, [onShow, setIsOpen]);
 
-  if (!isSSR && shouldInitialize && !isInitialized.current) {
-    initialize(appId, initializeDelay);
+  React.useEffect(() => {
+    if (!isSSR && shouldInitialize && !isInitialized.current) {
+      initialize(appId, initializeDelay);
 
-    // attach listeners
-    IntercomAPI('onHide', onHideWrapper);
-    IntercomAPI('onShow', onShowWrapper);
-    IntercomAPI('onUserEmailSupplied', onUserEmailSupplied);
+      // attach listeners
+      IntercomAPI('onHide', onHideWrapper);
+      IntercomAPI('onShow', onShowWrapper);
+      IntercomAPI('onUserEmailSupplied', onUserEmailSupplied);
 
-    if (onUnreadCountChange)
-      IntercomAPI('onUnreadCountChange', onUnreadCountChange);
+      if (onUnreadCountChange)
+        IntercomAPI('onUnreadCountChange', onUnreadCountChange);
 
-    if (autoBoot) {
-      boot(autoBootProps);
+      if (autoBoot) {
+        boot(autoBootProps);
+      }
+
+      isInitialized.current = true;
     }
-
-    isInitialized.current = true;
-  }
+  }, [
+    appId,
+    shouldInitialize,
+    autoBoot,
+    autoBootProps,
+    boot,
+    initializeDelay,
+    onHideWrapper,
+    onShowWrapper,
+    onUserEmailSupplied,
+    onUnreadCountChange,
+  ]);
 
   const ensureIntercom = React.useCallback(
     (functionName: string, callback: (() => void) | (() => string)) => {
