@@ -150,6 +150,8 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 | startSurvey      | (surveyId: number) => void | Trigger a survey in the Messenger by `surveyId`
 | showSpace     | (spaceName: IntercomSpace) => void | Opens the Messenger with the specified space
 | showNews | (newsId: number) => void | Opens the Messenger with the specified news by `newsId`
+| showTicket | (ticketId: number) => void | Opens the Messenger with the specified ticket by `ticketId`
+| showConversation | (conversationId: number) => void | Opens the Messenger with the specified conversation by `conversationId`
 
 
 #### Example
@@ -182,7 +184,9 @@ const HomePage = () => {
     trackEvent,
     showArticle,
     startSurvey,
-    showSpace
+    showSpace,
+    showTicket,
+    showConversation
   } = useIntercom();
 
   const bootWithProps = () => boot({ name: 'Russo' });
@@ -200,6 +204,8 @@ const HomePage = () => {
   const handleShowArticle = () => showArticle(123456);
   const handleStartSurvey = () => startSurvey(123456);
   const handleShowSpace = () => showSpace('tasks');
+  const handleShowTicket = () => showTicket(123);
+  const handleShowConversation = () => showConversation(123);
 
   return (
     <>
@@ -226,6 +232,8 @@ const HomePage = () => {
       <button onClick={handleShowArticle}>Open article in Messenger</button>
       <button onClick={handleStartSurvey}>Start survey in Messenger</button>
       <button onClick={handleShowSpace}>Open space in Messenger</button>
+      <button onClick={handleShowTicket}>Open ticket in Messenger</button>
+      <button onClick={handleShowConversation}>Open conversation in Messenger</button>
     </>
   );
 };

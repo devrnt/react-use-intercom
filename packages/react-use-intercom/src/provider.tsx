@@ -264,6 +264,22 @@ export const IntercomProvider: React.FC<
     [ensureIntercom],
   );
 
+  const showTicket = React.useCallback(
+    (ticketId: number) =>
+      ensureIntercom('showTicket', () => {
+        IntercomAPI('showTicket', ticketId);
+      }),
+    [ensureIntercom],
+  );
+
+  const showConversation = React.useCallback(
+    (conversationId: number) =>
+      ensureIntercom('showConversation', () => {
+        IntercomAPI('showConversation', conversationId);
+      }),
+    [ensureIntercom],
+  );
+
   const providerValue = React.useMemo<IntercomContextValues>(() => {
     return {
       boot,
@@ -283,6 +299,8 @@ export const IntercomProvider: React.FC<
       startSurvey,
       showSpace,
       showNews,
+      showTicket,
+      showConversation
     };
   }, [
     boot,
@@ -302,6 +320,8 @@ export const IntercomProvider: React.FC<
     startSurvey,
     showSpace,
     showNews,
+    showTicket,
+    showConversation
   ]);
 
   return (
