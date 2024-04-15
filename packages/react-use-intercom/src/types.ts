@@ -249,7 +249,7 @@ export type IntercomMethod =
   | 'showSpace'
   | 'showNews'
   | 'showTicket'
-  | 'showConversation'
+  | 'showConversation';
 
 export type RawIntercomProps = RawMessengerAttributes & RawDataAttributes;
 
@@ -449,17 +449,17 @@ export type IntercomContextValues = {
    */
   showNews: (newsId: number) => void;
   /**
-   * If you would like to trigger a ticket in the Messenger, you can use the showTicket method. 
-   * 
+   * If you would like to trigger a ticket in the Messenger, you can use the showTicket method.
+   *
    * The ticket will be shown within the Messenger, and clicking the Messenger back button will return to the previous context.
-   * 
+   *
    * If the Messenger is closed when the method is called, it will be opened first and then the ticket will be shown.
    * @see {@link https://developers.intercom.com/installing-intercom/web/methods/#intercomshowticket-ticketid}
    */
   showTicket: (ticketId: number) => void;
   /**
    * You can show a conversation programatically in the Messenger by calling showConversation method
-   * 
+   *
    * @see {@link https://developers.intercom.com/installing-intercom/web/methods/#intercomshowconversation-conversationid}
    */
   showConversation: (conversationId: number) => void;

@@ -300,7 +300,7 @@ export const IntercomProvider: React.FC<
       showSpace,
       showNews,
       showTicket,
-      showConversation
+      showConversation,
     };
   }, [
     boot,
@@ -321,7 +321,7 @@ export const IntercomProvider: React.FC<
     showSpace,
     showNews,
     showTicket,
-    showConversation
+    showConversation,
   ]);
 
   return (
