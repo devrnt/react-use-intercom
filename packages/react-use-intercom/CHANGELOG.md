@@ -1,5 +1,11 @@
 # react-use-intercom
 
+## 5.4.0
+
+### Minor Changes
+
+- 8d5d130: Exposes showTicket and showConversation methods in useIntercom hook
+
 ## 5.3.0
 
 ### Minor Changes
