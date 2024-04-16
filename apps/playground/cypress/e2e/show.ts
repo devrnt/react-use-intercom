@@ -27,7 +27,7 @@ describe('show', () => {
       .then(($iframe) => {
         const $body = $iframe.contents().find('body');
 
-        cy.wrap($body).contains('Send us a message');
+        cy.wrap($body).contains('Ask a question');
       });
   });
 });
@@ -60,7 +60,7 @@ describe('showNewMessage', () => {
       .then(($iframe) => {
         const $body = $iframe.contents().find('body');
 
-        cy.wrap($body).contains('Ask us anything, or share your feedback.');
+        cy.wrap($body).contains('Ask for the team if needed');
         cy.wrap($body).find('button[data-testid="go-back"]').should('exist');
       });
   });
