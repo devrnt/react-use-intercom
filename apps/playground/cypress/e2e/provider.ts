@@ -86,7 +86,7 @@ describe('provider with events', () => {
     cy.get('iframe[name="intercom-messenger-frame"]').then(($iframe) => {
       const $body = $iframe.contents().find('body');
 
-      cy.wrap($body).contains('Send us a message').click();
+      cy.wrap($body).contains('Ask a question').click();
 
       cy.wait('@intercomHome');
       cy.wait('@intercomConversations');
