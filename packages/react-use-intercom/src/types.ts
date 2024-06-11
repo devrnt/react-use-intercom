@@ -476,12 +476,27 @@ export type IntercomProviderProps = {
   autoBoot?: boolean;
   /**
    * The optional `crossOrigin` attribute value to use for the `<script>` tag that loads the messenger.
+   *
+   * Use `crossOrigin: "anonymous"` to have errors thrown by the Messenger contain all information (file name, line, message, etc.).
+   * This is useful for error logging and following up with Intercom's own tech support.
+   *
+   * Note that this doesn't work for errors thrown because the Messenger script file has failed to load.
    */
   crossOrigin?: 'anonymous' | 'use-credentials' | '' | undefined;
   /**
    * When we hide the messenger, you can hook into the event. This requires a function argument.
    */
   onHide?: () => void;
+  /**
+   * Called when the Messenger script file has been loaded successfully.
+   */
+  onLoad?: () => void;
+  /**
+   * Called when the Messenger script file has failed to load.
+   *
+   * You can use this to let the customer know the support chat is unavailable and provide an alternative communication method.
+   */
+  onLoadFailed?: () => void;
   /**
    * When we show the messenger, you can hook into the event. This requires a function argument.
    */

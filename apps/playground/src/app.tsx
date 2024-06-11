@@ -11,6 +11,7 @@ import {
   UseIntercomTourPage,
   UseIntercomWithCrossOrigin,
   UseIntercomWithDelay,
+  UseIntercomWithLoadCallbacks,
 } from './modules';
 import { Page, Style } from './modules/common';
 
@@ -58,6 +59,10 @@ const App = () => {
             component={UseIntercomWithCrossOrigin}
           />
           <Route
+            path="/useIntercomWithLoadCallbacks"
+            component={UseIntercomWithLoadCallbacks}
+          />
+          <Route
             path="/useIntercomWithTimeout"
             component={UseIntercomWithDelay}
           />
@@ -80,6 +85,9 @@ const App = () => {
               </Link>
               <Link to="/useIntercomWithTimeout">
                 <code>useIntercom with delayed boot</code>
+              </Link>
+              <Link to="/useIntercomWithLoadCallbacks">
+                <code>useIntercom with load callbacks</code>
               </Link>
             </Navigation>
           </Route>
