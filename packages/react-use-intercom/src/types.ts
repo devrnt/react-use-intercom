@@ -475,6 +475,10 @@ export type IntercomProviderProps = {
    * */
   autoBoot?: boolean;
   /**
+   * The optional `crossOrigin` attribute value to use for the `<script>` tag that loads the messenger.
+   */
+  crossOrigin?: 'anonymous' | 'use-credentials' | '' | undefined;
+  /**
    * When we hide the messenger, you can hook into the event. This requires a function argument.
    */
   onHide?: () => void;
