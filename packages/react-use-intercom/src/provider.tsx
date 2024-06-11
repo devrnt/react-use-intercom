@@ -21,7 +21,10 @@ export const IntercomProvider: React.FC<
   autoBoot = false,
   autoBootProps,
   children,
+  crossOrigin,
   onHide,
+  onLoad,
+  onLoadFailed,
   onShow,
   onUnreadCountChange,
   onUserEmailSupplied,
@@ -84,7 +87,7 @@ export const IntercomProvider: React.FC<
   }, [onShow, setIsOpen]);
 
   if (!isSSR && shouldInitialize && !isInitialized.current) {
-    initialize(appId, initializeDelay);
+    initialize(appId, initializeDelay, crossOrigin, onLoad, onLoadFailed);
 
     // attach listeners
     IntercomAPI('onHide', onHideWrapper);

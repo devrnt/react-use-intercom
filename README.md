@@ -91,6 +91,9 @@ Place the `IntercomProvider` as high as possible in your application. This will 
 | apiBase    | string | If you need to route your Messenger requests through a different endpoint than the default. Generally speaking, this is not needed.<br/> Format: `https://${INTERCOM_APP_ID}.intercom-messenger.com` (See: [https://github.com/devrnt/react-use-intercom/pull/96](https://github.com/devrnt/react-use-intercom/pull/96))         | false    |         |
 | initializeDelay | number | Indicates if the intercom initialization should be delayed, delay is in ms, defaults to 0. See https://github.com/devrnt/react-use-intercom/pull/236 | false    |         |
 | autoBootProps | IntercomProps | Pass properties to `boot` method when `autoBoot` is `true` | false    |         |
+| crossOrigin         | string           | `crossOrigin` attribute value to pass to `<script>` tag that loads the messenger        | false    |         |
+| onLoad              | () => void       | triggered when the Messenger script has been loaded successfully                        | false    |         |
+| onLoadFailed        | () => void       | triggered when the Messenger script has failed to load                                  | false    |         |
 
 #### Example
 ```ts
@@ -295,3 +298,9 @@ These props are `JavaScript` 'friendly', so [camelCase](https://en.wikipedia.org
 Since [v1.2.0](https://github.com/devrnt/react-use-intercom/releases/tag/v1.2.0) it's possible to delay this initialisation by passing `initializeDelay` in `<IntercomProvider />` (it's in milliseconds). However most of the users won't need to mess with this.
 
 For reference see https://github.com/devrnt/react-use-intercom/pull/236 and https://forum.intercom.com/s/question/0D52G00004WxWLs/can-i-delay-loading-intercom-on-my-site-to-reduce-the-js-load
+
+### Detect a broken Messenger
+
+There can be various reasons why the Messenger script has failed to load, e.g. network issues, Intercom downtime, firewall issues, or browser extensions like tracking blockers.
+
+By using the `onLoadFailed` callback it's possible to detect when that happens and provide the user with alternative means of customer support.
