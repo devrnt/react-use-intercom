@@ -1,5 +1,11 @@
 # react-use-intercom
 
+## 5.4.1
+
+### Patch Changes
+
+- a6d7757: Re-attach callbacks in boot method
+
 ## 5.4.0
 
 ### Minor Changes
