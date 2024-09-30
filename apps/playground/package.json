@@ -11,7 +11,7 @@
     "preview": "vite preview --host"
   },
   "dependencies": {
-    "react": "^18.2.0",
+    "react": "^18.3.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.2.0",
     "react-use-intercom": "workspace:*",
@@ -19,7 +19,7 @@
     "styled-normalize": "^8.0.7"
   },
   "devDependencies": {
-    "@types/react": "^18.0.27",
+    "@types/react": "^18.3.10",
     "@types/react-dom": "^18.0.10",
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.2",
