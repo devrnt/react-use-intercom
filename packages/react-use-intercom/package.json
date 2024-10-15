@@ -68,7 +68,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^7.0.3",
+    "@size-limit/preset-small-lib": "^11.1.6",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^18.11.19",
