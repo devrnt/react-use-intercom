@@ -514,5 +514,9 @@ export type IntercomProviderProps = {
   /**
    * Pass properties to `boot` method when `autoBoot` is `true`
    */
+  isPartyTown?: boolean;
+  /**
+   * Pass properties to `boot` method when `autoBoot` is `true`
+   */
   autoBootProps?: IntercomProps;
 };
