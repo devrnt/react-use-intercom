@@ -512,6 +512,10 @@ export type IntercomProviderProps = {
    * */
   initializeDelay?: number;
   /**
+   * If intercom should be initialized using party town
+   */
+  isPartyTown?: boolean;
+  /**
    * Pass properties to `boot` method when `autoBoot` is `true`
    */
   autoBootProps?: IntercomProps;

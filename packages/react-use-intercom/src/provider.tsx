@@ -28,6 +28,7 @@ export const IntercomProvider: React.FC<
   shouldInitialize = !isSSR,
   apiBase,
   initializeDelay,
+  isPartyTown = false,
   ...rest
 }) => {
   const isBooted = React.useRef(false);
@@ -102,7 +103,7 @@ export const IntercomProvider: React.FC<
 
   React.useEffect(() => {
     if (!isSSR && shouldInitialize && !isInitialized.current) {
-      initialize(appId, initializeDelay);
+      initialize({ appId, timeout: initializeDelay, isPartyTown });
 
       if (autoBoot) {
         boot(autoBootProps);
