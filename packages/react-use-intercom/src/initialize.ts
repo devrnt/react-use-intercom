@@ -1,10 +1,10 @@
+// @ts-nocheck
+
 interface InitializeProps {
   appId: string;
   timeout?: number;
   isPartyTown?: boolean;
 }
-
-// @ts-nocheck
 /**
  * Snippet to initialize the Intercom instance
  *
@@ -14,6 +14,7 @@ interface InitializeProps {
  *
  * @see {@link https://developers.intercom.com/installing-intercom/docs/basic-javascript}
  */
+
 const initialize = ({
   appId,
   timeout = 0,
