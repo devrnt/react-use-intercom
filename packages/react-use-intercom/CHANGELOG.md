@@ -1,5 +1,11 @@
 # react-use-intercom
 
+## 5.4.2
+
+### Patch Changes
+
+- d5c7433: Add support for Content-Security-Policy nonce
+
 ## 5.4.1
 
 ### Patch Changes
