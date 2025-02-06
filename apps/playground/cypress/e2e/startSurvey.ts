@@ -32,12 +32,10 @@ describe('startSurvey', () => {
 
     cy.wait('@intercomStartSurvey');
 
-    cy.get('iframe[name="intercom-modal-frame"]').then(($iframe) => {
+    cy.get('iframe[name="intercom-banner-survey-frame"]').then(($iframe) => {
       const $body = $iframe.contents().find('body');
 
-      cy.wrap($body).contains(
-        'Want to see your feature requests on our roadmap?',
-      );
+      cy.wrap($body).contains('What is the highest mountain in the world');
     });
   });
 });

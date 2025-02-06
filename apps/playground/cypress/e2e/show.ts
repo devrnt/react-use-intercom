@@ -27,7 +27,7 @@ describe('show', () => {
       .then(($iframe) => {
         const $body = $iframe.contents().find('body');
 
-        cy.wrap($body).contains('Ask a question');
+        cy.wrap($body).contains('Send us a message');
       });
   });
 });
@@ -60,7 +60,7 @@ describe('showNewMessage', () => {
       .then(($iframe) => {
         const $body = $iframe.contents().find('body');
 
-        cy.wrap($body).contains('Ask for the team if needed');
+        cy.wrap($body).contains('Ask us anything, or share your feedback.');
         cy.wrap($body).find('button[data-testid="go-back"]').should('exist');
       });
   });
@@ -79,7 +79,7 @@ describe('showNewMessage', () => {
 
         cy.wrap($body).find('button[data-testid="go-back"]').should('exist');
         cy.wrap($body)
-          .find('textarea[name="message"]')
+          .find('textarea')
           .should('exist')
           .should('have.value', 'pre-definded-content');
       });
