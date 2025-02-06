@@ -111,7 +111,15 @@ export const IntercomProvider: React.FC<
 
       isInitialized.current = true;
     }
-  }, [appId, autoBoot, autoBootProps, boot, initializeDelay, shouldInitialize, cspNonce]);
+  }, [
+    appId,
+    autoBoot,
+    autoBootProps,
+    boot,
+    initializeDelay,
+    shouldInitialize,
+    cspNonce
+  ]);
 
   const ensureIntercom = React.useCallback(
     (functionName: string, callback: (() => void) | (() => string)) => {
