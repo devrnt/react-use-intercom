@@ -518,5 +518,5 @@ export type IntercomProviderProps = {
   /**
    * Content-Security-Policy nonce to use for the Intercom <script> tag during initializing
    */
-  cspNonce?: string
+  cspNonce?: string;
 };

@@ -118,7 +118,7 @@ export const IntercomProvider: React.FC<
     boot,
     initializeDelay,
     shouldInitialize,
-    cspNonce
+    cspNonce,
   ]);
 
   const ensureIntercom = React.useCallback(
