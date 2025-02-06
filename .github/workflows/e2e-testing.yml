@@ -51,7 +51,7 @@ jobs:
       # Alternative: create and commit an empty cypress/screenshots folder
       # to always have something to upload
       - name: Upload Cypress artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-screenshots
