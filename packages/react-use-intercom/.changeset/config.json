@@ -1,0 +1,14 @@
+{
+    "$schema": "https://unpkg.com/@changesets/config@2.0.0/schema.json",
+    "changelog": "@changesets/cli/changelog",
+    "commit": false,
+    "ignore": [
+        "playground",
+        "gatsby-example",
+        "nextjs-example"
+    ],
+    "access": "public",
+    "updateInternalDependencies": "patch",
+    "baseBranch": "main",
+    "bumpVersionsWithWorkspaceProtocolOnly": true
+}
