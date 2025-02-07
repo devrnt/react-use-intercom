@@ -83,8 +83,8 @@
     "size-limit": "^7.0.3",
     "source-map": "0.6.1",
     "ts-jest": "^29.0.5",
-    "tslib": "^2.0.3",
-    "tsup": "^6.6.3",
+    "tslib": "^2.8.1",
+    "tsup": "^8.3.6",
     "typescript": "^5.7.3"
   }
 }
