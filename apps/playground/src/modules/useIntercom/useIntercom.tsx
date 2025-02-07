@@ -148,7 +148,7 @@ const RawUseIntercomPage = () => {
     showSpace('messages');
   }, [showSpace]);
 
-  const handleStartSurvey = () => startSurvey(29938254);
+  const handleStartSurvey = () => startSurvey(45288402);
 
   const handleShowNews = React.useCallback(() => {
     showNews(33910172);

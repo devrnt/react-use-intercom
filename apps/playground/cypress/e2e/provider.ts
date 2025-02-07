@@ -19,9 +19,6 @@ beforeEach(() => {
   cy.intercept('https://api-iam.intercom.io/messenger/web/conversations').as(
     'intercomConversations',
   );
-  cy.intercept(
-    'https://api-iam.intercom.io/messenger/web/self_serve_suggestions',
-  ).as('intercomSelfServeSuggestions');
 });
 
 describe('provider', () => {
@@ -86,13 +83,13 @@ describe('provider with events', () => {
     cy.get('iframe[name="intercom-messenger-frame"]').then(($iframe) => {
       const $body = $iframe.contents().find('body');
 
-      cy.wrap($body).contains('Ask a question').click();
+      cy.wrap($body).contains('Send us a message').click();
 
       cy.wait('@intercomHome');
       cy.wait('@intercomConversations');
 
       cy.wrap($body)
-        .find('textarea[name="message"]')
+        .find('textarea')
         .should('exist')
         .type('hello')
         .type('{enter}');
@@ -105,8 +102,6 @@ describe('provider with events', () => {
         .find('input[type="email"]')
         .type('hello@email.com')
         .type('{enter}');
-
-      cy.wait('@intercomSelfServeSuggestions');
 
       cy.get('[data-cy=onUserEmailSuppliedText]').should(
         'have.text',
