@@ -5,7 +5,7 @@
 1. Install pnpm:
 
 ```sh
-npm install -g pnpm@8
+npm install -g pnpm@10.2
 ```
 
 2. Fork and clone the repository
