@@ -15,7 +15,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.2.0",
     "react-use-intercom": "workspace:*",
-    "styled-components": "^5.3.6",
+    "styled-components": "^6.1.15",
     "styled-normalize": "^8.0.7"
   },
   "devDependencies": {
