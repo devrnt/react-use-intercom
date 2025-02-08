@@ -1,5 +1,12 @@
 # react-use-intercom
 
+## 5.4.2
+
+### Patch Changes
+
+- 0d8353d: Add support for zIndex launcher property
+- fec6233: Fix initializing intercom api
+
 ## 5.4.1
 
 ### Patch Changes
