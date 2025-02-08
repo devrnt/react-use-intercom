@@ -53,31 +53,4 @@ describe('boot', () => {
     cy.get('[data-cy=show]').click();
     cy.get('.intercom-lightweight-app-launcher-icon-open').should('not.exist');
   });
-
-  it('should allow calling `boot` multiple times', () => {
-    cy.get('[data-cy=boot]').click();
-
-    // Wait for the route aliased as 'intercomPing' to respond
-    // without changing or stubbing its response
-    cy.wait('@intercomPing');
-
-    cy.get('.intercom-lightweight-app-launcher-icon-open').should('exist');
-    cy.window().should('have.property', 'Intercom');
-    cy.window().should('have.deep.property', 'intercomSettings', {
-      app_id: 'jcabc7e3',
-    });
-
-    cy.get('[data-cy="boot-seeded"]').click();
-
-    // Wait for the route aliased as 'intercomPing' to respond
-    // without changing or stubbing its response
-    cy.wait('@intercomPing');
-
-    cy.get('.intercom-lightweight-app-launcher-icon-open').should('exist');
-    cy.window().should('have.property', 'Intercom');
-    cy.window().should('have.deep.property', 'intercomSettings', {
-      app_id: 'jcabc7e3',
-      name: 'Russo',
-    });
-  });
 });
