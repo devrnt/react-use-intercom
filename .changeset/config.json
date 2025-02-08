@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/@changesets/config@2.0.0/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "ignore": ["apps/playground/**", "apps/examples/**"],
+  "ignore": ["playground", "*-example"],
   "access": "public",
   "updateInternalDependencies": "patch",
   "baseBranch": "main",
