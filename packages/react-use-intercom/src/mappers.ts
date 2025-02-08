@@ -19,6 +19,7 @@ export const mapMessengerAttributesToRawMessengerAttributes = (
   alignment: attributes.alignment,
   vertical_padding: attributes.verticalPadding,
   horizontal_padding: attributes.horizontalPadding,
+  z_index: attributes.zIndex,
   hide_default_launcher: attributes.hideDefaultLauncher,
   session_duration: attributes.sessionDuration,
   action_color: attributes.actionColor,

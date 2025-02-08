@@ -3,6 +3,7 @@ export type RawMessengerAttributes = {
   alignment?: string;
   vertical_padding?: number;
   horizontal_padding?: number;
+  z_index?: number;
   hide_default_launcher?: boolean;
   session_duration?: number;
   action_color?: string;
@@ -34,6 +35,11 @@ export type MessengerAttributes = {
    * @see {@link https://docs.intercom.com/configure-intercom-for-your-product-or-site/customize-the-intercom-messenger/customize-the-intercom-messenger-technical}
    */
   horizontalPadding?: number;
+  /** Set the z-index of the messenger
+   * @remarks The z-index of the messenger. Default value: 2147483001
+   * @see {@link https://developers.intercom.com/installing-intercom/web/customization}
+   * */
+  zIndex?: number;
   /** Hide the default launcher icon
    *
    * @remarks Setting to false will forcefully show the launcher icon
