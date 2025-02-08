@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable prefer-rest-params */
+/* eslint-disable no-var */
 // @ts-nocheck
 /**
  * Snippet to initialize the Intercom instance
