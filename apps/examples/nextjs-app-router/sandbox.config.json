@@ -1,6 +1,0 @@
-{
-  "container": { 
-    "port": 3001,
-    "startScript": "dev"
-  }
-}

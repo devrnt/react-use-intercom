@@ -54,7 +54,7 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
       react-use-intercom:
-        specifier: workspace:*
+        specifier: '*'
         version: link:../../../packages/react-use-intercom
 
   apps/examples/nextjs-app-router:
@@ -69,7 +69,7 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
       react-use-intercom:
-        specifier: workspace:*
+        specifier: '*'
         version: link:../../../packages/react-use-intercom
 
   apps/examples/nextjs-page-router:
@@ -84,7 +84,7 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
       react-use-intercom:
-        specifier: workspace:*
+        specifier: '*'
         version: link:../../../packages/react-use-intercom
 
   apps/playground:
