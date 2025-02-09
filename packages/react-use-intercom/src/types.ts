@@ -521,4 +521,8 @@ export type IntercomProviderProps = {
    * Pass properties to `boot` method when `autoBoot` is `true`
    */
   autoBootProps?: IntercomProps;
+  /**
+   * Content-Security-Policy nonce to use for the Intercom <script> tag during initializing
+   */
+  cspNonce?: string;
 };

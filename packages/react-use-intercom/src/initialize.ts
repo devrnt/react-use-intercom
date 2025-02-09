@@ -7,10 +7,11 @@
  *
  * @param appId - Intercom app id
  * @param [timeout=0] - Amount of milliseconds that the initialization should be delayed, defaults to 0
+ * @param [cspNonce=undefined] - Content-Security-Policy nonce to use for the Intercom <script> tag during initializing
  *
  * @see {@link https://developers.intercom.com/installing-intercom/docs/basic-javascript}
  */
-const initialize = (appId: string, timeout = 0) => {
+const initialize = (appId: string, timeout: number = 0, cspNonce?: string) => {
   var w = window;
   var ic = w.Intercom;
   if (typeof ic === 'function') {
@@ -31,6 +32,7 @@ const initialize = (appId: string, timeout = 0) => {
         var s = d.createElement('script');
         s.type = 'text/javascript';
         s.async = true;
+        if (cspNonce) s.nonce = cspNonce;
         s.src = 'https://widget.intercom.io/widget/' + appId;
         var x = d.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);

@@ -28,6 +28,7 @@ export const IntercomProvider: React.FC<
   shouldInitialize = !isSSR,
   apiBase,
   initializeDelay,
+  cspNonce,
   ...rest
 }) => {
   const isBooted = React.useRef(false);
@@ -101,8 +102,8 @@ export const IntercomProvider: React.FC<
     ],
   );
 
-  if (!isSSR && shouldInitialize && !isInitialized.current) {
-    initialize(appId, initializeDelay);
+    if (!isSSR && shouldInitialize && !isInitialized.current) {
+      initialize(appId, initializeDelay, cspNonce);
 
     if (autoBoot) {
       boot(autoBootProps);
