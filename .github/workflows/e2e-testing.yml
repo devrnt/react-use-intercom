@@ -5,19 +5,17 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        node-version: [18]
+        node-version: [22.13.1]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8.6.5
+        uses: pnpm/action-setup@v3
 
       - name: Use Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
@@ -32,17 +30,13 @@ jobs:
         run: ./node_modules/cypress/bin/cypress install
 
       - name: Cypress run
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v6
         with:
           install: false
-          # build playground
-          # build: pnpm dev:playground
-          # start playground
           start: pnpm dev
           command: pnpm e2e
-          # FIXME: this breaks it
-          # wait-on: 'http://localhost:5173'
-          # project: /packages/react-use-intercom
+          wait-on: 'http://localhost:5173'
+          project: ./apps/playground
 
       # after the test run completes
       # store videos and any screenshots

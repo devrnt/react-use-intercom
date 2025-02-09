@@ -50,16 +50,6 @@ export const IntercomProvider: React.FC<
     );
   }
 
-  const onHideWrapper = React.useCallback(() => {
-    setIsOpen(false);
-    if (onHide) onHide();
-  }, [onHide, setIsOpen]);
-
-  const onShowWrapper = React.useCallback(() => {
-    setIsOpen(true);
-    if (onShow) onShow();
-  }, [onShow, setIsOpen]);
-
   const boot = React.useCallback(
     (props?: IntercomProps) => {
       if (!window.Intercom && !shouldInitialize) {
@@ -70,15 +60,26 @@ export const IntercomProvider: React.FC<
         return;
       }
 
-      // Attach the listeners
+      if (isBooted.current) {
+        return;
+      }
+
+      // Register the listeners
       // This is done in the booth method because after shutting down
-      // the callbacks should be re-registered
-      IntercomAPI('onHide', onHideWrapper);
-      IntercomAPI('onShow', onShowWrapper);
+      // the callbacks should be re-registered on a reboot
+      IntercomAPI('onHide', () => {
+        setIsOpen(false);
+        onHide?.();
+      });
+      IntercomAPI('onShow', () => {
+        setIsOpen(true);
+        onShow?.();
+      });
       IntercomAPI('onUserEmailSupplied', onUserEmailSupplied);
 
-      if (onUnreadCountChange)
+      if (onUnreadCountChange) {
         IntercomAPI('onUnreadCountChange', onUnreadCountChange);
+      }
 
       const metaData: RawIntercomBootProps = {
         app_id: appId,
@@ -93,33 +94,23 @@ export const IntercomProvider: React.FC<
     [
       apiBase,
       appId,
-      onHideWrapper,
-      onShowWrapper,
+      onHide,
+      onShow,
       onUnreadCountChange,
       onUserEmailSupplied,
       shouldInitialize,
     ],
   );
 
-  React.useEffect(() => {
     if (!isSSR && shouldInitialize && !isInitialized.current) {
       initialize(appId, initializeDelay, cspNonce);
 
-      if (autoBoot) {
-        boot(autoBootProps);
-      }
-
-      isInitialized.current = true;
+    if (autoBoot) {
+      boot(autoBootProps);
     }
-  }, [
-    appId,
-    autoBoot,
-    autoBootProps,
-    boot,
-    initializeDelay,
-    shouldInitialize,
-    cspNonce,
-  ]);
+
+    isInitialized.current = true;
+  }
 
   const ensureIntercom = React.useCallback(
     (functionName: string, callback: (() => void) | (() => string)) => {

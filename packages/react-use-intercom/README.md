@@ -3,7 +3,7 @@
 <p align="center">A React <a href="https://www.intercom.com" alt="Intercom">Intercom </a> integration powered by hooks.</p>
 
 <p align="center">
-<img alt="ci" src="https://github.com/devrnt/react-use-intercom/workflows/CI/badge.svg?branch=main">
+<img alt="ci" src="https://github.com/devrnt/react-use-intercom/actions/workflows/main.yml/badge.svg">
 <img alt="version" src="https://img.shields.io/npm/v/react-use-intercom.svg" />
 <img alt="downloads" src="https://badgen.net/npm/dw/react-use-intercom" />
 <img alt="minzipped size" src="https://badgen.net/bundlephobia/minzip/react-use-intercom">
@@ -293,3 +293,7 @@ These props are `JavaScript` 'friendly', so [camelCase](https://en.wikipedia.org
 Since [v1.2.0](https://github.com/devrnt/react-use-intercom/releases/tag/v1.2.0) it's possible to delay this initialisation by passing `initializeDelay` in `<IntercomProvider />` (it's in milliseconds). However most of the users won't need to mess with this.
 
 For reference see https://github.com/devrnt/react-use-intercom/pull/236 and https://forum.intercom.com/s/question/0D52G00004WxWLs/can-i-delay-loading-intercom-on-my-site-to-reduce-the-js-load
+
+## Contributing
+
+Contributions are welcome! Please read the [Contributing Guidelines](CONTRIBUTING.md) for details on how to contribute to the project.
