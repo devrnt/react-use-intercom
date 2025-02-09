@@ -102,8 +102,8 @@ export const IntercomProvider: React.FC<
     ],
   );
 
-    if (!isSSR && shouldInitialize && !isInitialized.current) {
-      initialize(appId, initializeDelay, cspNonce);
+  if (!isSSR && shouldInitialize && !isInitialized.current) {
+    initialize(appId, initializeDelay, cspNonce);
 
     if (autoBoot) {
       boot(autoBootProps);
