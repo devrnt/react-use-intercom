@@ -57,7 +57,7 @@ const HomePage = () => {
 ## Context
 This library is a React abstraction of [IntercomJS](https://developers.intercom.com/installing-intercom/docs/intercom-for-web). `react-use-intercom` tries to keep as close as a one-on-one abstraction of the "vanilla" Intercom functionality.
  
-Note that a lot of issues could be related to the vanilla IntercomJS. Please see https://forum.intercom.com/s/ before reporting an issue here.
+Note that many issues could be related to the vanilla IntercomJS library. Please see https://community.intercom.com/ before reporting an issue here.
 
 ## Links
 * [API](#api)
