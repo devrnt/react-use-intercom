@@ -26,6 +26,6 @@
     "@vitejs/plugin-react": "^3.0.1",
     "cypress": "^14.0.0",
     "typescript": "^5.7.3",
-    "vite": "^4.0.4"
+    "vite": "^4.5.11"
   }
 }
