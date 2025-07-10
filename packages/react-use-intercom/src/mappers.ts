@@ -74,6 +74,7 @@ export const mapDataAttributesToRawDataAttributes = (
   companies: attributes.companies?.map(
     mapDataAttributesCompanyToRawDataAttributesCompany,
   ),
+  intercom_user_jwt: attributes.intercomUserJwt,
   ...attributes.customAttributes,
 });
 
