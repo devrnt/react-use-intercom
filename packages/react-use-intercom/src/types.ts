@@ -135,6 +135,7 @@ export type RawDataAttributes = {
   user_hash?: string;
   company?: RawDataAttributesCompany;
   companies?: RawDataAttributesCompany[];
+  intercom_user_jwt?: string;
   customAttributes?: Record<string, any>;
 };
 
@@ -217,6 +218,12 @@ export type DataAttributes = {
    * @see {@link https://www.intercom.com/help/en/articles/186-group-your-users-by-company}
    */
   companies?: DataAttributesCompany[];
+  /**
+   * The JWT for authenticating users in the Messenger
+   *
+   * @see {@link https://www.intercom.com/help/en/articles/10589769-authenticating-users-in-the-messenger-with-json-web-tokens-jwts}
+   */
+  intercomUserJwt?: string;
   /**
    * You can do this anytime by adding additional key/value pairs to your intercomSettings code snippet
    * These should be raw snake_cased
