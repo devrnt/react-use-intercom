@@ -1,5 +1,15 @@
 # react-use-intercom
 
+## 5.5.0
+
+### Minor Changes
+
+- a79b8bf: Add intercom_user_jwt
+
+### Patch Changes
+
+- 4cc62a4: Repair nonces on <script> tags
+
 ## 5.4.3
 
 ### Patch Changes
