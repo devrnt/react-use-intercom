@@ -255,6 +255,23 @@ All the Intercom default attributes/props are camel cased (`appId` instead of `a
 })
  ```
 
+ #### Authentication tokens
+ For secure data operations, you can pass authentication tokens to Intercom using the `authTokens` property. This accepts an object with any string key-value pairs.
+
+ ```ts
+ const { boot } = useIntercom();
+
+ boot({
+  email: 'john.doe@example.com',
+  userId: '9876',
+  authTokens: {
+    security_token: 'abc...', // JWT token
+    api_token: 'xyz...',
+    // Any other tokens as key-value pairs
+  }
+})
+ ```
+
 ## Playground
 Small playground to showcase the functionalities of `react-use-intercom`. 
 
