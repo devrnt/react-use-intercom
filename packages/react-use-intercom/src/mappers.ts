@@ -75,6 +75,7 @@ export const mapDataAttributesToRawDataAttributes = (
     mapDataAttributesCompanyToRawDataAttributesCompany,
   ),
   intercom_user_jwt: attributes.intercomUserJwt,
+  auth_tokens: attributes.authTokens,
   ...attributes.customAttributes,
 });
 

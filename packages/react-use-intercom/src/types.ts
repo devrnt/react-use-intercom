@@ -117,6 +117,8 @@ export type DataAttributesAvatar = {
   imageUrl?: string;
 };
 
+export type AuthTokens = Record<string, string>;
+
 export type RawDataAttributes = {
   email?: string;
   user_id?: string;
@@ -137,6 +139,7 @@ export type RawDataAttributes = {
   companies?: RawDataAttributesCompany[];
   intercom_user_jwt?: string;
   customAttributes?: Record<string, any>;
+  auth_tokens?: AuthTokens;
 };
 
 export type DataAttributes = {
@@ -236,9 +239,23 @@ export type DataAttributes = {
    * ```
    *
    * @see {@link https://www.intercom.com/help/en/articles/179-send-custom-user-attributes-to-intercom}
-   * @remarks The key is the attribute name. The value is a placeholder for the data you’ll track
+   * @remarks The key is the attribute name. The value is a placeholder for the data you'll track
    */
   customAttributes?: Record<string, any>;
+  /**
+   * Authentication tokens for secure data operations
+   * Can contain any key-value pairs where both key and value are strings
+   *
+   * @example
+   * ```
+   * authTokens: {
+   *   security_token: 'abc...' // JWT
+   * }
+   * ```
+   *
+   * @see {@link https://www.intercom.com/help/en/articles/6615543-setting-up-data-connectors-authentication#h_5343ec2d2c}
+   */
+  authTokens?: AuthTokens;
 };
 
 export type IntercomMethod =
