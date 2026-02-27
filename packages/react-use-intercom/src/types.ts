@@ -262,7 +262,8 @@ export type IntercomMethod =
   | 'showSpace'
   | 'showNews'
   | 'showTicket'
-  | 'showConversation';
+  | 'showConversation'
+  | 'hideNotifications';
 
 export type RawIntercomProps = RawMessengerAttributes & RawDataAttributes;
 
@@ -280,7 +281,7 @@ export type IntercomBootProps = {
 
 export type LogLevel = 'info' | 'error' | 'warn';
 
-export type IntercomSpace = 'home' | 'messages' | 'help' | 'news' | 'tasks';
+export type IntercomSpace = 'home' | 'messages' | 'help' | 'news' | 'tasks' | 'tickets';
 
 export type IntercomContextValues = {
   /**
@@ -476,6 +477,14 @@ export type IntercomContextValues = {
    * @see {@link https://developers.intercom.com/installing-intercom/web/methods/#intercomshowconversation-conversationid}
    */
   showConversation: (conversationId: number) => void;
+  /**
+   * Controls the visibility of Intercom notifications
+   *
+   * @see {@link https://developers.intercom.com/installing-intercom/web/methods/#intercomhidenotifications-hidden}
+   *
+   * @param hidden `true` to hide notifications, `false` to show them
+   */
+  hideNotifications: (hidden: boolean) => void;
 };
 
 export type IntercomProviderProps = {

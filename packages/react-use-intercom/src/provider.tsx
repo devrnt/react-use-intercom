@@ -291,6 +291,15 @@ export const IntercomProvider: React.FC<
     [ensureIntercom],
   );
 
+  const hideNotifications = React.useCallback(
+    (hidden: boolean) => {
+      ensureIntercom('hideNotifications', () => {
+        IntercomAPI('hideNotifications', hidden);
+      });
+    },
+    [ensureIntercom],
+  );
+
   const providerValue = React.useMemo<IntercomContextValues>(() => {
     return {
       boot,
@@ -312,6 +321,7 @@ export const IntercomProvider: React.FC<
       showNews,
       showTicket,
       showConversation,
+      hideNotifications,
     };
   }, [
     boot,
@@ -333,6 +343,7 @@ export const IntercomProvider: React.FC<
     showNews,
     showTicket,
     showConversation,
+    hideNotifications,
   ]);
 
   return (
