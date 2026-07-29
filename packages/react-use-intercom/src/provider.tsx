@@ -300,6 +300,15 @@ export const IntercomProvider: React.FC<
     [ensureIntercom],
   );
 
+  const startConversation = React.useCallback(
+    (message: string) => {
+      ensureIntercom('startConversation', () => {
+        IntercomAPI('startConversation', message);
+      });
+    },
+    [ensureIntercom],
+  );
+
   const providerValue = React.useMemo<IntercomContextValues>(() => {
     return {
       boot,
@@ -311,6 +320,7 @@ export const IntercomProvider: React.FC<
       isOpen,
       showMessages,
       showNewMessage,
+      startConversation,
       getVisitorId,
       startTour,
       startChecklist,
@@ -333,6 +343,7 @@ export const IntercomProvider: React.FC<
     isOpen,
     showMessages,
     showNewMessage,
+    startConversation,
     getVisitorId,
     startTour,
     startChecklist,

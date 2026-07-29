@@ -142,6 +142,7 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 | show            | () => void                                 | shows the Messenger, will call `onShow` if supplied to `IntercomProvider`                                                           |
 | showMessages    | () => void                                 | shows the Messenger with the message list                                                                                           |
 | showNewMessage  | (content?: string) => void                 | shows the Messenger as if a new conversation was just created. If `content` is passed, it will fill in the message composer         |
+| startConversation | (message: string) => void                | opens the Messenger and immediately starts a new conversation with the supplied `message`                                          |
 | getVisitorId    | () => string                               | gets the visitor id                                                                                                                 |
 | startTour       | (tourId: number) => void                   | starts a tour based on the `tourId`                                                                                                 |
 | startChecklist       | (checklistId: number) => void                   | starts a checklist based on the `checklistId`                                                                                                 |
@@ -178,6 +179,7 @@ const HomePage = () => {
     show,
     showMessages,
     showNewMessage,
+    startConversation,
     getVisitorId,
     startTour,
     startChecklist,
@@ -195,6 +197,7 @@ const HomePage = () => {
   const updateWithProps = () => update({ name: 'Ossur' });
   const handleNewMessages = () => showNewMessage();
   const handleNewMessagesWithContent = () => showNewMessage('content');
+  const handleStartConversation = () => startConversation('Hello');
   const handleGetVisitorId = () => console.log(getVisitorId());
   const handleStartTour = () => startTour(123);
   const handleStartChecklist = () => startChecklist(456);
@@ -226,6 +229,7 @@ const HomePage = () => {
       <button onClick={handleNewMessagesWithContent}>
         Show new message with pre-filled content
       </button>
+      <button onClick={handleStartConversation}>Start conversation</button>
       <button onClick={handleGetVisitorId}>Get visitor id</button>
       <button onClick={handleStartTour}>Start tour</button>
       <button onClick={handleStartChecklist}>Start checklist</button>
