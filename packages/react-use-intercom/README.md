@@ -149,8 +149,10 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 | showArticle      | (articleId: string) => void | opens the Messenger with the specified article by `articleId`
 | startSurvey      | (surveyId: number) => void | Trigger a survey in the Messenger by `surveyId`
 | showSpace     | (spaceName: IntercomSpace) => void | Opens the Messenger with the specified space
+| showNews | (newsId: number) => void | Opens the Messenger with the specified news item by `newsId`
 | showTicket | (ticketId: number) => void | Opens the Messenger with the specified ticket by `ticketId`
 | showConversation | (conversationId: number) => void | Opens the Messenger with the specified conversation by `conversationId`
+| hideNotifications | (hidden: boolean) => void | controls the visibility of in-app notifications, pass `true` to hide or `false` to show them
 
 #### Example
 ```ts
@@ -183,8 +185,10 @@ const HomePage = () => {
     showArticle,
     startSurvey,
     showSpace,
+    showNews,
     showTicket,
-    showConversation
+    showConversation,
+    hideNotifications,
   } = useIntercom();
 
   const bootWithProps = () => boot({ name: 'Russo' });
@@ -202,8 +206,10 @@ const HomePage = () => {
   const handleShowArticle = () => showArticle(123456);
   const handleStartSurvey = () => startSurvey(123456);
   const handleShowSpace = () => showSpace('tasks');
+  const handleShowNews = () => showNews(123);
   const handleShowTicket = () => showTicket(123);
   const handleShowConversation = () => showConversation(123);
+  const handleHideNotifications = () => hideNotifications(true);
 
   return (
     <>
@@ -230,8 +236,10 @@ const HomePage = () => {
       <button onClick={handleShowArticle}>Open article in Messenger</button>
       <button onClick={handleStartSurvey}>Start survey in Messenger</button>
       <button onClick={handleShowSpace}>Open space in Messenger</button>
+      <button onClick={handleShowNews}>Open news in Messenger</button>
       <button onClick={handleShowTicket}>Open ticket in Messenger</button>
       <button onClick={handleShowConversation}>Open conversation in Messenger</button>
+      <button onClick={handleHideNotifications}>Hide notifications</button>
     </>
   );
 };
