@@ -152,7 +152,7 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 | showNews | (newsId: number) => void | Opens the Messenger with the specified news item by `newsId`
 | showTicket | (ticketId: number) => void | Opens the Messenger with the specified ticket by `ticketId`
 | showConversation | (conversationId: number) => void | Opens the Messenger with the specified conversation by `conversationId`
-| hideNotifications | (hidden: boolean) => void | Controls the visibility of Intercom notifications
+| hideNotifications | (hidden: boolean) => void | controls the visibility of in-app notifications, pass `true` to hide or `false` to show them
 
 #### Example
 ```ts
