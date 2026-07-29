@@ -8,6 +8,10 @@ export type RawMessengerAttributes = {
   session_duration?: number;
   action_color?: string;
   background_color?: string;
+  link_color?: string;
+  theme_mode?: string;
+  messenger_style_id?: string;
+  hide_notifications?: boolean;
 };
 
 export type MessengerAttributes = {
@@ -63,6 +67,30 @@ export type MessengerAttributes = {
    * @see {@link https://www.w3schools.com/cssref/css_colors.asp}
    */
   backgroundColor?: string;
+  /** Used for the color of links in the messenger
+   *
+   * @remarks The color string can be any valid CSS: "color name", "hex" or "rgb"
+   * @see {@link https://www.w3schools.com/cssref/css_colors.asp}
+   */
+  linkColor?: string;
+  /** Set the color mode of the messenger
+   *
+   * @remarks Possible values: "light", "dark" or "system"
+   * @see {@link https://developers.intercom.com/installing-intercom/web/attributes-objects}
+   */
+  themeMode?: 'light' | 'dark' | 'system';
+  /** Load a specific messenger style configuration by its id
+   *
+   * @remarks Useful when you have multiple messenger styles configured for your workspace
+   * @see {@link https://developers.intercom.com/installing-intercom/web/attributes-objects}
+   */
+  messengerStyleId?: string;
+  /** Hide the in-app notifications when the messenger is booted
+   *
+   * @remarks To toggle notifications at runtime after boot, use the `hideNotifications` method instead
+   * @see {@link https://developers.intercom.com/installing-intercom/web/attributes-objects}
+   */
+  hideNotifications?: boolean;
 };
 
 export type RawDataAttributesCompany = {
@@ -136,6 +164,7 @@ export type RawDataAttributes = {
   company?: RawDataAttributesCompany;
   companies?: RawDataAttributesCompany[];
   intercom_user_jwt?: string;
+  page_title?: string;
   customAttributes?: Record<string, any>;
 };
 
@@ -225,6 +254,12 @@ export type DataAttributes = {
    */
   intercomUserJwt?: string;
   /**
+   * The title of the current page, used to track page views
+   *
+   * @see {@link https://developers.intercom.com/installing-intercom/web/attributes-objects}
+   */
+  pageTitle?: string;
+  /**
    * You can do this anytime by adding additional key/value pairs to your intercomSettings code snippet
    * These should be raw snake_cased
    *
@@ -249,6 +284,7 @@ export type IntercomMethod =
   | 'show'
   | 'showMessages'
   | 'showNewMessage'
+  | 'startConversation'
   | 'startSurvey'
   | 'onHide'
   | 'onShow'
@@ -364,6 +400,15 @@ export type IntercomContextValues = {
    * ```
    */
   showNewMessage: (prePopulatedContent?: string) => void;
+  /**
+   * Opens the Messenger and immediately starts a new conversation by sending the
+   * supplied message on behalf of the current user.
+   *
+   * @see {@link https://developers.intercom.com/installing-intercom/web/methods/#intercomstartconversation-message}
+   *
+   * @param message The message to send to start the conversation
+   */
+  startConversation: (message: string) => void;
   /**
    * A visitor is someone who goes to your site but does not use the messenger.
    * You can track these visitors via the visitor `user_id`.

@@ -24,6 +24,10 @@ export const mapMessengerAttributesToRawMessengerAttributes = (
   session_duration: attributes.sessionDuration,
   action_color: attributes.actionColor,
   background_color: attributes.backgroundColor,
+  link_color: attributes.linkColor,
+  theme_mode: attributes.themeMode,
+  messenger_style_id: attributes.messengerStyleId,
+  hide_notifications: attributes.hideNotifications,
 });
 
 const mapDataAttributesCompanyToRawDataAttributesCompany = (
@@ -75,6 +79,7 @@ export const mapDataAttributesToRawDataAttributes = (
     mapDataAttributesCompanyToRawDataAttributesCompany,
   ),
   intercom_user_jwt: attributes.intercomUserJwt,
+  page_title: attributes.pageTitle,
   ...attributes.customAttributes,
 });
 
