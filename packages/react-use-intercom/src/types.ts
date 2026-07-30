@@ -586,4 +586,26 @@ export type IntercomProviderProps = {
    * Content-Security-Policy nonce to use for the Intercom <script> tag during initializing
    */
   cspNonce?: string;
+  /**
+   * The `crossOrigin` attribute to set on the `<script>` tag that loads the Messenger.
+   *
+   * @remarks Not part of the Intercom API. Set `'anonymous'` to get full error details for errors
+   * thrown by the loader script — this works because Intercom's CDN serves it with permissive CORS
+   * headers.
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script#crossorigin}
+   */
+  crossOrigin?: 'anonymous' | 'use-credentials' | '' | undefined;
+  /**
+   * Called when the Messenger script has loaded successfully.
+   *
+   * @remarks This fires once the loader script has downloaded, not when the Messenger is fully booted.
+   */
+  onLoad?: () => void;
+  /**
+   * Called when the Messenger script has failed to load.
+   *
+   * @remarks Use this to detect a broken Messenger (network issues, Intercom downtime, firewall, or
+   * blocking browser extensions) and offer the user an alternative support channel.
+   */
+  onLoadFailed?: () => void;
 };

@@ -21,7 +21,10 @@ export const IntercomProvider: React.FC<
   autoBoot = false,
   autoBootProps,
   children,
+  crossOrigin,
   onHide,
+  onLoad,
+  onLoadFailed,
   onShow,
   onUnreadCountChange,
   onUserEmailSupplied,
@@ -103,7 +106,14 @@ export const IntercomProvider: React.FC<
   );
 
   if (!isSSR && shouldInitialize && !isInitialized.current) {
-    initialize(appId, initializeDelay, cspNonce);
+    initialize(
+      appId,
+      initializeDelay,
+      cspNonce,
+      crossOrigin,
+      onLoad,
+      onLoadFailed,
+    );
 
     if (autoBoot) {
       boot(autoBootProps);

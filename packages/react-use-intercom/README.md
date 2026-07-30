@@ -91,6 +91,9 @@ Place the `IntercomProvider` as high as possible in your application. This will 
 | apiBase    | string | If you need to route your Messenger requests through a different endpoint than the default. Generally speaking, this is not needed.<br/> Format: `https://${INTERCOM_APP_ID}.intercom-messenger.com` (See: [https://github.com/devrnt/react-use-intercom/pull/96](https://github.com/devrnt/react-use-intercom/pull/96))         | false    |         |
 | initializeDelay | number | Indicates if the intercom initialization should be delayed, delay is in ms, defaults to 0. See https://github.com/devrnt/react-use-intercom/pull/236 | false    |         |
 | autoBootProps | IntercomProps | Pass properties to `boot` method when `autoBoot` is `true` | false    |         |
+| crossOrigin | 'anonymous' \| 'use-credentials' \| '' | Sets the [`crossOrigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script#crossorigin) attribute on the Messenger `<script>` (standard DOM attribute, not an Intercom API). Use `'anonymous'` for full error details in error logging; works because Intercom's CDN allows CORS | false    |         |
+| onLoad | () => void | triggered when the Messenger script has loaded successfully | false    |         |
+| onLoadFailed | () => void | triggered when the Messenger script has failed to load (network issues, Intercom downtime, firewall, blocking browser extensions, ...) | false    |         |
 
 #### Example
 ```ts
@@ -305,6 +308,24 @@ These props are `JavaScript` 'friendly', so [camelCase](https://en.wikipedia.org
 Since [v1.2.0](https://github.com/devrnt/react-use-intercom/releases/tag/v1.2.0) it's possible to delay this initialisation by passing `initializeDelay` in `<IntercomProvider />` (it's in milliseconds). However most of the users won't need to mess with this.
 
 For reference see https://github.com/devrnt/react-use-intercom/pull/236 and https://forum.intercom.com/s/question/0D52G00004WxWLs/can-i-delay-loading-intercom-on-my-site-to-reduce-the-js-load
+
+### Detect a broken Messenger
+
+The Messenger script can fail to load for various reasons, e.g. network issues, Intercom downtime, firewall rules, or browser extensions like tracking blockers.
+
+Pass `onLoadFailed` to `<IntercomProvider />` to detect when that happens and offer the user an alternative support channel. Use `onLoad` to know when the script loaded successfully (e.g. to hide a loading state).
+
+```tsx
+<IntercomProvider
+  appId={INTERCOM_APP_ID}
+  onLoad={() => console.log('Messenger loaded')}
+  onLoadFailed={() => console.log('Messenger failed to load')}
+>
+  ...
+</IntercomProvider>
+```
+
+Pass `crossOrigin="anonymous"` to unlock full error details for errors thrown by the Messenger loader script — a standard [`<script>` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script#crossorigin) rather than an Intercom feature. It works because Intercom's CDN serves the script with permissive CORS headers.
 
 ## Contributing
 
