@@ -151,6 +151,7 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 | showSpace     | (spaceName: IntercomSpace) => void | Opens the Messenger with the specified space
 | showTicket | (ticketId: number) => void | Opens the Messenger with the specified ticket by `ticketId`
 | showConversation | (conversationId: number) => void | Opens the Messenger with the specified conversation by `conversationId`
+| setAuthTokens | (authTokens: AuthTokens) => void | sets/refreshes the per-user Data Connector auth tokens at runtime without a full `update`
 
 #### Example
 ```ts
@@ -184,7 +185,8 @@ const HomePage = () => {
     startSurvey,
     showSpace,
     showTicket,
-    showConversation
+    showConversation,
+    setAuthTokens,
   } = useIntercom();
 
   const bootWithProps = () => boot({ name: 'Russo' });
@@ -204,6 +206,8 @@ const HomePage = () => {
   const handleShowSpace = () => showSpace('tasks');
   const handleShowTicket = () => showTicket(123);
   const handleShowConversation = () => showConversation(123);
+  const handleSetAuthTokens = () =>
+    setAuthTokens({ security_token: 'your-jwt' });
 
   return (
     <>
@@ -232,6 +236,7 @@ const HomePage = () => {
       <button onClick={handleShowSpace}>Open space in Messenger</button>
       <button onClick={handleShowTicket}>Open ticket in Messenger</button>
       <button onClick={handleShowConversation}>Open conversation in Messenger</button>
+      <button onClick={handleSetAuthTokens}>Set auth tokens</button>
     </>
   );
 };
@@ -271,6 +276,14 @@ All the Intercom default attributes/props are camel cased (`appId` instead of `a
   }
 })
  ```
+
+This is distinct from `intercomUserJwt`, which is for Messenger identity verification. To refresh a token during a session without sending a full `update`, use the `setAuthTokens` method:
+
+```ts
+const { setAuthTokens } = useIntercom();
+
+setAuthTokens({ security_token: 'refreshed-jwt' });
+```
 
 ## Playground
 Small playground to showcase the functionalities of `react-use-intercom`. 

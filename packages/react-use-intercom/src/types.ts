@@ -254,6 +254,9 @@ export type DataAttributes = {
    * ```
    *
    * @see {@link https://www.intercom.com/help/en/articles/6615543-setting-up-data-connectors-authentication#h_5343ec2d2c}
+   *
+   * @remarks Distinct from `intercomUserJwt` (Messenger identity verification). To refresh tokens at
+   * runtime without a full `update`, use the `setAuthTokens` method.
    */
   authTokens?: AuthTokens;
 };
@@ -279,7 +282,8 @@ export type IntercomMethod =
   | 'showSpace'
   | 'showNews'
   | 'showTicket'
-  | 'showConversation';
+  | 'showConversation'
+  | 'setAuthTokens';
 
 export type RawIntercomProps = RawMessengerAttributes & RawDataAttributes;
 
@@ -493,6 +497,17 @@ export type IntercomContextValues = {
    * @see {@link https://developers.intercom.com/installing-intercom/web/methods/#intercomshowconversation-conversationid}
    */
   showConversation: (conversationId: number) => void;
+  /**
+   * Sets or refreshes the per-user authentication tokens used for Data Connector requests,
+   * without sending a full `update`.
+   *
+   * @remarks Use this to refresh a short-lived token during a session. For the initial tokens,
+   * pass `authTokens` to `boot`/`update` instead.
+   * @see {@link https://www.intercom.com/help/en/articles/6615543-setting-up-data-connectors-authentication}
+   *
+   * @param authTokens object of token name → token (JWT) pairs
+   */
+  setAuthTokens: (authTokens: AuthTokens) => void;
 };
 
 export type IntercomProviderProps = {

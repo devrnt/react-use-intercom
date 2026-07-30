@@ -7,8 +7,8 @@ describe('auth_tokens', () => {
   it('should pass auth_tokens during boot', () => {
     const appId = 'app123';
     const mockIntercom = jest.fn();
-    (window as any).Intercom = mockIntercom;
-    (window as any).intercomSettings = undefined;
+    window.Intercom = mockIntercom;
+    window.intercomSettings = undefined;
 
     const wrapper = ({ children }: { children: React.ReactNode }) => (
       <IntercomProvider appId={appId}>{children}</IntercomProvider>
@@ -45,11 +45,13 @@ describe('auth_tokens', () => {
   it('should pass auth_tokens during update', () => {
     const appId = 'app123';
     const mockIntercom = jest.fn();
-    (window as any).Intercom = mockIntercom;
-    (window as any).intercomSettings = { app_id: appId };
+    window.Intercom = mockIntercom;
+    window.intercomSettings = { app_id: appId };
 
     const wrapper = ({ children }: { children: React.ReactNode }) => (
-      <IntercomProvider appId={appId} autoBoot>{children}</IntercomProvider>
+      <IntercomProvider appId={appId} autoBoot>
+        {children}
+      </IntercomProvider>
     );
 
     const { result } = renderHook(() => useIntercom(), { wrapper });
@@ -62,14 +64,38 @@ describe('auth_tokens', () => {
       });
     });
 
-    // Find the update call (not the boot or event handler calls)
-    const updateCalls = mockIntercom.mock.calls.filter(call => call[0] === 'update');
+    const updateCalls = mockIntercom.mock.calls.filter(
+      (call) => call[0] === 'update',
+    );
     const lastUpdateCall = updateCalls[updateCalls.length - 1];
     expect(lastUpdateCall).toBeDefined();
     expect(lastUpdateCall[1]).toMatchObject({
       auth_tokens: {
         security_token: 'updated_token',
       },
+    });
+  });
+
+  it('should pass auth_tokens through setAuthTokens', () => {
+    const appId = 'app123';
+    const mockIntercom = jest.fn();
+    window.Intercom = mockIntercom;
+    window.intercomSettings = { app_id: appId };
+
+    const wrapper = ({ children }: { children: React.ReactNode }) => (
+      <IntercomProvider appId={appId} autoBoot>
+        {children}
+      </IntercomProvider>
+    );
+
+    const { result } = renderHook(() => useIntercom(), { wrapper });
+
+    act(() => {
+      result.current.setAuthTokens({ security_token: 'refreshed_token' });
+    });
+
+    expect(mockIntercom).toHaveBeenCalledWith('setAuthTokens', {
+      security_token: 'refreshed_token',
     });
   });
 });

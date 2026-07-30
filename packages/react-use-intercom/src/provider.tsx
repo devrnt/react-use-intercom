@@ -6,6 +6,7 @@ import initialize from './initialize';
 import * as logger from './logger';
 import { mapIntercomPropsToRawIntercomProps } from './mappers';
 import {
+  AuthTokens,
   IntercomContextValues,
   IntercomProps,
   IntercomProviderProps,
@@ -291,6 +292,15 @@ export const IntercomProvider: React.FC<
     [ensureIntercom],
   );
 
+  const setAuthTokens = React.useCallback(
+    (authTokens: AuthTokens) => {
+      ensureIntercom('setAuthTokens', () => {
+        IntercomAPI('setAuthTokens', authTokens);
+      });
+    },
+    [ensureIntercom],
+  );
+
   const providerValue = React.useMemo<IntercomContextValues>(() => {
     return {
       boot,
@@ -312,6 +322,7 @@ export const IntercomProvider: React.FC<
       showNews,
       showTicket,
       showConversation,
+      setAuthTokens,
     };
   }, [
     boot,
@@ -333,6 +344,7 @@ export const IntercomProvider: React.FC<
     showNews,
     showTicket,
     showConversation,
+    setAuthTokens,
   ]);
 
   return (
