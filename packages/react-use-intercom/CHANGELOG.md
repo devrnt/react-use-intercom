@@ -1,5 +1,25 @@
 # react-use-intercom
 
+## 5.8.0
+
+### Minor Changes
+
+- 20c9f75: Add support for auth_tokens in boot and update methods, plus a setAuthTokens method
+
+  Users can now pass authentication tokens to Intercom for secure data operations. The `authTokens` property accepts an object with any string key-value pairs, and the `setAuthTokens` method refreshes them at runtime without a full update.
+
+  Example usage:
+
+  ```js
+  boot({
+    email: 'john.doe@example.com',
+    userId: '9876',
+    authTokens: {
+      security_token: 'abc...', // JWT
+    },
+  });
+  ```
+
 ## 5.7.0
 
 ### Minor Changes
