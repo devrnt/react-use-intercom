@@ -91,6 +91,9 @@ Place the `IntercomProvider` as high as possible in your application. This will 
 | apiBase    | string | If you need to route your Messenger requests through a different endpoint than the default. Generally speaking, this is not needed.<br/> Format: `https://${INTERCOM_APP_ID}.intercom-messenger.com` (See: [https://github.com/devrnt/react-use-intercom/pull/96](https://github.com/devrnt/react-use-intercom/pull/96))         | false    |         |
 | initializeDelay | number | Indicates if the intercom initialization should be delayed, delay is in ms, defaults to 0. See https://github.com/devrnt/react-use-intercom/pull/236 | false    |         |
 | autoBootProps | IntercomProps | Pass properties to `boot` method when `autoBoot` is `true` | false    |         |
+| crossOrigin | 'anonymous' \| 'use-credentials' \| '' | Sets the [`crossOrigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script#crossorigin) attribute on the Messenger `<script>` (standard DOM attribute, not an Intercom API). Use `'anonymous'` for full error details in error logging; works because Intercom's CDN allows CORS | false    |         |
+| onLoad | () => void | triggered when the Messenger script has loaded successfully | false    |         |
+| onLoadFailed | () => void | triggered when the Messenger script has failed to load (network issues, Intercom downtime, firewall, blocking browser extensions, ...) | false    |         |
 
 #### Example
 ```ts
@@ -142,6 +145,7 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 | show            | () => void                                 | shows the Messenger, will call `onShow` if supplied to `IntercomProvider`                                                           |
 | showMessages    | () => void                                 | shows the Messenger with the message list                                                                                           |
 | showNewMessage  | (content?: string) => void                 | shows the Messenger as if a new conversation was just created. If `content` is passed, it will fill in the message composer         |
+| startConversation | (message: string) => void                | opens the Messenger and immediately starts a new conversation with the supplied `message`                                          |
 | getVisitorId    | () => string                               | gets the visitor id                                                                                                                 |
 | startTour       | (tourId: number) => void                   | starts a tour based on the `tourId`                                                                                                 |
 | startChecklist       | (checklistId: number) => void                   | starts a checklist based on the `checklistId`                                                                                                 |
@@ -149,8 +153,10 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 | showArticle      | (articleId: string) => void | opens the Messenger with the specified article by `articleId`
 | startSurvey      | (surveyId: number) => void | Trigger a survey in the Messenger by `surveyId`
 | showSpace     | (spaceName: IntercomSpace) => void | Opens the Messenger with the specified space
+| showNews | (newsId: number) => void | Opens the Messenger with the specified news item by `newsId`
 | showTicket | (ticketId: number) => void | Opens the Messenger with the specified ticket by `ticketId`
 | showConversation | (conversationId: number) => void | Opens the Messenger with the specified conversation by `conversationId`
+| hideNotifications | (hidden: boolean) => void | controls the visibility of in-app notifications, pass `true` to hide or `false` to show them
 | setAuthTokens | (authTokens: AuthTokens) => void | sets/refreshes the per-user Data Connector auth tokens at runtime without a full `update`
 
 #### Example
@@ -177,6 +183,7 @@ const HomePage = () => {
     show,
     showMessages,
     showNewMessage,
+    startConversation,
     getVisitorId,
     startTour,
     startChecklist,
@@ -184,8 +191,10 @@ const HomePage = () => {
     showArticle,
     startSurvey,
     showSpace,
+    showNews,
     showTicket,
     showConversation,
+    hideNotifications,
     setAuthTokens,
   } = useIntercom();
 
@@ -193,6 +202,7 @@ const HomePage = () => {
   const updateWithProps = () => update({ name: 'Ossur' });
   const handleNewMessages = () => showNewMessage();
   const handleNewMessagesWithContent = () => showNewMessage('content');
+  const handleStartConversation = () => startConversation('Hello');
   const handleGetVisitorId = () => console.log(getVisitorId());
   const handleStartTour = () => startTour(123);
   const handleStartChecklist = () => startChecklist(456);
@@ -204,8 +214,10 @@ const HomePage = () => {
   const handleShowArticle = () => showArticle(123456);
   const handleStartSurvey = () => startSurvey(123456);
   const handleShowSpace = () => showSpace('tasks');
+  const handleShowNews = () => showNews(123);
   const handleShowTicket = () => showTicket(123);
   const handleShowConversation = () => showConversation(123);
+  const handleHideNotifications = () => hideNotifications(true);
   const handleSetAuthTokens = () =>
     setAuthTokens({ security_token: 'your-jwt' });
 
@@ -224,6 +236,7 @@ const HomePage = () => {
       <button onClick={handleNewMessagesWithContent}>
         Show new message with pre-filled content
       </button>
+      <button onClick={handleStartConversation}>Start conversation</button>
       <button onClick={handleGetVisitorId}>Get visitor id</button>
       <button onClick={handleStartTour}>Start tour</button>
       <button onClick={handleStartChecklist}>Start checklist</button>
@@ -234,8 +247,10 @@ const HomePage = () => {
       <button onClick={handleShowArticle}>Open article in Messenger</button>
       <button onClick={handleStartSurvey}>Start survey in Messenger</button>
       <button onClick={handleShowSpace}>Open space in Messenger</button>
+      <button onClick={handleShowNews}>Open news in Messenger</button>
       <button onClick={handleShowTicket}>Open ticket in Messenger</button>
       <button onClick={handleShowConversation}>Open conversation in Messenger</button>
+      <button onClick={handleHideNotifications}>Hide notifications</button>
       <button onClick={handleSetAuthTokens}>Set auth tokens</button>
     </>
   );
@@ -323,6 +338,24 @@ These props are `JavaScript` 'friendly', so [camelCase](https://en.wikipedia.org
 Since [v1.2.0](https://github.com/devrnt/react-use-intercom/releases/tag/v1.2.0) it's possible to delay this initialisation by passing `initializeDelay` in `<IntercomProvider />` (it's in milliseconds). However most of the users won't need to mess with this.
 
 For reference see https://github.com/devrnt/react-use-intercom/pull/236 and https://forum.intercom.com/s/question/0D52G00004WxWLs/can-i-delay-loading-intercom-on-my-site-to-reduce-the-js-load
+
+### Detect a broken Messenger
+
+The Messenger script can fail to load for various reasons, e.g. network issues, Intercom downtime, firewall rules, or browser extensions like tracking blockers.
+
+Pass `onLoadFailed` to `<IntercomProvider />` to detect when that happens and offer the user an alternative support channel. Use `onLoad` to know when the script loaded successfully (e.g. to hide a loading state).
+
+```tsx
+<IntercomProvider
+  appId={INTERCOM_APP_ID}
+  onLoad={() => console.log('Messenger loaded')}
+  onLoadFailed={() => console.log('Messenger failed to load')}
+>
+  ...
+</IntercomProvider>
+```
+
+Pass `crossOrigin="anonymous"` to unlock full error details for errors thrown by the Messenger loader script — a standard [`<script>` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script#crossorigin) rather than an Intercom feature. It works because Intercom's CDN serves the script with permissive CORS headers.
 
 ## Contributing
 

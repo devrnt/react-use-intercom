@@ -1,5 +1,18 @@
 # react-use-intercom
 
+## 5.7.0
+
+### Minor Changes
+
+- fbcf07b: Add `crossOrigin`, `onLoad` and `onLoadFailed` options to `IntercomProvider` to set the messenger `<script>` crossorigin attribute and detect when the messenger script loads or fails to load
+
+## 5.6.0
+
+### Minor Changes
+
+- 2b7d386: Add `hideNotifications` method and support for the `tickets` space in `showSpace`
+- 7322d54: Add the `startConversation` method and support for the `linkColor`, `themeMode`, `messengerStyleId`, `hideNotifications` and `pageTitle` attributes
+
 ## 5.5.0
 
 ### Minor Changes

@@ -22,7 +22,10 @@ export const IntercomProvider: React.FC<
   autoBoot = false,
   autoBootProps,
   children,
+  crossOrigin,
   onHide,
+  onLoad,
+  onLoadFailed,
   onShow,
   onUnreadCountChange,
   onUserEmailSupplied,
@@ -104,7 +107,14 @@ export const IntercomProvider: React.FC<
   );
 
   if (!isSSR && shouldInitialize && !isInitialized.current) {
-    initialize(appId, initializeDelay, cspNonce);
+    initialize(
+      appId,
+      initializeDelay,
+      cspNonce,
+      crossOrigin,
+      onLoad,
+      onLoadFailed,
+    );
 
     if (autoBoot) {
       boot(autoBootProps);
@@ -292,6 +302,24 @@ export const IntercomProvider: React.FC<
     [ensureIntercom],
   );
 
+  const hideNotifications = React.useCallback(
+    (hidden: boolean) => {
+      ensureIntercom('hideNotifications', () => {
+        IntercomAPI('hideNotifications', hidden);
+      });
+    },
+    [ensureIntercom],
+  );
+
+  const startConversation = React.useCallback(
+    (message: string) => {
+      ensureIntercom('startConversation', () => {
+        IntercomAPI('startConversation', message);
+      });
+    },
+    [ensureIntercom],
+  );
+
   const setAuthTokens = React.useCallback(
     (authTokens: AuthTokens) => {
       ensureIntercom('setAuthTokens', () => {
@@ -312,6 +340,7 @@ export const IntercomProvider: React.FC<
       isOpen,
       showMessages,
       showNewMessage,
+      startConversation,
       getVisitorId,
       startTour,
       startChecklist,
@@ -322,6 +351,7 @@ export const IntercomProvider: React.FC<
       showNews,
       showTicket,
       showConversation,
+      hideNotifications,
       setAuthTokens,
     };
   }, [
@@ -334,6 +364,7 @@ export const IntercomProvider: React.FC<
     isOpen,
     showMessages,
     showNewMessage,
+    startConversation,
     getVisitorId,
     startTour,
     startChecklist,
@@ -344,6 +375,7 @@ export const IntercomProvider: React.FC<
     showNews,
     showTicket,
     showConversation,
+    hideNotifications,
     setAuthTokens,
   ]);
 

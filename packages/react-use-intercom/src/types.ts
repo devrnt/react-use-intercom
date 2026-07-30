@@ -8,6 +8,10 @@ export type RawMessengerAttributes = {
   session_duration?: number;
   action_color?: string;
   background_color?: string;
+  link_color?: string;
+  theme_mode?: string;
+  messenger_style_id?: string;
+  hide_notifications?: boolean;
 };
 
 export type MessengerAttributes = {
@@ -63,6 +67,30 @@ export type MessengerAttributes = {
    * @see {@link https://www.w3schools.com/cssref/css_colors.asp}
    */
   backgroundColor?: string;
+  /** Used for the color of links in the messenger
+   *
+   * @remarks The color string can be any valid CSS: "color name", "hex" or "rgb"
+   * @see {@link https://www.w3schools.com/cssref/css_colors.asp}
+   */
+  linkColor?: string;
+  /** Set the color mode of the messenger
+   *
+   * @remarks Possible values: "light", "dark" or "system"
+   * @see {@link https://developers.intercom.com/installing-intercom/web/attributes-objects}
+   */
+  themeMode?: 'light' | 'dark' | 'system';
+  /** Load a specific messenger style configuration by its id
+   *
+   * @remarks Useful when you have multiple messenger styles configured for your workspace
+   * @see {@link https://developers.intercom.com/installing-intercom/web/attributes-objects}
+   */
+  messengerStyleId?: string;
+  /** Hide the in-app notifications when the messenger is booted
+   *
+   * @remarks To toggle notifications at runtime after boot, use the `hideNotifications` method instead
+   * @see {@link https://developers.intercom.com/installing-intercom/web/attributes-objects}
+   */
+  hideNotifications?: boolean;
 };
 
 export type RawDataAttributesCompany = {
@@ -138,6 +166,7 @@ export type RawDataAttributes = {
   company?: RawDataAttributesCompany;
   companies?: RawDataAttributesCompany[];
   intercom_user_jwt?: string;
+  page_title?: string;
   customAttributes?: Record<string, any>;
   auth_tokens?: AuthTokens;
 };
@@ -228,6 +257,12 @@ export type DataAttributes = {
    */
   intercomUserJwt?: string;
   /**
+   * The title of the current page, used to track page views
+   *
+   * @see {@link https://developers.intercom.com/installing-intercom/web/attributes-objects}
+   */
+  pageTitle?: string;
+  /**
    * You can do this anytime by adding additional key/value pairs to your intercomSettings code snippet
    * These should be raw snake_cased
    *
@@ -269,6 +304,7 @@ export type IntercomMethod =
   | 'show'
   | 'showMessages'
   | 'showNewMessage'
+  | 'startConversation'
   | 'startSurvey'
   | 'onHide'
   | 'onShow'
@@ -283,6 +319,7 @@ export type IntercomMethod =
   | 'showNews'
   | 'showTicket'
   | 'showConversation'
+  | 'hideNotifications'
   | 'setAuthTokens';
 
 export type RawIntercomProps = RawMessengerAttributes & RawDataAttributes;
@@ -301,7 +338,7 @@ export type IntercomBootProps = {
 
 export type LogLevel = 'info' | 'error' | 'warn';
 
-export type IntercomSpace = 'home' | 'messages' | 'help' | 'news' | 'tasks';
+export type IntercomSpace = 'home' | 'messages' | 'help' | 'news' | 'tasks' | 'tickets';
 
 export type IntercomContextValues = {
   /**
@@ -384,6 +421,15 @@ export type IntercomContextValues = {
    * ```
    */
   showNewMessage: (prePopulatedContent?: string) => void;
+  /**
+   * Opens the Messenger and immediately starts a new conversation by sending the
+   * supplied message on behalf of the current user.
+   *
+   * @see {@link https://developers.intercom.com/installing-intercom/web/methods/#intercomstartconversation-message}
+   *
+   * @param message The message to send to start the conversation
+   */
+  startConversation: (message: string) => void;
   /**
    * A visitor is someone who goes to your site but does not use the messenger.
    * You can track these visitors via the visitor `user_id`.
@@ -498,6 +544,14 @@ export type IntercomContextValues = {
    */
   showConversation: (conversationId: number) => void;
   /**
+   * Controls the visibility of Intercom notifications
+   *
+   * @see {@link https://developers.intercom.com/installing-intercom/web/methods/#intercomhidenotifications-hidden}
+   *
+   * @param hidden `true` to hide notifications, `false` to show them
+   */
+  hideNotifications: (hidden: boolean) => void;
+  /**
    * Sets or refreshes the per-user authentication tokens used for Data Connector requests,
    * without sending a full `update`.
    *
@@ -564,4 +618,26 @@ export type IntercomProviderProps = {
    * Content-Security-Policy nonce to use for the Intercom <script> tag during initializing
    */
   cspNonce?: string;
+  /**
+   * The `crossOrigin` attribute to set on the `<script>` tag that loads the Messenger.
+   *
+   * @remarks Not part of the Intercom API. Set `'anonymous'` to get full error details for errors
+   * thrown by the loader script — this works because Intercom's CDN serves it with permissive CORS
+   * headers.
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script#crossorigin}
+   */
+  crossOrigin?: 'anonymous' | 'use-credentials' | '' | undefined;
+  /**
+   * Called when the Messenger script has loaded successfully.
+   *
+   * @remarks This fires once the loader script has downloaded, not when the Messenger is fully booted.
+   */
+  onLoad?: () => void;
+  /**
+   * Called when the Messenger script has failed to load.
+   *
+   * @remarks Use this to detect a broken Messenger (network issues, Intercom downtime, firewall, or
+   * blocking browser extensions) and offer the user an alternative support channel.
+   */
+  onLoadFailed?: () => void;
 };
