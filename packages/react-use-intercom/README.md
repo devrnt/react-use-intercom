@@ -157,6 +157,7 @@ Used to retrieve all methods bundled with Intercom. These are based on the offic
 | showTicket | (ticketId: number) => void | Opens the Messenger with the specified ticket by `ticketId`
 | showConversation | (conversationId: number) => void | Opens the Messenger with the specified conversation by `conversationId`
 | hideNotifications | (hidden: boolean) => void | controls the visibility of in-app notifications, pass `true` to hide or `false` to show them
+| setAuthTokens | (authTokens: AuthTokens) => void | sets/refreshes the per-user Data Connector auth tokens at runtime without a full `update`
 
 #### Example
 ```ts
@@ -194,6 +195,7 @@ const HomePage = () => {
     showTicket,
     showConversation,
     hideNotifications,
+    setAuthTokens,
   } = useIntercom();
 
   const bootWithProps = () => boot({ name: 'Russo' });
@@ -216,6 +218,8 @@ const HomePage = () => {
   const handleShowTicket = () => showTicket(123);
   const handleShowConversation = () => showConversation(123);
   const handleHideNotifications = () => hideNotifications(true);
+  const handleSetAuthTokens = () =>
+    setAuthTokens({ security_token: 'your-jwt' });
 
   return (
     <>
@@ -247,6 +251,7 @@ const HomePage = () => {
       <button onClick={handleShowTicket}>Open ticket in Messenger</button>
       <button onClick={handleShowConversation}>Open conversation in Messenger</button>
       <button onClick={handleHideNotifications}>Hide notifications</button>
+      <button onClick={handleSetAuthTokens}>Set auth tokens</button>
     </>
   );
 };
@@ -269,6 +274,31 @@ All the Intercom default attributes/props are camel cased (`appId` instead of `a
   customAttributes: { custom_attribute_key: 'hi there' },
 })
  ```
+
+ #### Authentication tokens
+ For secure data operations, you can pass authentication tokens to Intercom using the `authTokens` property. This accepts an object with any string key-value pairs.
+
+ ```ts
+ const { boot } = useIntercom();
+
+ boot({
+  email: 'john.doe@example.com',
+  userId: '9876',
+  authTokens: {
+    security_token: 'abc...', // JWT token
+    api_token: 'xyz...',
+    // Any other tokens as key-value pairs
+  }
+})
+ ```
+
+This is distinct from `intercomUserJwt`, which is for Messenger identity verification. To refresh a token during a session without sending a full `update`, use the `setAuthTokens` method:
+
+```ts
+const { setAuthTokens } = useIntercom();
+
+setAuthTokens({ security_token: 'refreshed-jwt' });
+```
 
 ## Playground
 Small playground to showcase the functionalities of `react-use-intercom`. 

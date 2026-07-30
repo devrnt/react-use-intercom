@@ -80,6 +80,7 @@ export const mapDataAttributesToRawDataAttributes = (
   ),
   intercom_user_jwt: attributes.intercomUserJwt,
   page_title: attributes.pageTitle,
+  auth_tokens: attributes.authTokens,
   ...attributes.customAttributes,
 });
 

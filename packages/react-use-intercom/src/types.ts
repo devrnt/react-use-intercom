@@ -145,6 +145,8 @@ export type DataAttributesAvatar = {
   imageUrl?: string;
 };
 
+export type AuthTokens = Record<string, string>;
+
 export type RawDataAttributes = {
   email?: string;
   user_id?: string;
@@ -166,6 +168,7 @@ export type RawDataAttributes = {
   intercom_user_jwt?: string;
   page_title?: string;
   customAttributes?: Record<string, any>;
+  auth_tokens?: AuthTokens;
 };
 
 export type DataAttributes = {
@@ -271,9 +274,26 @@ export type DataAttributes = {
    * ```
    *
    * @see {@link https://www.intercom.com/help/en/articles/179-send-custom-user-attributes-to-intercom}
-   * @remarks The key is the attribute name. The value is a placeholder for the data you’ll track
+   * @remarks The key is the attribute name. The value is a placeholder for the data you'll track
    */
   customAttributes?: Record<string, any>;
+  /**
+   * Authentication tokens for secure data operations
+   * Can contain any key-value pairs where both key and value are strings
+   *
+   * @example
+   * ```
+   * authTokens: {
+   *   security_token: 'abc...' // JWT
+   * }
+   * ```
+   *
+   * @see {@link https://www.intercom.com/help/en/articles/6615543-setting-up-data-connectors-authentication#h_5343ec2d2c}
+   *
+   * @remarks Distinct from `intercomUserJwt` (Messenger identity verification). To refresh tokens at
+   * runtime without a full `update`, use the `setAuthTokens` method.
+   */
+  authTokens?: AuthTokens;
 };
 
 export type IntercomMethod =
@@ -299,7 +319,8 @@ export type IntercomMethod =
   | 'showNews'
   | 'showTicket'
   | 'showConversation'
-  | 'hideNotifications';
+  | 'hideNotifications'
+  | 'setAuthTokens';
 
 export type RawIntercomProps = RawMessengerAttributes & RawDataAttributes;
 
@@ -530,6 +551,17 @@ export type IntercomContextValues = {
    * @param hidden `true` to hide notifications, `false` to show them
    */
   hideNotifications: (hidden: boolean) => void;
+  /**
+   * Sets or refreshes the per-user authentication tokens used for Data Connector requests,
+   * without sending a full `update`.
+   *
+   * @remarks Use this to refresh a short-lived token during a session. For the initial tokens,
+   * pass `authTokens` to `boot`/`update` instead.
+   * @see {@link https://www.intercom.com/help/en/articles/6615543-setting-up-data-connectors-authentication}
+   *
+   * @param authTokens object of token name → token (JWT) pairs
+   */
+  setAuthTokens: (authTokens: AuthTokens) => void;
 };
 
 export type IntercomProviderProps = {
