@@ -8,10 +8,20 @@
  * @param appId - Intercom app id
  * @param [timeout=0] - Amount of milliseconds that the initialization should be delayed, defaults to 0
  * @param [cspNonce=undefined] - Content-Security-Policy nonce to use for the Intercom <script> tag during initializing
+ * @param [crossOrigin=undefined] - `crossOrigin` attribute to set on the Intercom <script> tag
+ * @param [onLoad=undefined] - Called when the Intercom <script> tag has loaded successfully
+ * @param [onLoadFailed=undefined] - Called when the Intercom <script> tag has failed to load
  *
  * @see {@link https://developers.intercom.com/installing-intercom/docs/basic-javascript}
  */
-const initialize = (appId: string, timeout: number = 0, cspNonce?: string) => {
+const initialize = (
+  appId: string,
+  timeout: number = 0,
+  cspNonce?: string,
+  crossOrigin?: string,
+  onLoad?: () => void,
+  onLoadFailed?: () => void,
+) => {
   var w = window;
   var ic = w.Intercom;
   if (typeof ic === 'function') {
@@ -33,7 +43,10 @@ const initialize = (appId: string, timeout: number = 0, cspNonce?: string) => {
         s.type = 'text/javascript';
         s.async = true;
         if (cspNonce) s.setAttribute('nonce', cspNonce);
+        if (crossOrigin) s.crossOrigin = crossOrigin;
         s.src = 'https://widget.intercom.io/widget/' + appId;
+        if (onLoad) s.addEventListener('load', onLoad);
+        if (onLoadFailed) s.addEventListener('error', onLoadFailed);
         var x = d.getElementsByTagName('script')[0];
         x.parentNode.insertBefore(s, x);
       }, timeout);
